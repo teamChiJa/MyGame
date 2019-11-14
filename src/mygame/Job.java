@@ -1,53 +1,59 @@
 package mygame;
 
-public class Job {
+public abstract class Job {
+//抽象クラス
     private String name;
-    private int HP;
-    private int MP;
-    private int Attack;
-    private int Defence;
+    private int hp;
+    private int mp;//
+    private int attack;
+    private int defence;
 
-    public Job(String name) {
+    public Job(String name, int hp, int mp, int attack, int defence) {
         this.name = name;
+        this.hp = hp;
+        this.mp = mp;
+        this.attack = attack;
+        this.defence = defence;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getHP() {
-        return HP;
-    }
-
-    public int getMP() {
-        return MP;
-    }
-
-    public int getAttack() {
-        return Attack;
-    }
-
-    public int getDefence() {
-        return Defence;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setHP(int HP) {
-        this.HP = HP;
+    public int getHp() {
+        return hp;
     }
 
-    public void setMP(int MP) {
-        this.MP = MP;
+    public void setHp(int hp) {
+        this.hp = hp;
     }
 
-    public void setAttack(int Attack) {
-        this.Attack = Attack;
+    public int getMp() {
+        return mp;
     }
 
-    public void setDefence(int Defence) {
-        this.Defence = Defence;
+    public void setMp(int mp) {
+        this.mp = mp;
     }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public int getDefence() {
+        return defence;
+    }
+
+    public void setDefence(int defence) {
+        this.defence = defence;
+    }
+
 }
