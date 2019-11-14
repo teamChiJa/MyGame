@@ -9,7 +9,7 @@ public class Knight extends Job{
     final int attack = 15;
     final int defence = 30;
 
-    public Knight(String name, int hp, int mp, int attack, int defence) {
-        super(name, hp, mp, attack, defence);
+    public Knight(String name, int hp, int mp) {
+        super(name, hp, mp);
     }
 }

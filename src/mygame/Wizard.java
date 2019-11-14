@@ -11,7 +11,7 @@ public class Wizard extends Job{
     final int attack = 5;
     final int defence = 5;
 
-    public Wizard(String name, int hp, int mp, int attack, int defence) {
-        super(name, hp, mp, attack, defence);
+    public Wizard(String name, int hp, int mp) {
+        super(name, hp, mp);
     }
 }

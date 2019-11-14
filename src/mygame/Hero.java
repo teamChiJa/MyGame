@@ -10,8 +10,8 @@ public class Hero extends Job {
     final int attack = 20;
     final int defence = 20;
 
-    public Hero(String name, int hp, int mp, int attack, int defence) {
-        super(name, hp, mp, attack, defence);
+    public Hero(String name, int hp, int mp) {
+        super(name, hp, mp);
     }
 
 }
