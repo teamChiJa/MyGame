@@ -7,6 +7,6 @@ public class CreatMember {//
 
     static ArrayList<Job> party = new ArrayList();
     public static void Creat(){
-        System.out.println("");
+        System.out.println("");//
     }
 }
