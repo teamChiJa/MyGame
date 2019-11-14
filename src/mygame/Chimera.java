@@ -20,7 +20,7 @@ public class Chimera {
     }
      
       public String getName() {
-        return name;
+        return name;//
     }
 
     public int getHP() {
