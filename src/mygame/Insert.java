@@ -25,7 +25,7 @@ public class Insert {
                 continue;
             }
             if (nm >= 100000) {
-                System.out.println("▲入力エラー：数値が上限を超えています▲");
+                System.out.println("▲入力エラー：数値が上限を超えています▲");//
                 continue;
             }
 
