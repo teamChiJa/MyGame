@@ -1,8 +1,4 @@
-
 package mygame;
-
-
-
 
 public class Job {
     private String name;
