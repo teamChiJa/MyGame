@@ -16,7 +16,7 @@ public abstract class Job {
     }
 
     public Job(String name, int hp, int mp, int attack, int defence) { //モンスターとファイター
-        this.name = name;
+        this.name = name;///
         this.hp = hp;
         this.mp = mp;
         this.attack = attack;
