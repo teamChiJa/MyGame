@@ -10,7 +10,7 @@ public class MemberManager {
     
     public void hmmPut(String groupName,ArrayList<Job> al){
         hmm.put(groupName, al);
-        System.out.println(groupName + "　グループをセーブしました");
+        System.out.println(groupName + "　グループをセーブしました");//
     }
     
     public void hmmToString(){
