@@ -1,14 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package mygame;
 
-/**
- *
- * @author kbc19a21
- */
-public class Wizard {
-    
+
+
+
+public class Wizard extends Job{
+      private String name;
+    private int hp;
+    private int mp;
+    final int attack = 5;
+    final int defence = 5;
+
+    public Wizard(String name, int hp, int mp, int attack, int defence) {
+        super(name, hp, mp, attack, defence);
+    }
 }

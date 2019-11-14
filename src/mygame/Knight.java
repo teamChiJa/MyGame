@@ -1,14 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package mygame;
 
-/**
- *
- * @author kbc19a21
- */
-public class Knight {
-    
+
+public class Knight extends Job{
+    private String name;
+    private int hp;
+    private int mp;
+    final int attack = 30;
+    final int defence = 15;
+
+    public Knight(String name, int hp, int mp, int attack, int defence) {
+        super(name, hp, mp, attack, defence);
+    }
 }
