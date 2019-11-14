@@ -1,14 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package mygame;
 
-/**
- *
- * @author kbc19a21
- */
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class MemberManager {
+    Map<String,ArrayList<Job>> hmm = new HashMap<>();
     
+    public void hmmPut(String groupName,ArrayList<Job> al){
+        hmm.put(groupName, al);
+        System.out.println(groupName + "　グループをセーブしました");
+    }
+    
+    public void hmmToString(){
+        
+    }
 }
