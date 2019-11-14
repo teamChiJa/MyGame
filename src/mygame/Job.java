@@ -2,13 +2,20 @@ package mygame;
 
 public abstract class Job {
 //抽象クラス
+
     private String name;
     private int hp;
     private int mp;//
     private int attack;
     private int defence;
 
-    public Job(String name, int hp, int mp, int attack, int defence) {
+    public Job(String name, int hp, int mp) {
+        this.name = name;
+        this.hp = hp;
+        this.mp = mp;
+    }
+
+    public Job(String name, int hp, int mp, int attack, int defence) { //モンスターとファイター
         this.name = name;
         this.hp = hp;
         this.mp = mp;
