@@ -13,7 +13,7 @@ public class CreatMember {//
         System.out.println("一人目のJobを選択してください");
         selectJob();
         System.out.println("二人目のJobを選択してください");
-        selectJob();
+        selectJob();//
         System.out.println("三人目のJobを選択してください");
         selectJob();
     }
