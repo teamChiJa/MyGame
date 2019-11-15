@@ -3,14 +3,15 @@ package mygame;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import static mygame.CreatMember.*;
 
 public class MemberManager {
 
     static Map<String, ArrayList<Job>> hmm = new HashMap<>();
     CreatMember cm = new CreatMember();
 
-    public static void hmmPut(String groupName, ArrayList<Job> al) {
-        hmm.put(groupName, al);
+    public static void hmmPut(String groupName) {
+        hmm.put(groupName,party );
         System.out.println(groupName + "　グループをセーブしました");
     }
 
@@ -18,6 +19,9 @@ public class MemberManager {
         System.out.println();
         for(String group : hmm.keySet()){
             System.out.println(  "グループ名 : " + group);
+            for(int i=0; i<party.size();i++){
+                System.out.println("    勇者の名前 : " + party.get(i).getName());
+            }
             
         }
     }
