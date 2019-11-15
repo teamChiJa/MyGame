@@ -9,7 +9,7 @@ public class Fighter extends Job {
     final int defence = 10;
 
     public Fighter(String name, int hp,int attack) {
-        super(name, hp,attack);
+        super(name, hp,attack,"Fighter");
     }
 
 }

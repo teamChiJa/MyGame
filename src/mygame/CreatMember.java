@@ -14,7 +14,7 @@ public class CreatMember {//
         selectJob();
         System.out.println("二人目のJobを選択してください");
         selectJob();
-        System.out.println("二人目のJobを選択してください");
+        System.out.println("三人目のJobを選択してください");
         selectJob();
     }
 

@@ -10,7 +10,7 @@ public class Mage extends Job{
     final int defence = 5;
 
     public Mage(String name, int hp, int mp) {
-        super(name, hp, mp);
+        super(name, hp, mp,"Mage");
     
 }
 }

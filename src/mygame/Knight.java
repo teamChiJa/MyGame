@@ -8,8 +8,7 @@ public class Knight extends Job{
     private int mp;
     final int attack = 15;
     final int defence = 30;
-
     public Knight(String name, int hp, int mp) {
-        super(name, hp, mp);
+        super(name, hp, mp,"Knight");
     }
 }
