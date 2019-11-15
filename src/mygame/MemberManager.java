@@ -20,7 +20,7 @@ public class MemberManager {
         for(String group : hmm.keySet()){
             System.out.println(  "グループ名 : " + group);
             for(int i=0; i<party.size();i++){
-                System.out.println("    勇者の名前 : " + party.get(i).getName());
+                System.out.println("    勇者の名前 : " + party.get(i).getName() + " , " + "ジョブ名 : " + party.get(i).getJobName());
             }
             
         }
