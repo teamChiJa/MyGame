@@ -11,7 +11,7 @@ public class Hero extends Job {
     final int defence = 20;
 
     public Hero(String name, int hp, int mp) {
-        super(name, hp, mp,"Fighter");
+        super(name, hp, mp,"Hero");
     }
 
 }
