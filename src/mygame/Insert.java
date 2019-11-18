@@ -14,10 +14,11 @@ public class Insert {
         return str;
     }
 
-    public static int insertNumber() {
+    public static int insertNumber(String Msg) {
         for (;;) {
 
             try {
+                System.out.print(Msg);
                 str = scan.next();
                 nm = Integer.parseInt(str);
             } catch (NumberFormatException e) {
