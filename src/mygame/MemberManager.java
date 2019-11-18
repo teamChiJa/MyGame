@@ -12,7 +12,7 @@ public class MemberManager {
 
     public static void hmmPut(String groupName) {
         hmm.put(groupName,party );
-        System.out.println( "【" + groupName + "】グループをセーブしました");
+        System.out.println( "【" + groupName + "】グループをセーブデータに保存しました");
     }
 
     public static void hmmToString() {
