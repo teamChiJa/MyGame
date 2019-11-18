@@ -10,17 +10,21 @@ public class CreatMember {//
     static ArrayList<Job> party = new ArrayList();
 
     public static void creat() {
+        String gName;
         System.out.println("一人目のJobを選択してください");
         selectJob();
         System.out.println("二人目のJobを選択してください");
         selectJob();//
         System.out.println("三人目のJobを選択してください");
         selectJob();
+        System.out.print("グループ名を入力してください>");
+        gName = insert();
+        hmmPut(gName);
+        hmmToString();
     }
 
     public static void selectJob() {
-        System.out.print("1.Hero 2.Fighter 3.Wizard 4.Mage 5.Knight >");
-        int tmp = insertNumber();
+        int tmp = insertNumber("1.Hero 2.Fighter 3.Wizard 4.Mage 5.Knight >");
         String name;
         int i1;
         int i2;
