@@ -1,20 +1,41 @@
-
 package mygame;
 
 import static mygame.CreatMember.*;
 import static mygame.Insert.*;
+import static mygame.MemberManager.*;
 
 public class PlayGame {
-    public static void game(){ 
-    System.out.println("ゲームを開始します");
+
+    public static void game() {
+
+        int partyNo;
+        System.out.println("ゲームを開始します");
         String msg = "既存のデータを使いますか？";
 
         System.out.println(msg);
         String yn = foolProof();
-        if (yn.equalsIgnoreCase("y")) {
+        for (;;) {
+            if (yn.equalsIgnoreCase("y")) {
+                if (hmm.size() == 0) {
+                    System.out.println("セーブデータが存在しません");
+                    System.out.println("新規セーブデータを構築します");
+                    yn = "n";
+                } else {
+                    for (;;) {
+                        partyNo = insertNumber(groupNameToString());
+                        if (partyNo > 0 && partyNo <= groupNameList.size()) {
+                            break;
+                        }
+                        System.out.println("▽入力エラー▽");
+                        System.out.println();
+                    }
+                    break;
+                }
 
-        } else {
-            creat();
+            } else {
+                creat();
+                break;
+            }
         }
-}
+    }
 }
