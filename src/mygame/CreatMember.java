@@ -10,16 +10,36 @@ public class CreatMember {//
     static ArrayList<Job> party = new ArrayList();
 
     public static void creat() {
+        String yandn;
         String gName;
-        System.out.println("一人目のJobを選択してください");
-        selectJob();
-        System.out.println("二人目のJobを選択してください");
-        selectJob();//
-        System.out.println("三人目のJobを選択してください");
-        selectJob();
         System.out.print("グループ名を入力してください>");
         gName = insert();
-        hmmPut(gName);
+        for (;;) {
+            System.out.println("一人目のJobを選択してください");
+            selectJob();
+            System.out.println("パーティーを作成を終了しますか？");
+            yandn = foolProof();
+            if (yandn.equalsIgnoreCase("y")) {
+                hmmPut(gName, party.get(0));
+                party.clear();
+                break;
+            }
+            System.out.println("二人目のJobを選択してください");
+            selectJob();
+            System.out.println("パーティーを作成を終了しますか？");
+            yandn = foolProof();
+            if (yandn.equalsIgnoreCase("y")) {
+                hmmPut(gName, party.get(0), party.get(1));
+                party.clear();
+                break;
+            }
+            System.out.println("三人目のJobを選択してください");
+            selectJob();
+            System.out.println("パーティー作成を終了します");
+            hmmPut(gName, party.get(0), party.get(1), party.get(2));
+            party.clear();
+            break;
+        }
         hmmToString();
     }
 
@@ -31,6 +51,9 @@ public class CreatMember {//
             int i1;
             int i2;
             switch (tmp) {
+                case 0:
+                    System.out.println("パーティー作成を終了します");
+                    break;
                 case 1:
                     System.out.print("名前を入力してください>");
                     name = insert();
@@ -72,7 +95,7 @@ public class CreatMember {//
                     party.add(k);
                     break;
                 default:
-                    System.out.println("1~5の中の数値を入力してください");
+                    System.out.println("0~5の中の数値を入力してください");
                     break;
             }
         }
