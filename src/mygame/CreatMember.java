@@ -42,7 +42,7 @@ public class CreatMember {
             break;
         }
         hmmToString();
-        combatParty = hmm.get(gName);
+        partySelect(hmm.get(gName));
         
     }
 

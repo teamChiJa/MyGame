@@ -1,28 +1,26 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package mygame;
 
-public abstract class Job {
-//抽象クラス
-
+/**
+ *
+ * @author kbc19a21
+ */
+public abstract class Monster {
     private String name;
     private int hp;
     private int mp;
     private int attack;
     private int defence;
-    private String jobName;
-    public Job(String name, int hp, int mp , String jobName) {
-        this.name = name;
-        this.hp = hp;
-        this.mp = mp;
-        this.jobName = jobName;
-    }
-
-    public Job(String name, int hp, int mp, int attack, int defence, String jobName) { //モンスターとファイター
+    private String monsterName;
+    
+    public Monster(String name) { //モンスターとファイター
         this.name = name;///
-        this.hp = hp;
-        this.mp = mp;
         this.attack = attack;
         this.defence = defence;
-        this.jobName = jobName;
     }
 
     public String getName() {
@@ -65,12 +63,11 @@ public abstract class Job {
         this.defence = defence;
     }
 
-    public String getJobName() {
-        return jobName;
+    public String getMonsterName() {
+        return monsterName;
     }
 
-    public void setJobName(String jobName) {
-        this.jobName = jobName;
+    public void setMonsterName(String monsterName) {
+        this.monsterName = monsterName;
     }
-    
 }

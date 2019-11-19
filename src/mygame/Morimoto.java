@@ -4,19 +4,21 @@ package mygame;
 import java.util.concurrent.ThreadLocalRandom;
 
 
-public class Morimoto {
+public class Morimoto extends Monster{
      private String name;
     private int HP;
     private int MP;
     private int Attack;
     private int Defence;
+    private String monsterName;
     
      public Morimoto(String name) {
-        this.name = name;
+        super(name);
         HP = ThreadLocalRandom.current().nextInt(60, 100);
         MP = ThreadLocalRandom.current().nextInt(45, 50);
-        Attack = 40;
+        Attack = ThreadLocalRandom.current().nextInt(10, 150);
         Defence = 35;
+        monsterName="morimoto";
     }
      
       public String getName() {
