@@ -7,7 +7,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class CreatMember {//
 
-static ArrayList<Job> party = new ArrayList();
+    static ArrayList<Job> party = new ArrayList();
+
     public static void creat() {
         String yandn;
         String gName;
@@ -19,7 +20,7 @@ static ArrayList<Job> party = new ArrayList();
             System.out.println("パーティーを作成を終了しますか？");
             yandn = foolProof();
             if (yandn.equalsIgnoreCase("y")) {
-                hmmPut(gName, party.get(0));
+                hmmPut(gName, party);
                 party.clear();
                 break;
             }
@@ -28,14 +29,14 @@ static ArrayList<Job> party = new ArrayList();
             System.out.println("パーティーを作成を終了しますか？");
             yandn = foolProof();
             if (yandn.equalsIgnoreCase("y")) {
-                hmmPut(gName, party.get(0), party.get(1));
+                hmmPut(gName, party);
                 party.clear();
                 break;
             }
             System.out.println("三人目のJobを選択してください");
             selectJob();
             System.out.println("パーティー作成を終了します");
-            hmmPut(gName, party.get(0), party.get(1), party.get(2));
+            hmmPut(gName, party);
             party.clear();
             break;
         }
