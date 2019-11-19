@@ -5,7 +5,7 @@ import static mygame.Insert.*;
 import static mygame.MemberManager.*;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class CreatMember {//
+public class CreatMember {
 
     static ArrayList<Job> party = new ArrayList();
 
@@ -20,7 +20,7 @@ public class CreatMember {//
             System.out.println("パーティーを作成を終了しますか？");
             yandn = foolProof();
             if (yandn.equalsIgnoreCase("y")) {
-                hmmPut(gName, party);
+                hmmPut(gName, party.get(0));
                 party.clear();
                 break;
             }
@@ -29,14 +29,14 @@ public class CreatMember {//
             System.out.println("パーティーを作成を終了しますか？");
             yandn = foolProof();
             if (yandn.equalsIgnoreCase("y")) {
-                hmmPut(gName, party);
+                hmmPut(gName, party.get(0), party.get(1));
                 party.clear();
                 break;
             }
             System.out.println("三人目のJobを選択してください");
             selectJob();
             System.out.println("パーティー作成を終了します");
-            hmmPut(gName, party);
+            hmmPut(gName, party.get(0), party.get(1), party.get(2));
             party.clear();
             break;
         }
