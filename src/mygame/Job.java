@@ -24,7 +24,15 @@ public abstract class Job {
         this.defence = defence;
         this.jobName = jobName;
     }
+    
+     public Job(String name) {
+        this.name = name;
+    }
 
+    public void attack(Monster ms){
+        
+    }
+    
     public String getName() {
         return name;
     }

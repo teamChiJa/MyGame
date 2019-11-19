@@ -14,10 +14,10 @@ public class Morimoto extends Monster{
     
      public Morimoto(String name) {
         super(name);
-        HP = ThreadLocalRandom.current().nextInt(60, 100);
+        HP = ThreadLocalRandom.current().nextInt(15,25);
         MP = ThreadLocalRandom.current().nextInt(45, 50);
         Attack = ThreadLocalRandom.current().nextInt(10, 150);
-        Defence = 35;
+        Defence = 5;
         monsterName="morimoto";
     }
      
