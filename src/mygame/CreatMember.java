@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import static mygame.Insert.*;
 import static mygame.MemberManager.*;
 import java.util.concurrent.ThreadLocalRandom;
+import static mygame.Combat.*;
 
 public class CreatMember {
 
@@ -41,6 +42,8 @@ public class CreatMember {
             break;
         }
         hmmToString();
+        combatParty = hmm.get(gName);
+        
     }
 
     public static void selectJob() {

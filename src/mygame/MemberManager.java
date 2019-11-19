@@ -55,6 +55,7 @@ public class MemberManager {
         for (int k = 1; k < groupNameList.size(); k++) {
             gnm += "\r\n" + (k + 1) + ":" + groupNameList.get(k);
         }
+        gnm += "\r\n" + "グループを選択してください>";
         return gnm;
     }
 }

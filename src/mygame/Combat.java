@@ -5,10 +5,16 @@
  */
 package mygame;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author kbc19a21
  */
 public class Combat {
-    
+    static ArrayList<Job> combatParty = new ArrayList<>();
+    public static void combat(){
+        
+        
+    }
 }

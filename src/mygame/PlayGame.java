@@ -3,6 +3,7 @@ package mygame;
 import static mygame.CreatMember.*;
 import static mygame.Insert.*;
 import static mygame.MemberManager.*;
+import static mygame.Combat.*;
 
 public class PlayGame {
 
@@ -24,6 +25,7 @@ public class PlayGame {
                     for (;;) {
                         partyNo = insertNumber(groupNameToString());
                         if (partyNo > 0 && partyNo <= groupNameList.size()) {
+                            combatParty = groupGet(partyNo);
                             break;
                         }
                         System.out.println("▽入力エラー▽");
