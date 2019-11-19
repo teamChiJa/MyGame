@@ -7,8 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class CreatMember {//
 
-    static ArrayList<Job> party = new ArrayList();
-
+static ArrayList<Job> party = new ArrayList();
     public static void creat() {
         String yandn;
         String gName;
