@@ -60,7 +60,7 @@ public class MemberManager {
         String gnm = 1 + ":" + groupNameList.get(0);
         for (int k = 1; k < groupNameList.size(); k++) {
             gnm += "\r\n" + (k + 1) + ":" + groupNameList.get(k);
-        }
+        }//
         return gnm;
     }
 }
