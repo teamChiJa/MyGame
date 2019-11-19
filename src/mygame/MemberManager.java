@@ -16,7 +16,7 @@ public class MemberManager {
         hmm.computeIfAbsent(groupName,k -> new ArrayList<>()).add(job3);
         hmm.put(groupName, hmm.get(groupName));
         groupNameList.add(groupName);
-        System.out.println("【" + groupName + "】グループをセーブデータに保存しました");
+        System.out.println("【" + groupName + "】グループをセーブデータに保存しました");//
     }
     
     public static void hmmPut(String groupName, Job job1, Job job2) {
