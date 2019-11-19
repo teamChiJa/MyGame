@@ -9,27 +9,26 @@ public class MemberManager {
 
     static Map<String, ArrayList<Job>> hmm = new HashMap<>();
     static ArrayList<String> groupNameList = new ArrayList<>();
-    CreatMember cm = new CreatMember();
 
     public static void hmmPut(String groupName, Job job1, Job job2, Job job3) {
-        hmm.get(groupName).add(job1);
-        hmm.get(groupName).add(job2);
-        hmm.get(groupName).add(job3);
+        hmm.computeIfAbsent(groupName,k -> new ArrayList<>()).add(job1);
+        hmm.computeIfAbsent(groupName,k -> new ArrayList<>()).add(job2);
+        hmm.computeIfAbsent(groupName,k -> new ArrayList<>()).add(job3);
         hmm.put(groupName, hmm.get(groupName));
         groupNameList.add(groupName);
         System.out.println("【" + groupName + "】グループをセーブデータに保存しました");
     }
     
     public static void hmmPut(String groupName, Job job1, Job job2) {
-        hmm.get(groupName).add(job1);
-        hmm.get(groupName).add(job2);
+        hmm.computeIfAbsent(groupName,k -> new ArrayList<>()).add(job1);
+        hmm.computeIfAbsent(groupName,k -> new ArrayList<>()).add(job2);
         hmm.put(groupName, hmm.get(groupName));
         groupNameList.add(groupName);
         System.out.println("【" + groupName + "】グループをセーブデータに保存しました");
     }
     
     public static void hmmPut(String groupName, Job job1) {
-        hmm.get(groupName).add(job1);
+        hmm.computeIfAbsent(groupName,k -> new ArrayList<>()).add(job1);
         hmm.put(groupName, hmm.get(groupName));
         groupNameList.add(groupName);
         System.out.println("【" + groupName + "】グループをセーブデータに保存しました");
