@@ -1,43 +1,43 @@
-
 package mygame;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+public class Morimoto extends Monster {
 
-public class Morimoto extends Monster{
-     private String name;
+    private String name;
     private int hp;
     private int mp;
     private int attack;
     private int defence;
     private final String MonsterName = "Morimoto";
-    
-     public Morimoto(String name) {
+    private String enemyNo = "敵";
+
+    public Morimoto(String name) {
         this.name = name;
-        hp = ThreadLocalRandom.current().nextInt(16,26);
+        hp = ThreadLocalRandom.current().nextInt(16, 26);
         mp = ThreadLocalRandom.current().nextInt(46, 51);
         attack = ThreadLocalRandom.current().nextInt(11, 151);
         defence = 5;
-       
+
     }
 
-   public void attack(Job jb){
+    public void attack(Job jb) {
         int damage = this.getAttack() - jb.getDefence();
-        if(damage<0){
+        if (damage < 0) {
             damage = 1;
         }
-        if(this.getHp()>0){
+        if (this.getHp() > 0) {
             System.out.println(this.name + "の攻撃");
-            System.out.println(jb.getName() + "に" + damage +"ダメージ");
-            jb.setHp(jb.getHp()-damage);
+            System.out.println(jb.getName() + "に" + damage + "ダメージ");
+            jb.setHp(jb.getHp() - damage);
             if (jb.getHp() < 0) {
                 jb.setHp(0);
             }
-            System.out.println(jb.getName() + " のHP： " +jb.getHp());
+            System.out.println(jb.getName() + " のHP： " + jb.getHp());
         }
     }
-     
-     public String getName() {
+
+    public String getName() {
         return name;
     }
 
@@ -80,6 +80,13 @@ public class Morimoto extends Monster{
     public String getMonsterName() {
         return MonsterName;
     }
-     
-    
+
+    public String getEnemyNo() {
+        return enemyNo;
+    }
+
+    public void setEnemyNo(String enemyNo) {
+        this.enemyNo = enemyNo;
+    }
+
 }

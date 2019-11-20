@@ -16,6 +16,7 @@ public abstract class Monster {
     private int attack;
     private int defence;
     private String monsterName;
+    private String enemyNo;
     
     public Monster() { //モンスターとファイター
     }
@@ -69,5 +70,13 @@ public abstract class Monster {
 
     public void setMonsterName(String monsterName) {
         this.monsterName = monsterName;
+    }
+
+    public String getEnemyNo() {
+        return enemyNo;
+    }
+
+    public void setEnemyNo(String enemyNo) {
+        this.enemyNo = enemyNo;
     }
 }

@@ -9,6 +9,7 @@ public class Chimera extends Monster {
     private int mp;
     private int attack;
     private int defence;
+    private String enemyNo="敵" ;
     private final String MonsterName = "Chimera";
     
     public Chimera(String name) {
@@ -77,5 +78,13 @@ public class Chimera extends Monster {
     
     public int getDefence() {
         return defence;
+    }
+
+    public String getEnemyNo() {
+        return enemyNo;
+    }
+
+    public void setEnemyNo(String enemyNo) {
+        this.enemyNo = enemyNo;
     }
 }

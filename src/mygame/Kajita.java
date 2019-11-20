@@ -11,6 +11,7 @@ public class Kajita extends Monster {
     private int defence;
     private final String monsterJobName = "KAJITA";
     int kajiran;
+    private String enemyNo = "敵";
 
     Kajita(String name) {
         this.name = name;
@@ -31,7 +32,7 @@ public class Kajita extends Monster {
             jb.setHp(jb.getHp() - damage);
             if (jb.getHp() < 0) {
                 System.out.println(this.name + "の攻撃");
-            jb.setHp(0);
+                jb.setHp(0);
             }
             System.out.println(jb.getName() + " のHP： " + jb.getHp());
         }
@@ -42,15 +43,15 @@ public class Kajita extends Monster {
                 case 2:
                     System.out.println(this.name + " は、ゲップした");
                     break;
-                default :
+                default:
                     System.out.println(this.name + "の攻撃");
-            System.out.println(jb.getName() + "に" + damage + "ダメージ");
-            jb.setHp(jb.getHp() - damage);
-            if (jb.getHp() < 0) {
-                System.out.println(this.name + "の攻撃");
-            jb.setHp(0);
-            }
-            System.out.println(jb.getName() + " のHP： " + jb.getHp());
+                    System.out.println(jb.getName() + "に" + damage + "ダメージ");
+                    jb.setHp(jb.getHp() - damage);
+                    if (jb.getHp() < 0) {
+                        System.out.println(this.name + "の攻撃");
+                        jb.setHp(0);
+                    }
+                    System.out.println(jb.getName() + " のHP： " + jb.getHp());
             }
         }
     }
@@ -97,5 +98,13 @@ public class Kajita extends Monster {
 
     public String getMonsterJobName() {
         return monsterJobName;
+    }
+
+    public String getEnemyNo() {
+        return enemyNo;
+    }
+
+    public void setEnemyNo(String enemyNo) {
+        this.enemyNo = enemyNo;
     }
 }

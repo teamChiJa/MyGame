@@ -10,6 +10,7 @@ public class Slime extends Monster {
     private int attack;
     private int defence;
     private final String MonsterName = "Slime";
+    private String enemyNo ="敵";
 
     public Slime(String name) {
         this.name = name;
@@ -77,6 +78,14 @@ public class Slime extends Monster {
 
     public String getMonsterName() {
         return MonsterName;
+    }
+
+    public String getEnemyNo() {
+        return enemyNo;
+    }
+
+    public void setEnemyNo(String enemyNo) {
+        this.enemyNo = enemyNo;
     }
 
 }

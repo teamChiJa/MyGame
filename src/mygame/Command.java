@@ -3,6 +3,7 @@ package mygame;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 import static mygame.Combat.*;
+import static mygame.Insert.*;
 
 public class Command {
 
@@ -20,19 +21,37 @@ public class Command {
         for (int i = 0; i < monsterParty.size(); i++) {
             for (;;) {
                 jbran = ThreadLocalRandom.current().nextInt(0, combatParty.size());
-                if( !live() ){
+                if (!jobLive()) {
                     break;//みんなが死んでたら
                 }
                 if (combatParty.get(jbran).getHp() != 0) {
-                     monsterParty.get(i).attack(combatParty.get(jbran));
+                    monsterParty.get(i).attack(combatParty.get(jbran));
                     break;
                 }
             }
-            
+
         }
     }
 
-    public static boolean live() {
+    public static void jobAttack() {
+        System.out.println();
+    }
+
+    public static Monster target() {
+        Monster ms;
+        int targetNo;
+        String mn = monsterParty.get(0).getEnemyNo() + "." + monsterParty.get(0).getName() + " ";
+        for (int i = 1; i < monsterParty.size(); i++) {
+            mn += monsterParty.get(i).getEnemyNo();
+            mn += ".";
+            mn += monsterParty.get(i).getName();
+        }
+        targetNo = insertNumber(mn) - 1;
+        ms = monsterParty.get(targetNo);
+        return ms;
+    }
+
+    public static boolean jobLive() {
         boolean live = true;
         int count = 0;
         for (Job j : combatParty) {
@@ -41,6 +60,20 @@ public class Command {
             }
         }
         if (count == combatParty.size()) {
+            live = false;
+        }
+        return live;//みんなが死んでたらFalse
+    }
+
+    public static boolean monsterLive() {
+        boolean live = true;
+        int count = 0;
+        for (Monster m : monsterParty) {
+            if (m.getHp() == 0) {
+                count++;
+            }
+        }
+        if (count == monsterParty.size()) {
             live = false;
         }
         return live;//みんなが死んでたらFalse
