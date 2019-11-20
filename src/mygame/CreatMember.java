@@ -14,7 +14,7 @@ public class CreatMember {
         String yandn;
         String gName;
         System.out.print("グループ名を入力してください>");
-        gName = insert();
+        gName = "【" + insert() + "】";
         for (;;) {
             System.out.println("一人目のJobを選択してください");
             selectJob();
