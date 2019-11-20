@@ -13,8 +13,8 @@ public class Wizard extends Job {
 
     public Wizard(String name) {
         this.name = name;
-        hp = ThreadLocalRandom.current().nextInt(20, 30);
-        mp = ThreadLocalRandom.current().nextInt(20, 30);
+        hp = ThreadLocalRandom.current().nextInt(21, 31);
+        mp = ThreadLocalRandom.current().nextInt(21, 31);
         attack = 5;
         defence = 5;
     }

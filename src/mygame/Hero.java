@@ -13,8 +13,8 @@ public class Hero extends Job {
 
     public Hero(String name) {
         this.name = name;
-        hp = ThreadLocalRandom.current().nextInt(30, 40);
-        mp = ThreadLocalRandom.current().nextInt(10, 20);
+        hp = ThreadLocalRandom.current().nextInt(31, 41);
+        mp = ThreadLocalRandom.current().nextInt(11, 21);
         attack = 20;
         defence =20;
     }

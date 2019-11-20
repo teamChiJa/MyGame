@@ -13,8 +13,8 @@ public class Knight extends Job {
 
     public Knight(String name) {
         this.name = name;
-        hp = ThreadLocalRandom.current().nextInt(35, 45);
-        mp = ThreadLocalRandom.current().nextInt(5, 15);
+        hp = ThreadLocalRandom.current().nextInt(36, 46);
+        mp = ThreadLocalRandom.current().nextInt(6, 16);
         attack = 15;
         defence = 30;
     }

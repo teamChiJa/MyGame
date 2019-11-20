@@ -13,8 +13,8 @@ public class Mage extends Job {
 
     public Mage(String name) {
         this.name = name;
-        hp = ThreadLocalRandom.current().nextInt(20, 30);
-        mp = ThreadLocalRandom.current().nextInt(30, 40);
+        hp = ThreadLocalRandom.current().nextInt(21, 31);
+        mp = ThreadLocalRandom.current().nextInt(31, 41);
         attack = 5;
         defence = 5;
     }
