@@ -37,7 +37,7 @@ public class Insert {
      public static String foolProof() {
         String yn;
         for (;;) {
-            System.out.println("Y/n");
+            System.out.print("Y/n >");
             yn = scan.next();
             if(yn.equalsIgnoreCase("y")||yn.equalsIgnoreCase("n")){
                 break;
