@@ -14,8 +14,8 @@ public class Slime extends Monster{
     
      public Slime(String name) {
         super(name);
-        hp = ThreadLocalRandom.current().nextInt(10, 15);
-        mp = ThreadLocalRandom.current().nextInt(1, 5);
+        hp = ThreadLocalRandom.current().nextInt(11, 16);
+        mp = ThreadLocalRandom.current().nextInt(2, 6);
         attack = 5;
         defence = 5;
     }

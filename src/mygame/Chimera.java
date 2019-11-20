@@ -14,8 +14,8 @@ public class Chimera extends Monster{
     
      public Chimera(String name) {
         super(name);
-        hp = ThreadLocalRandom.current().nextInt(15, 30);
-        mp = ThreadLocalRandom.current().nextInt(10, 15);
+        hp = ThreadLocalRandom.current().nextInt(16, 31);
+        mp = ThreadLocalRandom.current().nextInt(11, 16);
         attack = 15;
         defence = 10;
     }
