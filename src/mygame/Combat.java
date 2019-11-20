@@ -13,7 +13,7 @@ public class Combat {
 
     static ArrayList<Job> combatParty = new ArrayList<>();
     static ArrayList<Monster> monsterParty = new ArrayList<>();
-
+    static boolean live = true;
     public static void combat() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(
                 System.in));
@@ -21,6 +21,7 @@ public class Combat {
         partyToString(combatParty);
         System.out.print("ゲームを開始します [ENTER]>");
         reader.readLine();//エンター待ち
+        EXIT:
         while (true) {
             int rd = ThreadLocalRandom.current().nextInt(0, 2);
             if (rd == 0) {
@@ -53,6 +54,16 @@ public class Combat {
                                 p(select_gName + "はにげだした。しかし、まわりこまれてしまった。");
                                 reader.readLine();
                                 monstersAttack();
+                                for(Job j:combatParty){
+                                    if (j.getHp() == 0) {
+                                        live = false;
+                                    }
+                                }
+                                if(live == false){
+                                    p("GAME OVER");
+                                    reader.readLine();
+                                    break EXIT;
+                                }
                                 break;
                             } else {
                                 p("うまく逃げ切れた！");
@@ -100,7 +111,7 @@ public class Combat {
         }
         return enemy;
     }
-
+    
     public static void partySelect(ArrayList<Job> jp) {
         combatParty = jp;
     }
