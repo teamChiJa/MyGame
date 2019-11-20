@@ -2,7 +2,7 @@ package mygame;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
-import mygame.Combat.*;
+import static mygame.Combat.*;
 
 public class Command {
     
@@ -14,10 +14,10 @@ public class Command {
         System.out.println(msg);
     }
     
-    public static void monstersAttack(ArrayList<Monster> alm, ArrayList<Job> alj) {
-        for (int i = 0; i < alm.size(); i++) {
+    public static void monstersAttack() {
+        for (int i = 0; i < monsterParty.size(); i++) {
             int jbran = ThreadLocalRandom.current().nextInt(0, 3);
-            alm.get(i).attack(alj.get(jbran));
+            monsterParty.get(i).attack(combatParty.get(jbran));
         }
     }
 }
