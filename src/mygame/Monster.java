@@ -20,7 +20,7 @@ public abstract class Monster {
     public Monster() { //モンスターとファイター
     }
     
-    public void attack(){
+    public void attack(Job job){
     }
 
     public String getName() {
