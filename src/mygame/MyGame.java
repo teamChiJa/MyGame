@@ -8,7 +8,7 @@ import static mygame.PlayGame.*;
 import static mygame.Combat.*;
 
 public class MyGame {
-
+    //
     public static void main(String[] args) throws IOException {
         for (;;) {
             game();
