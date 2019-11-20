@@ -18,6 +18,16 @@ public class Hero extends Job {
         attack = 20;
         defence =20;
     }
+    
+    public void attack(Monster ms){
+        int damage = this.getAttack() - (int)(ms.getDefence() * 0.8);
+        if(damage<0){
+            damage = 1;
+        }
+        if(this.hp>0){
+            ms.setHp(ms.getHp()-damage);           
+        }
+    }
 
     public String getName() {
         return name;

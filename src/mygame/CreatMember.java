@@ -43,6 +43,7 @@ public class CreatMember {
         }
         hmmToString();
         partySelect(hmm.get(gName));
+        select_gName = gName;
 
     }
 

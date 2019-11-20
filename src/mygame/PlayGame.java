@@ -10,7 +10,7 @@ public class PlayGame {
     public static void game() {
 
         int partyNo;
-        System.out.println("ゲームを開始します");
+        System.out.println("パーティー作成を開始します");
         String msg = "既存のデータを使いますか？";
 
         System.out.println(msg);
@@ -26,6 +26,7 @@ public class PlayGame {
                         partyNo = insertNumber(groupNameToString());
                         if (partyNo > 0 && partyNo <= groupNameList.size()) {
                             partySelect(groupGet(partyNo));
+                            select_gName = groupNameList.get(partyNo);
                             break;
                         }
                         System.out.println("▽入力エラー▽");
@@ -38,6 +39,8 @@ public class PlayGame {
                 creat();
                 break;
             }
+            
         }
+        
     }
 }

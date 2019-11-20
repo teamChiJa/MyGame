@@ -22,6 +22,9 @@ public abstract class Monster {
         this.attack = attack;
         this.defence = defence;
     }
+    
+    public void attack(){
+    }
 
     public String getName() {
         return name;

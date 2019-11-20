@@ -9,6 +9,7 @@ public class MemberManager {
 
     static Map<String, ArrayList<Job>> hmm = new HashMap<>();
     static ArrayList<String> groupNameList = new ArrayList<>();
+    static String select_gName;
 
     public static void hmmPut(String groupName, Job job1, Job job2, Job job3) {
         hmm.computeIfAbsent(groupName,k -> new ArrayList<>()).add(job1);
@@ -43,6 +44,13 @@ public class MemberManager {
             }
 
         }
+    }
+    
+    public static void partyToString(ArrayList<Job> alj){
+        System.out.println(select_gName);for (int i = 0; i < alj.size(); i++) {
+                System.out.println("    勇者の名前 : " + alj.get(i).getName() + " , " + "ジョブ名 : " + alj.get(i).getJobName());
+            }
+        
     }
 
     public static ArrayList<Job> groupGet(int no) {
