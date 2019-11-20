@@ -29,13 +29,16 @@ public class Kajita extends Monster {
             System.out.println(this.name + "の攻撃");
             System.out.println(jb.getName() + "に" + damage + "ダメージ");
             jb.setHp(jb.getHp() - damage);
+            if (jb.getHp() < 0) {
+                jb.setHp(0);
+            }
             System.out.println(jb.getName() + " のHP： " + jb.getHp());
         }
 
         if (this.hp >= 20 && this.hp < 40) {
-            kajiran = ThreadLocalRandom.current().nextInt(1,6);
-            switch(kajiran){
-                
+            kajiran = ThreadLocalRandom.current().nextInt(1, 6);
+            switch (kajiran) {
+
             }
         }
     }

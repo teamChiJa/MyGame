@@ -30,6 +30,9 @@ public class Morimoto extends Monster{
             System.out.println(this.name + "の攻撃");
             System.out.println(jb.getName() + "に" + damage +"ダメージ");
             jb.setHp(jb.getHp()-damage);
+            if (jb.getHp() < 0) {
+                jb.setHp(0);
+            }
             System.out.println(jb.getName() + " のHP： " +jb.getHp());
         }
     }

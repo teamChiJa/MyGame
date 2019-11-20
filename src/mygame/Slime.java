@@ -1,18 +1,17 @@
-
 package mygame;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+public class Slime extends Monster {
 
-public class Slime extends Monster{
-     private String name;
+    private String name;
     private int hp;
     private int mp;
     private int attack;
     private int defence;
     private final String MonsterName = "Slime";
-    
-     public Slime(String name) {
+
+    public Slime(String name) {
         this.name = name;
         hp = ThreadLocalRandom.current().nextInt(11, 16);
         mp = ThreadLocalRandom.current().nextInt(2, 6);
@@ -20,20 +19,23 @@ public class Slime extends Monster{
         defence = 5;
     }
 
-    public void attack(Job jb){
+    public void attack(Job jb) {
         int damage = this.getAttack() - jb.getDefence();
-        if(damage<0){
+        if (damage < 0) {
             damage = 1;
         }
-        if(this.getHp()>0){
+        if (this.getHp() > 0) {
             System.out.println(this.name + "の攻撃");
-            System.out.println(jb.getName() + "に" + damage +"ダメージ");
-            jb.setHp(jb.getHp()-damage);
-            System.out.println(jb.getName() + " のHP： " +jb.getHp());
+            System.out.println(jb.getName() + "に" + damage + "ダメージ");
+            jb.setHp(jb.getHp() - damage);
+            if (jb.getHp() < 0) {
+                jb.setHp(0);
+            }
+            System.out.println(jb.getName() + " のHP： " + jb.getHp());
         }
     }
-     
-     public String getName() {
+
+    public String getName() {
         return name;
     }
 
@@ -76,6 +78,5 @@ public class Slime extends Monster{
     public String getMonsterName() {
         return MonsterName;
     }
-     
-    
+
 }

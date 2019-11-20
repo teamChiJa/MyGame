@@ -28,6 +28,9 @@ public class Wizard extends Job {
             System.out.println(this.getName() + " の攻撃");
             System.out.println(ms.getHp() + "に" + damage + "ダメージ");
             ms.setHp(ms.getHp()-damage);
+             if (ms.getHp() < 0) {
+                ms.setHp(0);
+            }
             System.out.println(ms.getName() + "のHP： " + ms.getHp());
         }
     }
