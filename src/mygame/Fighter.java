@@ -16,7 +16,7 @@ public class Fighter extends Job {
         hp = ThreadLocalRandom.current().nextInt(31, 41);
         mp = 0;
         attack = ThreadLocalRandom.current().nextInt(41, 51);
-        defence = 10;
+        defence = 10;;
 
     }
 
