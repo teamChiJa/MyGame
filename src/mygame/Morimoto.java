@@ -21,13 +21,16 @@ public class Morimoto extends Monster{
        
     }
 
-    public void attack(Job jb){
+   public void attack(Job jb){
         int damage = this.getAttack() - jb.getDefence();
         if(damage<0){
             damage = 1;
         }
         if(this.getHp()>0){
-            jb.setHp(jb.getHp()-damage);           
+            System.out.println(this.name + "の攻撃");
+            System.out.println(jb.getName() + "に" + damage +"ダメージ");
+            jb.setHp(jb.getHp()-damage);
+            System.out.println(jb.getName() + " のHP： " +jb.getHp());
         }
     }
      

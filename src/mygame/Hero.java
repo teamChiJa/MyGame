@@ -25,7 +25,10 @@ public class Hero extends Job {
             damage = 1;
         }
         if(this.hp>0){
-            ms.setHp(ms.getHp()-damage);           
+            System.out.println(this.getName() + " の攻撃");
+            System.out.println(ms.getHp() + "に" + damage + "ダメージ");
+            ms.setHp(ms.getHp()-damage);
+            System.out.println(ms.getName() + "のHP： " + ms.getHp());
         }
     }
 

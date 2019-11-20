@@ -31,9 +31,14 @@ public class Fighter extends Job {
             damage = 1;
         }
         if (this.hp > 0) {
+            System.out.println(this.getName() + " の攻撃");
+            System.out.println(ms.getHp() + "に" + damage + "ダメージ");
             ms.setHp(ms.getHp() - damage);
+            System.out.println(ms.getName() + "のHP： " + ms.getHp());
         }
     }
+    
+    
 
     public String getName() {
         return name;
