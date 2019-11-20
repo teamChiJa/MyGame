@@ -12,7 +12,7 @@ public class Wizard extends Job {
     private final String JobName = "Wizard";
 
     public Wizard(String name) {
-        super(name);
+        this.name = name;
         hp = ThreadLocalRandom.current().nextInt(20, 30);
         mp = ThreadLocalRandom.current().nextInt(20, 30);
         attack = 5;
