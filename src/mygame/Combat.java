@@ -19,9 +19,9 @@ public class Combat {
                 System.in));
         System.out.println("このパーティーでゲームを開始します");
         partyToString(combatParty);
-        System.out.println("ゲームを開始します");
+        System.out.print("ゲームを開始します [ENTER]>");
+        reader.readLine();//エンター待ち
         while (true) {
-            reader.readLine();
             int rd = ThreadLocalRandom.current().nextInt(0, 2);
             if (rd == 0) {
                 monsterParty = respone();
@@ -40,8 +40,32 @@ public class Combat {
                     }
                 }
                 enemyToString(monsterParty);
+                QUIT:
+                while (true) {
+                    int ena = insertNumber("1.通常攻撃 2.逃げる>");
+                    switch (ena) {
+                        case 1:
+
+                            break;
+                        case 2:
+                            int rdena = ThreadLocalRandom.current().nextInt(1, 5);
+                            if (rdena == 3) {
+                                p(select_gName + "はにげだした。しかし、まわりこまれてしまった。");
+                                reader.readLine();
+                                monstersAttack();
+                                break;
+                            } else {
+                                p("うまく逃げ切れた！");
+                                reader.readLine();
+                                break QUIT;
+                            }
+                        default:
+                            System.out.println("1~2の中の数値を入力してください");
+                            break;
+                    }
+                }
             } else {
-                pl("次に進む [ENTER]");
+                p("次に進む [ENTER]>");
                 reader.readLine();
             }
         }
