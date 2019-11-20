@@ -9,21 +9,6 @@ public abstract class Job {
     private int attack;
     private int defence;
     private String jobName;
-    public Job(String name, int hp, int mp , String jobName) {
-        this.name = name;
-        this.hp = hp;
-        this.mp = mp;
-        this.jobName = jobName;
-    }
-
-    public Job(String name, int hp, int mp, int attack, int defence, String jobName) { //モンスターとファイター
-        this.name = name;///
-        this.hp = hp;
-        this.mp = mp;
-        this.attack = attack;
-        this.defence = defence;
-        this.jobName = jobName;
-    }
     
      public Job(String name) {
         this.name = name;
