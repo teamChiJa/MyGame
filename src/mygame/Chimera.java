@@ -26,7 +26,7 @@ public class Chimera extends Monster {
         }
         if (this.getHp() > 0) {
             System.out.println(this.name + "の攻撃");
-            System.out.println(jb.getName() + "に" + damage + "ダメージ");//
+            System.out.println(jb.getName() + "に" + damage + "ダメージ");////
             jb.setHp(jb.getHp() - damage);
             if (jb.getHp() < 0) {
                 jb.setHp(0);
