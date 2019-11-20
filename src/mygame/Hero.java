@@ -12,7 +12,7 @@ public class Hero extends Job {
     private final String jobName = "Hero";
 
     public Hero(String name) {
-        super(name);
+        this.name = name;
         hp = ThreadLocalRandom.current().nextInt(30, 40);
         mp = ThreadLocalRandom.current().nextInt(10, 20);
         attack = 20;

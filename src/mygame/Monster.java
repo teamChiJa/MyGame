@@ -17,10 +17,7 @@ public abstract class Monster {
     private int defence;
     private String monsterName;
     
-    public Monster(String name) { //モンスターとファイター
-        this.name = name;///
-        this.attack = attack;
-        this.defence = defence;
+    public Monster() { //モンスターとファイター
     }
     
     public void attack(){

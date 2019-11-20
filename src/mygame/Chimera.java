@@ -13,7 +13,7 @@ public class Chimera extends Monster{
     private final String MonsterName = "Chimera";
     
      public Chimera(String name) {
-        super(name);
+        this.name = name;
         hp = ThreadLocalRandom.current().nextInt(16, 31);
         mp = ThreadLocalRandom.current().nextInt(11, 16);
         attack = 15;

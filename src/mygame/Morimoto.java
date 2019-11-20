@@ -13,7 +13,7 @@ public class Morimoto extends Monster{
     private final String MonsterName = "Morimoto";
     
      public Morimoto(String name) {
-        super(name);
+        this.name = name;
         hp = ThreadLocalRandom.current().nextInt(16,26);
         mp = ThreadLocalRandom.current().nextInt(46, 51);
         attack = ThreadLocalRandom.current().nextInt(11, 151);

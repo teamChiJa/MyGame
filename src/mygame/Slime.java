@@ -13,7 +13,7 @@ public class Slime extends Monster{
     private final String MonsterName = "Slime";
     
      public Slime(String name) {
-        super(name);;
+        this.name = name;
         hp = ThreadLocalRandom.current().nextInt(11, 16);
         mp = ThreadLocalRandom.current().nextInt(2, 6);
         attack = 5;

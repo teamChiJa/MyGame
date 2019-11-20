@@ -10,8 +10,7 @@ public abstract class Job {
     private int defence;
     private String jobName;
     
-     public Job(String name) {
-        this.name = name;
+     public Job() {
     }
 
     public void attack(Monster ms){

@@ -12,7 +12,7 @@ public class Knight extends Job {
     private final String jobName = "Knight";
 
     public Knight(String name) {
-        super(name);
+        this.name = name;
         hp = ThreadLocalRandom.current().nextInt(35, 45);
         mp = ThreadLocalRandom.current().nextInt(5, 15);
         attack = 15;
