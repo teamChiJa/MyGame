@@ -15,15 +15,35 @@ public class Command {
     }
 
     public static void monstersAttack() {
+        int jbran;
+        boolean l;
         for (int i = 0; i < monsterParty.size(); i++) {
             for (;;) {
-                int jbran = ThreadLocalRandom.current().nextInt(0, combatParty.size());
-                if (combatParty.get(jbran).getHp() != 0 ) {
-                    monsterParty.get(i).attack(combatParty.get(jbran));
+                jbran = ThreadLocalRandom.current().nextInt(0, combatParty.size());
+                if( !live() ){
+                    break;//みんなが死んでたら
+                }
+                if (combatParty.get(jbran).getHp() != 0) {
                     break;
-                    
                 }
             }
+            if (live()) {
+                monsterParty.get(i).attack(combatParty.get(jbran));
+            }
         }
+    }
+
+    public static boolean live() {
+        boolean live = true;
+        int count = 0;
+        for (Job j : combatParty) {
+            if (j.getHp() == 0) {
+                count++;
+            }
+        }
+        if (count == combatParty.size()) {
+            live = false;
+        }
+        return live;
     }
 }

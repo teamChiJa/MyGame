@@ -26,7 +26,7 @@ public class PlayGame {
                         partyNo = insertNumber(groupNameToString());
                         if (partyNo > 0 && partyNo <= groupNameList.size()) {
                             partySelect(groupGet(partyNo));
-                            select_gName = groupNameList.get(partyNo);
+                            select_gName = groupNameList.get(partyNo-1);
                             break;
                         }
                         System.out.println("▽入力エラー▽");
