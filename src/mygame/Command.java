@@ -24,12 +24,11 @@ public class Command {
                     break;//みんなが死んでたら
                 }
                 if (combatParty.get(jbran).getHp() != 0) {
+                     monsterParty.get(i).attack(combatParty.get(jbran));
                     break;
                 }
             }
-            if (live()) {
-                monsterParty.get(i).attack(combatParty.get(jbran));
-            }
+            
         }
     }
 
@@ -44,6 +43,6 @@ public class Command {
         if (count == combatParty.size()) {
             live = false;
         }
-        return live;
+        return live;//みんなが死んでたらFalse
     }
 }
