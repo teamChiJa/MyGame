@@ -23,8 +23,8 @@ public class Combat {
         reader.readLine();//エンター待ち
         EXIT:
         while (true) {
-            int rd = ThreadLocalRandom.current().nextInt(0, 2);
-            if (rd == 0) {
+            int rd = ThreadLocalRandom.current().nextInt(0, 3);
+            if (rd != 0) {
                 monsterParty = respone();
                 int rdmsg = ThreadLocalRandom.current().nextInt(0, 2);
                 if (monsterParty.size() == 1) {
@@ -60,6 +60,13 @@ public class Combat {
                                     }
                                 }
                                 if(live == false){
+                                    if (combatParty.size() == 1) {
+                                       p(combatParty.get(0).getName() + "は しんでしまった！");
+                                       reader.readLine();
+                                    }else{
+                                        p(combatParty.get(0).getName() + "たちは 全滅してしまった...");
+                                        reader.readLine();
+                                    }
                                     p("GAME OVER");
                                     reader.readLine();
                                     break EXIT;
