@@ -13,7 +13,7 @@ public class CreatMember {
     public static void creat() {
         String yandn;
         String gName;
-        System.out.print("グループ名を入力してください>");
+        System.out.print("グループ名を入力してください >");
         gName = "【" + insert() + "】";
         for (;;) {
             System.out.println("一人目のJobを選択してください");
@@ -57,31 +57,31 @@ public class CreatMember {
                     System.out.println("パーティー作成を終了します");
                     break;
                 case 1:
-                    System.out.print("名前を入力してください>");
+                    System.out.print("名前を入力してください >");
                     name = insert();
                     Hero h = new Hero(name);
                     party.add(h);
                     break BACK;
                 case 2:
-                    System.out.print("名前を入力してください>");
+                    System.out.print("名前を入力してください >");
                     name = insert();
                     Fighter f = new Fighter(name);
                     party.add(f);
                     break BACK;
                 case 3:
-                    System.out.print("名前を入力してください>");
+                    System.out.print("名前を入力してください >");
                     name = insert();
                     Wizard w = new Wizard(name);
                     party.add(w);
                     break BACK;
                 case 4:
-                    System.out.print("名前を入力してください>");
+                    System.out.print("名前を入力してください >");
                     name = insert();                 
                     Mage m = new Mage(name);
                     party.add(m);
                     break BACK;
                 case 5:
-                    System.out.print("名前を入力してください>");
+                    System.out.print("名前を入力してください >");
                     name = insert();
                     Knight k = new Knight(name);
                     party.add(k);
