@@ -1,31 +1,50 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package mygame;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 import static mygame.Insert.*;
 import static mygame.MemberManager.*;
+import static mygame.Command.*;
 
-/**
- *
- * @author kbc19a21
- */
 public class Combat {
 
     static ArrayList<Job> combatParty = new ArrayList<>();
     static ArrayList<Monster> monsterParty = new ArrayList<>();
 
-    public static void combat() {
+    public static void combat() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(
+                System.in));
         System.out.println("このパーティーでゲームを開始します");
         partyToString(combatParty);
         System.out.println("ゲームを開始します");
-        monsterParty = respone();
-        enemyToString(monsterParty);
-
+        while (true) {
+            reader.readLine();
+            int rd = ThreadLocalRandom.current().nextInt(0, 2);
+            if (rd == 0) {
+                monsterParty = respone();
+                int rdmsg = ThreadLocalRandom.current().nextInt(0, 2);
+                if (monsterParty.size() == 1) {
+                    if (rdmsg == 0) {
+                        pl("モンスターが飛び出してきた！");
+                    } else {
+                        pl("モンスターがあらわれた！");
+                    }
+                } else {
+                    if (rdmsg == 0) {
+                        pl("モンスターの群れが飛び出してきた！");
+                    } else {
+                        pl("モンスターの群れがあらわれた！");
+                    }
+                }
+                enemyToString(monsterParty);
+            } else {
+                pl("次に進む [ENTER]");
+                reader.readLine();
+            }
+        }
     }
 
     public static ArrayList<Monster> respone() {
@@ -33,8 +52,9 @@ public class Combat {
         int c = 1;
         int m = 1;
         ArrayList<Monster> enemy = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            int rd = ThreadLocalRandom.current().nextInt(1, 3);
+        int rdRs = ThreadLocalRandom.current().nextInt(1, 4);
+        for (int i = 0; i < rdRs; i++) {
+            int rd = ThreadLocalRandom.current().nextInt(1, 4);
             switch (rd) {
                 case 1:
                     Slime slime = new Slime("スライム" + s);
