@@ -31,6 +31,7 @@ public class Wizard extends Job {
         if (damage <= 0) {
             damage = 1;
         }
+        this.setMp(this.mp + damage);
         if (this.hp > 0) {
             System.out.println(this.getName() + " の攻撃");
             System.out.println(ms.getName() + "に" + damage + "ダメージ");
