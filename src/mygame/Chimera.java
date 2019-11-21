@@ -37,7 +37,7 @@ public class Chimera extends Monster {
             if (jb.getHp() < 0) {
                 jb.setHp(0);
             }
-            System.out.println(jb.getName() + " のHP： " + jb.getHp());
+            System.out.println(jb.getName() + " のHP： " + jb.getHp()+"/"+jb.getMAX_HP());
         }
     }
 

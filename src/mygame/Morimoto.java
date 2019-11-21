@@ -6,7 +6,9 @@ public class Morimoto extends Monster {
 
     private String name;
     private int hp;
+    private final int MAX_HP;
     private int mp;
+    private final int MAX_MP;
     private int attack;
     private int defence;
     private final String MonsterName = "Morimoto";
@@ -15,7 +17,9 @@ public class Morimoto extends Monster {
     public Morimoto(String name) {
         this.name = name;
         hp = ThreadLocalRandom.current().nextInt(16, 26);
+        MAX_HP=hp;
         mp = ThreadLocalRandom.current().nextInt(46, 51);
+        MAX_MP=mp;
         attack = ThreadLocalRandom.current().nextInt(11, 151);
         defence = 5;
 
@@ -33,7 +37,7 @@ public class Morimoto extends Monster {
             if (jb.getHp() < 0) {
                 jb.setHp(0);
             }
-            System.out.println(jb.getName() + " のHP： " + jb.getHp());
+            System.out.println(jb.getName() + " のHP： " + jb.getHp()+"/"+jb.getMAX_HP());
         }
     }
 
@@ -87,6 +91,20 @@ public class Morimoto extends Monster {
 
     public void setEnemyNo(String enemyNo) {
         this.enemyNo = enemyNo;
+    }
+
+    /**
+     * @return the MAX_HP
+     */
+    public int getMAX_HP() {
+        return MAX_HP;
+    }
+
+    /**
+     * @return the MAX_MP
+     */
+    public int getMAX_MP() {
+        return MAX_MP;
     }
 
 }

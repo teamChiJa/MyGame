@@ -12,13 +12,17 @@ package mygame;
 public abstract class Monster {
     private String name;
     private int hp;
+    private final int MAX_HP;
     private int mp;
+    private final int MAX_MP;
     private int attack;
     private int defence;
     private String monsterName;
     private String enemyNo;
     
     public Monster() { //モンスターとファイター
+        MAX_HP=hp;
+        MAX_MP=mp;
     }
     
     public void attack(Job job){
@@ -78,5 +82,19 @@ public abstract class Monster {
 
     public void setEnemyNo(String enemyNo) {
         this.enemyNo = enemyNo;
+    }
+
+    /**
+     * @return the MAX_HP
+     */
+    public int getMAX_HP() {
+        return MAX_HP;
+    }
+
+    /**
+     * @return the MAX_MP
+     */
+    public int getMAX_MP() {
+        return MAX_MP;
     }
 }

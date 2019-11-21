@@ -6,7 +6,9 @@ public class Knight extends Job {
 
     private String name;
     private int hp;
+    private final int MAX_HP;
     private int mp;
+    private final int MAX_MP;
     private int attack;
     private int defence;
     private final String jobName = "Knight";
@@ -14,7 +16,9 @@ public class Knight extends Job {
     public Knight(String name) {
         this.name = name;
         hp = ThreadLocalRandom.current().nextInt(36, 46);
+        MAX_HP=hp;
         mp = ThreadLocalRandom.current().nextInt(6, 16);
+        MAX_MP=mp;
         attack = 15;
         defence = 30;
     }
@@ -31,7 +35,7 @@ public class Knight extends Job {
             if (ms.getHp() < 0) {
                 ms.setHp(0);
             }
-            System.out.println(ms.getName() + "のHP： " + ms.getHp());
+            System.out.println(ms.getName() + "のHP： " + ms.getHp()+"/"+ms.getMAX_HP());
         }
     }
 
@@ -77,6 +81,20 @@ public class Knight extends Job {
 
     public String getJobName() {
         return jobName;
+    }
+
+    /**
+     * @return the MAX_HP
+     */
+    public int getMAX_HP() {
+        return MAX_HP;
+    }
+
+    /**
+     * @return the MAX_MP
+     */
+    public int getMAX_MP() {
+        return MAX_MP;
     }
 
 }

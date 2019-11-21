@@ -6,7 +6,9 @@ public class Wizard extends Job {
 
     private String name;
     private int hp;
+    private final int MAX_HP;
     private int mp;
+    private final int MAX_MP;
     private int attack;
     private int defence;
     private final String JobName = "Wizard";
@@ -14,7 +16,9 @@ public class Wizard extends Job {
     public Wizard(String name) {
         this.name = name;
         hp = ThreadLocalRandom.current().nextInt(21, 31);
+        MAX_HP=hp;
         mp = ThreadLocalRandom.current().nextInt(21, 31);
+        MAX_MP=mp;
         attack = 5;
         defence = 5;
     }
@@ -31,7 +35,7 @@ public class Wizard extends Job {
             if (ms.getHp() < 0) {
                 ms.setHp(0);
             }
-            System.out.println(ms.getName() + "のHP： " + ms.getHp());
+            System.out.println(ms.getName() + "のHP： " + ms.getHp()+"/"+ms.getMAX_HP());
         }
     }
 
@@ -77,6 +81,20 @@ public class Wizard extends Job {
 
     public String getJobName() {
         return JobName;
+    }
+
+    /**
+     * @return the MAX_HP
+     */
+    public int getMAX_HP() {
+        return MAX_HP;
+    }
+
+    /**
+     * @return the MAX_MP
+     */
+    public int getMAX_MP() {
+        return MAX_MP;
     }
 
 }

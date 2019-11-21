@@ -5,12 +5,16 @@ public abstract class Job {
 
     private String name;
     private int hp;
+    private final int MAX_HP;
     private int mp;
+    private final int MAX_MP;
     private int attack;
     private int defence;
     private String jobName;
     
      public Job() {
+         MAX_HP=hp;
+         MAX_MP=mp;
     }
 
     public void attack(Monster ms){
@@ -63,6 +67,20 @@ public abstract class Job {
 
     public void setJobName(String jobName) {
         this.jobName = jobName;
+    }
+
+    /**
+     * @return the MAX_HP
+     */
+    public int getMAX_HP() {
+        return MAX_HP;
+    }
+
+    /**
+     * @return the MAX_MP
+     */
+    public int getMAX_MP() {
+        return MAX_MP;
     }
     
 }

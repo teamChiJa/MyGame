@@ -6,7 +6,9 @@ public class Slime extends Monster {
 
     private String name;
     private int hp;
+    private final int MAX_HP;
     private int mp;
+    private final int MAX_MP;
     private int attack;
     private int defence;
     private final String MonsterName = "Slime";
@@ -15,7 +17,9 @@ public class Slime extends Monster {
     public Slime(String name) {
         this.name = name;
         hp = ThreadLocalRandom.current().nextInt(11, 16);
+        MAX_HP=hp;
         mp = ThreadLocalRandom.current().nextInt(2, 6);
+        MAX_MP=mp;
         attack = 5;
         defence = 5;
     }
@@ -32,7 +36,7 @@ public class Slime extends Monster {
             if (jb.getHp() < 0) {
                 jb.setHp(0);
             }
-            System.out.println(jb.getName() + " のHP： " + jb.getHp());
+            System.out.println(jb.getName() + " のHP： " + jb.getHp()+"/"+jb.getMAX_HP());
         }
     }
 
@@ -86,6 +90,20 @@ public class Slime extends Monster {
 
     public void setEnemyNo(String enemyNo) {
         this.enemyNo = enemyNo;
+    }
+
+    /**
+     * @return the MAX_HP
+     */
+    public int getMAX_HP() {
+        return MAX_HP;
+    }
+
+    /**
+     * @return the MAX_MP
+     */
+    public int getMAX_MP() {
+        return MAX_MP;
     }
 
 }

@@ -7,7 +7,9 @@ public class Kajita extends Monster {
     private String name;
     private int attack;
     private int hp;
+    private final int MAX_HP;
     private int mp;
+    private final int MAX_MP;
     private int defence;
     private final String monsterJobName = "KAJITA";
     int kajiran;
@@ -16,7 +18,9 @@ public class Kajita extends Monster {
     Kajita(String name) {
         this.name = name;
         hp = 80;
+        MAX_HP=hp;
         mp = 75;
+        MAX_MP=mp;
         attack = 50;
         defence = 10;
     }
@@ -33,7 +37,7 @@ public class Kajita extends Monster {
             if (jb.getHp() < 0) {
                 jb.setHp(0);
             }
-            System.out.println(jb.getName() + " のHP： " + jb.getHp());
+            System.out.println(jb.getName() + " のHP： " + jb.getHp()+"/"+jb.getMAX_HP());
         }
 
         if (this.hp >= 20 && this.hp < 40) {
@@ -104,5 +108,19 @@ public class Kajita extends Monster {
 
     public void setEnemyNo(String enemyNo) {
         this.enemyNo = enemyNo;
+    }
+
+    /**
+     * @return the MAX_HP
+     */
+    public int getMAX_HP() {
+        return MAX_HP;
+    }
+
+    /**
+     * @return the MAX_MP
+     */
+    public int getMAX_MP() {
+        return MAX_MP;
     }
 }

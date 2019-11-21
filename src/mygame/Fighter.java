@@ -6,7 +6,9 @@ public class Fighter extends Job {
 
     private String name;
     private int hp;
+    private final int MAX_HP;
     private int mp;
+    private final int MAX_MP;
     private int attack;
     private int defence;
     private final String jobName = "Fighter";
@@ -14,7 +16,9 @@ public class Fighter extends Job {
     public Fighter(String name) {
         this.name = name;
         hp = ThreadLocalRandom.current().nextInt(31, 41);
+        MAX_HP=hp;
         mp = 0;
+        MAX_MP=mp;
         attack = ThreadLocalRandom.current().nextInt(41, 51);
         defence = 10;;
 
@@ -37,7 +41,7 @@ public class Fighter extends Job {
             if (ms.getHp() < 0) {
                 ms.setHp(0);
             }
-            System.out.println(ms.getName() + "のHP： " + ms.getHp());
+            System.out.println(ms.getName() + "のHP： " + ms.getHp()+"/"+ms.getMAX_HP());
         }
     }
     
@@ -85,6 +89,20 @@ public class Fighter extends Job {
 
     public String getJobName() {
         return jobName;
+    }
+
+    /**
+     * @return the MAX_HP
+     */
+    public int getMAX_HP() {
+        return MAX_HP;
+    }
+
+    /**
+     * @return the MAX_MP
+     */
+    public int getMAX_MP() {
+        return MAX_MP;
     }
 
 }
