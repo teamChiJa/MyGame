@@ -14,7 +14,7 @@ public class Combat {
     static ArrayList<Job> combatParty = new ArrayList<>();
     static ArrayList<Monster> monsterParty = new ArrayList<>();
     static boolean live = true;
-    static int round = 0;
+    static int round = 1;
 
     public static void combat() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -50,6 +50,25 @@ public class Combat {
                     switch (ena) {
                         case 1:
                             jobAttack();
+                            monstersAttack();
+                            for (Job j : combatParty) {
+                                if (j.getHp() == 0) {
+                                    live = false;
+                                }
+                            }
+                            if (live == false) {
+                                if (combatParty.size() == 1) {
+                                    p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
+                                    reader.readLine();
+                                } else {
+                                    p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
+                                    reader.readLine();
+                                }
+                                p("GAME OVER [ENTER]>");
+                                reader.readLine();
+                                combatParty.clear();
+                                break EXIT;
+                            }
                             if (monsterLive() == false) {
                                 if (combatParty.size() == 1) {
                                     p(combatParty.get(0).getName() + "は　戦闘に勝利した！[ENTER]>");
@@ -86,7 +105,7 @@ public class Combat {
                                         p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
                                         reader.readLine();
                                     }
-                                    p("GAME OVER");
+                                    p("GAME OVER [ENTER]>");
                                     reader.readLine();
                                     combatParty.clear();
                                     break EXIT;
@@ -114,21 +133,27 @@ public class Combat {
         int c = 1;
         int m = 1;
         ArrayList<Monster> enemy = new ArrayList<>();
-        if (round == 10) {
+        if (round % 10 == 0) {
             Kajita kajita = new Kajita();
             enemy.add(kajita);
         }
         int rdRs = ThreadLocalRandom.current().nextInt(1, 4);
         for (int i = 0; i < rdRs; i++) {
-            int rd = ThreadLocalRandom.current().nextInt(1, 4);
+            int rd = ThreadLocalRandom.current().nextInt(1, 11);
             switch (rd) {
                 case 1:
+                case 4:
+                case 8:
+                case 9:
                     Slime slime = new Slime("スライム" + s);
                     enemy.add(slime);
                     s++;
                     slime.setEnemyNo(slime.getEnemyNo() + enemy.size());
                     break;
                 case 2:
+                case 5:
+                case 7:
+                case 10:
                     Chimera chimera = new Chimera("キメラ" + c);
                     enemy.add(chimera);
                     c++;
