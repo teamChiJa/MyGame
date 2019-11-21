@@ -56,7 +56,7 @@ public class Command {
         int no;
         int targetNo = 0;
         for (;;) {
-            if(!monsterLive()){
+            if (!monsterLive()) {
                 break;
             }
             no = insertNumber(mn);
@@ -68,16 +68,14 @@ public class Command {
                 pl("▽選択したモンスターは倒れています");
             }
         }
-        
+
         ms = monsterParty.get(targetNo);
         return ms;
     }
 
     public static boolean jobLive() {
         boolean live = true;
-        
-        
-        
+
         int count = 0;
         for (Job j : combatParty) {
             if (j.getHp() == 0) {
@@ -102,5 +100,19 @@ public class Command {
             live = false;
         }
         return live;//みんなが死んでたらFalse
+    }
+
+    public static boolean monsterDeath() {
+        boolean death = false;
+        int count = 0;
+        for (Monster m : monsterParty) {
+            if (m.getHp() == 0) {
+                count++;
+            }
+        }
+        if (count > 0) {
+            live = true;
+        }
+        return death;//一人でも死んでたらtrue
     }
 }

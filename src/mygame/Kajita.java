@@ -1,6 +1,7 @@
 package mygame;
 
 import java.util.concurrent.ThreadLocalRandom;
+import static mygame.Command.*;
 
 public class Kajita extends Monster {
 
@@ -18,9 +19,9 @@ public class Kajita extends Monster {
     Kajita(String name) {
         this.name = name;
         hp = 80;
-        MAX_HP=hp;
+        MAX_HP = hp;
         mp = 75;
-        MAX_MP=mp;
+        MAX_MP = mp;
         attack = 50;
         defence = 10;
     }
@@ -37,7 +38,7 @@ public class Kajita extends Monster {
             if (jb.getHp() < 0) {
                 jb.setHp(0);
             }
-            System.out.println(jb.getName() + " のHP： " + jb.getHp()+"/"+jb.getMAX_HP());
+            System.out.println(jb.getName() + " のHP： " + jb.getHp() + "/" + jb.getMAX_HP());
         }
 
         if (this.hp >= 20 && this.hp < 40) {
@@ -56,6 +57,36 @@ public class Kajita extends Monster {
                     System.out.println(jb.getName() + " のHP： " + jb.getHp());
             }
         }
+
+        if (this.hp >= 1 && this.hp < 20) {
+            kajiran = ThreadLocalRandom.current().nextInt(1, 5);
+            switch (kajiran) {
+                case 2:
+                case 4:
+                    System.out.println(this.name + " は、ゲップした");
+                    break;
+                default:
+                    System.out.println(this.name + "の攻撃");
+                    System.out.println(jb.getName() + "に" + damage + "ダメージ");
+                    jb.setHp(jb.getHp() - damage);
+                    if (jb.getHp() < 0) {
+                        jb.setHp(0);
+                    }
+                    System.out.println(jb.getName() + " のHP： " + jb.getHp());
+            }
+        }
+
+        if (monsterDeath()) {
+            kajiran = ThreadLocalRandom.current().nextInt(1, 7);
+            switch (kajiran) {
+                case 1:
+                    pl(this.name + "は、親指で眉間を触りながら味方を怒りはじめた");
+                    break;
+                case 2:
+                    pl("キャストでしょうよ！");
+            }
+        }
+
     }
 
     public String getName() {
