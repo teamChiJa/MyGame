@@ -25,7 +25,7 @@ public class Hero extends Job {
 
     public void attack(Monster ms) {
         int acount;
-        int damage = this.getAttack() - (int) (ms.getDefence() * 0.8);
+        int damage = this.getAttack() - ms.getDefence() ;
         if (damage <= 0) {
             damage = 1;
         }
