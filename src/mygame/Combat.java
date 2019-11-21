@@ -10,11 +10,11 @@ import static mygame.MemberManager.*;
 import static mygame.Command.*;
 
 public class Combat {
-    
-    static ArrayList<Job> combatParty ;
+
+    static ArrayList<Job> combatParty = new ArrayList<>();
     static ArrayList<Monster> monsterParty = new ArrayList<>();
     static boolean live = true;
-    
+
     public static void combat() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(
                 System.in));
@@ -44,16 +44,21 @@ public class Combat {
                 enemyToString();
                 QUIT:
                 while (true) {
-                    int ena = insertNumber("1.通常攻撃 2.逃げる>");
+                    int ena = insertNumber("1.通常攻撃 2.逃げる >");
                     switch (ena) {
                         case 1:
-                            
+                            jobAttack();
                             break;
                         case 2:
                             int rdena = ThreadLocalRandom.current().nextInt(1, 5);
                             if (rdena == 3) {
-                                p(select_gName + "はにげだした。しかし、まわりこまれてしまった。");
-                                reader.readLine();
+                                if (combatParty.size() == 1) {
+                                    p(combatParty.get(0).getName() + "はにげだした。しかし、まわりこまれてしまった。[ENTER]>");
+                                    reader.readLine();
+                                } else {
+                                    p(combatParty.get(0).getName() + "たちはにげだした。しかし、まわりこまれてしまった。[ENTER]>");
+                                    reader.readLine();
+                                }
                                 monstersAttack();
                                 for (Job j : combatParty) {
                                     if (j.getHp() == 0) {
@@ -62,14 +67,15 @@ public class Combat {
                                 }
                                 if (live == false) {
                                     if (combatParty.size() == 1) {
-                                        p(combatParty.get(0).getName() + "は しんでしまった！");
+                                        p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
                                         reader.readLine();
                                     } else {
-                                        p(combatParty.get(0).getName() + "たちは 全滅してしまった...");
+                                        p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
                                         reader.readLine();
                                     }
                                     p("GAME OVER");
                                     reader.readLine();
+                                    combatParty.clear();
                                     break EXIT;
                                 }
                                 break;
@@ -89,7 +95,7 @@ public class Combat {
             }
         }
     }
-    
+
     public static ArrayList<Monster> respone() {
         int s = 1;
         int c = 1;
@@ -118,16 +124,15 @@ public class Combat {
                     morimoto.setEnemyNo(morimoto.getEnemyNo() + enemy.size());
                     break;
             }
-            
+
         }
         return enemy;
     }
-    
+
     public static void partySelect(ArrayList<Job> jp) {
-        combatParty = new ArrayList<>();
         combatParty = jp;
     }
-    
+
     public static void enemyToString() {
         for (int i = 0; i < monsterParty.size(); i++) {
             System.out.println(monsterParty.get(i).getEnemyNo() + " : " + monsterParty.get(i).getName() + "  HP : " + monsterParty.get(i).getHp());

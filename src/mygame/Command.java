@@ -34,7 +34,10 @@ public class Command {
     }
 
     public static void jobAttack() {
-        System.out.println();
+        for(Job j:combatParty){
+            pl("どのモンスターを攻撃しますか");
+            j.attack(target());
+        }
     }
 
     public static Monster target() {
