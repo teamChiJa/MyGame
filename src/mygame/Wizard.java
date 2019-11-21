@@ -1,6 +1,9 @@
 package mygame;
 
 import java.util.concurrent.ThreadLocalRandom;
+import static mygame.Combat.*;
+import static mygame.Command.*;
+import static mygame.Insert.*;
 
 public class Wizard extends Job {
 
@@ -37,6 +40,38 @@ public class Wizard extends Job {
             }
             System.out.println(ms.getName() + "のHP： " + ms.getHp()+"/"+ms.getMAX_HP());
         }
+    }
+    
+    public void recover() {
+        int sjob;
+        Job j;
+        for (;;) {
+            sjob = insertNumber("回復する仲間を選んでください");
+            if (sjob > 0 && sjob <= combatParty.size()) {
+                if (combatParty.get(sjob).getHp() > 0) {
+                    break;
+                }
+                pl("死んでいる仲間は回復できません");
+            }
+        }
+        pl(combatParty.get(sjob).getName() + "のHP:" + combatParty.get(sjob).getHp());
+        int smp;
+        for (;;) {
+            smp = insertNumber("消費するMPを入力してください（消費MP　1ポイント毎に、HP5ポイント回復）");
+            if ((this.mp - smp) >= 0) {
+                break;
+            }
+            pl("使えるMPを超えています");
+        }
+        j = combatParty.get(sjob);
+        int rhp = smp * 5;
+        int canrhp = combatParty.get(sjob).getMAX_HP() - combatParty.get(sjob).getHp();
+        if (rhp > canrhp) {
+            rhp = canrhp;
+        }
+        combatParty.get(sjob).setHp(combatParty.get(sjob).getHp() + rhp);
+        pl(combatParty.get(sjob).getName() + "のHPは" + rhp + "ポイント回復しました");
+        pl(j.getName()+"のHP："+j.getHp()+"/"+j.getMAX_HP());
     }
 
     public String getName() {
