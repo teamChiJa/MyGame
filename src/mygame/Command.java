@@ -52,6 +52,7 @@ public class Command {
                 mn += "  ";
             }
         }
+        mn += ">";
         int no;
         int targetNo = 0;
         for (;;) {
