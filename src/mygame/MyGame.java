@@ -13,7 +13,7 @@ public class MyGame {
         for (;;) {
             game();
             combat();
-            System.out.println("continueしますか？");
+            System.out.println("CONTINUEしますか?");
             String ctn = foolProof();
             if(ctn.equalsIgnoreCase("n")){
                 break;
