@@ -48,6 +48,16 @@ public class Combat {
                     switch (ena) {
                         case 1:
                             jobAttack();
+                            if (monsterLive() == false) {
+                                if (combatParty.size() == 1) {
+                                    p(combatParty.get(0).getName() + "は　戦闘に勝利した！[ENTER]>");
+                                    reader.readLine();
+                                } else {
+                                    p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！[ENTER]>");
+                                    reader.readLine();
+                                }
+                                break QUIT;
+                            }
                             break;
                         case 2:
                             int rdena = ThreadLocalRandom.current().nextInt(1, 5);
