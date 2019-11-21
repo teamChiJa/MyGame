@@ -90,12 +90,14 @@ public class Hero extends Job {
     }
 
     public void addAtack(Monster ms, int damage) {
-        System.out.println(this.getName() + " の追加攻撃");
-        damage = (int) ((this.getAttack() - ms.getDefence()) * ThreadLocalRandom.current().nextDouble(0.8, 1.2));
-        System.out.println(ms.getName() + "に" + damage + "ダメージ");//
-        ms.setHp(ms.getHp() - damage);
-        if (ms.getHp() < 0) {
-            ms.setHp(0);
+        if (ms.getHp() > 0) {
+            System.out.println(this.getName() + " の追加攻撃");
+            damage = (int) ((this.getAttack() - ms.getDefence()) * ThreadLocalRandom.current().nextDouble(0.8, 1.0));
+            System.out.println(ms.getName() + "に" + damage + "ダメージ");//
+            ms.setHp(ms.getHp() - damage);
+            if (ms.getHp() < 0) {
+                ms.setHp(0);
+            }
         }
     }
 

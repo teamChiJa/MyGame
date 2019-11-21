@@ -43,35 +43,62 @@ public class Knight extends Job {
     }
 
     public void recover() {
-        int sjob;
-        Job j;
-        for (;;) {
-            sjob = insertNumber("回復する仲間を選んでください");
-            if (sjob > 0 && sjob <= combatParty.size()) {
-                if (combatParty.get(sjob).getHp() > 0) {
+        if (this.mp >= 5) {
+            int sjob;
+            Job j;
+            for (;;) {
+                sjob = insertNumber("回復する仲間を選んでください");
+                if (sjob > 0 && sjob <= combatParty.size()) {
+                    if (combatParty.get(sjob).getHp() > 0) {
+                        break;
+                    }
+                    pl("死んでいる仲間は回復できません");
+                }
+            }
+            pl(combatParty.get(sjob).getName() + "のHP:" + combatParty.get(sjob).getHp());
+            int smp;
+            int srp;
+            j = combatParty.get(sjob);
+            for (;;) {
+                srp = insertNumber("1. 2. 3.");
+                if (srp == 1 && this.mp >= 5) {
+                    pl("");
+                    this.mp -= 5;
+                    j.setHp(j.getHp() + 10);
+                    if (j.getMAX_HP() < j.getHp()) {
+                        j.setHp(j.getMAX_HP());
+                        pl(j.getName() + "のHPは満タンになった");
+                    } else {
+                        pl(j.getName() + "のHPは10ポイント回復した");
+                    }
+
                     break;
                 }
-                pl("死んでいる仲間は回復できません");
+                if (srp == 2 && this.mp >= 10) {
+                    this.mp -= 10;
+                    j.setHp(j.getHp() + 20);
+                    if (j.getMAX_HP() < j.getHp()) {
+                        j.setHp(j.getMAX_HP());
+                        pl(j.getName() + "のHPは満タンになった");
+                    } else {
+                        pl(j.getName() + "のHPは20ポイント回復した");
+                    }
+                    break;
+                }
+                if (srp == 3 && this.mp >= 15) {
+                    this.mp -= 15;
+                    j.setHp(j.getHp() + 30);
+                    if (j.getMAX_HP() < j.getHp()) {
+                        j.setHp(j.getMAX_HP());
+                        pl(j.getName() + "のHPは満タンになった");
+                    } else {
+                        pl(j.getName() + "のHPは30ポイント回復した");
+                    }
+                    break;
+                }
+                pl("使えるMPを超えています");
             }
         }
-        pl(combatParty.get(sjob).getName() + "のHP:" + combatParty.get(sjob).getHp());
-        int smp;
-        for (;;) {
-            smp = insertNumber("消費するMPを入力してください（消費MP　1ポイント毎に、HP5ポイント回復）");
-            if ((this.mp - smp) >= 0) {
-                break;
-            }
-            pl("使えるMPを超えています");
-        }
-        j = combatParty.get(sjob);
-        int rhp = smp * 5;
-        int canrhp = combatParty.get(sjob).getMAX_HP() - combatParty.get(sjob).getHp();
-        if (rhp > canrhp) {
-            rhp = canrhp;
-        }
-        combatParty.get(sjob).setHp(combatParty.get(sjob).getHp() + rhp);
-        pl(combatParty.get(sjob).getName() + "のHPは" + rhp + "ポイント回復しました");
-        pl(j.getName() + "のHP：" + j.getHp() + "/" + j.getMAX_HP());
     }
 
     public void attackBoost() {
