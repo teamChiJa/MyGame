@@ -14,6 +14,7 @@ public class Combat {
     static ArrayList<Job> combatParty = new ArrayList<>();
     static ArrayList<Monster> monsterParty = new ArrayList<>();
     static boolean live = true;
+    static int round = 0;
 
     public static void combat() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -41,6 +42,7 @@ public class Combat {
                         pl("モンスターの群れがあらわれた！");
                     }
                 }
+                pl("ラウンド【 " + round + " 】");
                 enemyToString();
                 QUIT:
                 while (true) {
@@ -56,8 +58,9 @@ public class Combat {
                                     p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！[ENTER]>");
                                     reader.readLine();
                                 }
+                                round++;
                                 break QUIT;
-                            } 
+                            }
                             break;
                         case 2:
                             int rdena = ThreadLocalRandom.current().nextInt(1, 5);
@@ -111,6 +114,10 @@ public class Combat {
         int c = 1;
         int m = 1;
         ArrayList<Monster> enemy = new ArrayList<>();
+        if (round == 10) {
+            Kajita kajita = new Kajita();
+            enemy.add(kajita);
+        }
         int rdRs = ThreadLocalRandom.current().nextInt(1, 4);
         for (int i = 0; i < rdRs; i++) {
             int rd = ThreadLocalRandom.current().nextInt(1, 4);

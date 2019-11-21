@@ -16,8 +16,8 @@ public class Kajita extends Monster {
     int kajiran;
     private String enemyNo = "敵";
 
-    Kajita(String name) {
-        this.name = name;
+    Kajita() {
+        name = "KAJITA";
         hp = 80;
         MAX_HP = hp;
         mp = 75;
