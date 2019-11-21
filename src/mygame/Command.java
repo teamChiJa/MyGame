@@ -40,11 +40,13 @@ public class Command {
     public static Monster target() {
         Monster ms;
         int targetNo;
-        String mn = monsterParty.get(0).getEnemyNo() + "." + monsterParty.get(0).getName() + " ";
-        for (int i = 1; i < monsterParty.size(); i++) {
-            mn += monsterParty.get(i).getEnemyNo();
-            mn += ".";
-            mn += monsterParty.get(i).getName();
+        String mn = " ";
+        for (int i = 0; i < monsterParty.size(); i++) {
+            if (monsterParty.get(i).getHp() > 0) {
+                mn += monsterParty.get(i).getEnemyNo();
+                mn += ".";
+                mn += monsterParty.get(i).getName();
+            }
         }
         targetNo = insertNumber(mn) - 1;
         ms = monsterParty.get(targetNo);

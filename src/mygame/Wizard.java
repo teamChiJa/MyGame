@@ -18,17 +18,17 @@ public class Wizard extends Job {
         attack = 5;
         defence = 5;
     }
-    
-    public void attack(Monster ms){
-        int damage = this.getAttack() - (int)(ms.getDefence() * 0.8);
-        if(damage<0){
+
+    public void attack(Monster ms) {
+        int damage = this.getAttack() - (int) (ms.getDefence() * 0.8);
+        if (damage <= 0) {
             damage = 1;
         }
-        if(this.hp>0){
+        if (this.hp > 0) {
             System.out.println(this.getName() + " の攻撃");
             System.out.println(ms.getHp() + "に" + damage + "ダメージ");
-            ms.setHp(ms.getHp()-damage);
-             if (ms.getHp() < 0) {
+            ms.setHp(ms.getHp() - damage);
+            if (ms.getHp() < 0) {
                 ms.setHp(0);
             }
             System.out.println(ms.getName() + "のHP： " + ms.getHp());

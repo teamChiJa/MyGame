@@ -21,7 +21,7 @@ public class Knight extends Job {
 
     public void attack(Monster ms) {
         int damage = this.getAttack() - (int) (ms.getDefence() * 0.8);
-        if (damage < 0) {
+        if (damage <= 0) {
             damage = 1;
         }
         if (this.hp > 0) {

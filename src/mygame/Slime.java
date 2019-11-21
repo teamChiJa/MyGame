@@ -22,7 +22,7 @@ public class Slime extends Monster {
 
     public void attack(Job jb) {
         int damage = this.getAttack() - jb.getDefence();
-        if (damage < 0) {
+        if (damage <= 0) {
             damage = 1;
         }
         if (this.getHp() > 0) {

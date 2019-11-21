@@ -27,7 +27,7 @@ public class Fighter extends Job {
         }
 
         int damage = (int) (w - (ms.getDefence() * 0.8));
-        if (damage < 0) {
+        if (damage <= 0) {
             damage = 1;
         }
         if (this.hp > 0) {

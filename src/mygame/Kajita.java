@@ -23,7 +23,7 @@ public class Kajita extends Monster {
 
     public void attack(Job jb) {
         int damage = this.getAttack() - jb.getDefence();
-        if (damage < 0) {
+        if (damage <= 0) {
             damage = 1;
         }
         if (this.getHp() >= 40) {
@@ -31,7 +31,6 @@ public class Kajita extends Monster {
             System.out.println(jb.getName() + "に" + damage + "ダメージ");
             jb.setHp(jb.getHp() - damage);
             if (jb.getHp() < 0) {
-                System.out.println(this.name + "の攻撃");
                 jb.setHp(0);
             }
             System.out.println(jb.getName() + " のHP： " + jb.getHp());
@@ -48,7 +47,6 @@ public class Kajita extends Monster {
                     System.out.println(jb.getName() + "に" + damage + "ダメージ");
                     jb.setHp(jb.getHp() - damage);
                     if (jb.getHp() < 0) {
-                        System.out.println(this.name + "の攻撃");
                         jb.setHp(0);
                     }
                     System.out.println(jb.getName() + " のHP： " + jb.getHp());
