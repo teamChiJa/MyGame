@@ -91,7 +91,7 @@ public class Hero extends Job {
     
     public void addAtack(Monster ms,int damage){
         System.out.println(this.getName() + " の追加攻撃");
-                    System.out.println(ms.getName() + "に" + damage + "ダメージ");
+                    System.out.println(ms.getName() + "に" + damage + "ダメージ");//
                     ms.setHp(ms.getHp() - damage);
                     if (ms.getHp() < 0) {
                         ms.setHp(0);
