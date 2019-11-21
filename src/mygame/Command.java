@@ -43,7 +43,6 @@ public class Command {
 
     public static Monster target() {
         Monster ms;
-        int targetNo;
         String mn = " ";
         for (int i = 0; i < monsterParty.size(); i++) {
             if (monsterParty.get(i).getHp() > 0) {
@@ -54,7 +53,11 @@ public class Command {
             }
         }
         int no;
+        int targetNo = 0;
         for (;;) {
+            if(!monsterLive()){
+                break;
+            }
             no = insertNumber(mn);
             targetNo = no - 1;
             if (no > 0 && no <= monsterParty.size()) {
