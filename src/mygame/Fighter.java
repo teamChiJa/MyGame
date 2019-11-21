@@ -16,9 +16,9 @@ public class Fighter extends Job {
     public Fighter(String name) {
         this.name = name;
         hp = ThreadLocalRandom.current().nextInt(31, 41);
-        MAX_HP=hp;
+        MAX_HP = hp;
         mp = 0;
-        MAX_MP=mp;
+        MAX_MP = mp;
         attack = ThreadLocalRandom.current().nextInt(41, 51);
         defence = 10;;
 
@@ -26,8 +26,17 @@ public class Fighter extends Job {
 
     public void attack(Monster ms) {
         int w = this.getAttack();
-        if (hp > 0 && hp <= 10) {
+        if (hp > 20 && hp <= 30) {
+            w *= 1.2;
+        }
+        if (hp > 10 && hp <= 20) {
             w *= 1.5;
+        }
+        if (hp > 3 && hp <= 10) {
+            w *= 2;
+        }
+        if (hp > 0 && hp <= 3) {
+            w *= 5;
         }
 
         int damage = (int) (w - (ms.getDefence() * 0.8));
@@ -41,11 +50,9 @@ public class Fighter extends Job {
             if (ms.getHp() < 0) {
                 ms.setHp(0);
             }
-            System.out.println(ms.getName() + "のHP： " + ms.getHp()+"/"+ms.getMAX_HP());
+            System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
         }
     }
-    
-    
 
     public String getName() {
         return name;

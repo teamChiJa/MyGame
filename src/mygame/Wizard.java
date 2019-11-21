@@ -19,9 +19,9 @@ public class Wizard extends Job {
     public Wizard(String name) {
         this.name = name;
         hp = ThreadLocalRandom.current().nextInt(21, 31);
-        MAX_HP=hp;
+        MAX_HP = hp;
         mp = ThreadLocalRandom.current().nextInt(21, 31);
-        MAX_MP=mp;
+        MAX_MP = mp;
         attack = 5;
         defence = 5;
     }
@@ -31,7 +31,11 @@ public class Wizard extends Job {
         if (damage <= 0) {
             damage = 1;
         }
-        this.setMp(this.mp + damage);
+        int rmp = damage * 2;
+        if (this.MAX_MP < (this.mp + rmp)) {
+            rmp = this.MAX_MP - this.mp;
+        }
+        this.setMp(this.mp + rmp);
         if (this.hp > 0) {
             System.out.println(this.getName() + " の攻撃");
             System.out.println(ms.getName() + "に" + damage + "ダメージ");
@@ -39,10 +43,10 @@ public class Wizard extends Job {
             if (ms.getHp() < 0) {
                 ms.setHp(0);
             }
-            System.out.println(ms.getName() + "のHP： " + ms.getHp()+"/"+ms.getMAX_HP());
+            System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
         }
     }
-    
+
     public void recover() {
         int sjob;
         Job j;
@@ -72,7 +76,75 @@ public class Wizard extends Job {
         }
         combatParty.get(sjob).setHp(combatParty.get(sjob).getHp() + rhp);
         pl(combatParty.get(sjob).getName() + "のHPは" + rhp + "ポイント回復しました");
-        pl(j.getName()+"のHP："+j.getHp()+"/"+j.getMAX_HP());
+        pl(j.getName() + "のHP：" + j.getHp() + "/" + j.getMAX_HP());
+    }
+
+    public void fire() {
+        int smp;
+        int f;
+        int mhp;
+        if (this.mp > 0 && this.hp > 0) {
+            for (;;) {
+                smp = insertNumber("消費するMPを入力してください");
+                if ((this.mp - smp) >= 0) {
+                    break;
+                }
+                pl("使えるMPを超えています");
+            }
+            if (smp > 0 && smp < 10) {
+                f = smp * 3;
+                for (Monster m : monsterParty) {
+                    m.setHp(m.getHp() - f);
+                    if (m.getHp() < 0) {
+                        m.setHp(0);
+                    }
+                }
+                pl(this.name + "はメラを唱えた");
+                pl("敵全体に" + f + "のダメージ");
+            }
+
+            if (smp >= 10 && smp < 20) {
+                f = smp * 5;
+                for (Monster m : monsterParty) {
+                    m.setHp(m.getHp() - f);
+                    if (m.getHp() < 0) {
+                        m.setHp(0);
+                    }
+                }
+                pl(this.name + "はメラミを唱えた");
+                pl("敵全体に" + f + "のダメージ");
+            }
+
+            if (smp >= 20) {
+                f = smp * 8;
+                for (Monster m : monsterParty) {
+                    m.setHp(m.getHp() - f);
+                    if (m.getHp() < 0) {
+                        m.setHp(0);
+                    }
+                }
+                pl(this.name + "はメラゾーマを唱えた");
+                pl("敵全体に" + f + "のダメージ");
+            }
+        }
+    }
+
+    public void magicToString() {
+        int mj;
+        for (;;) {
+            mj = insertNumber("1.Recocer 2.Fire");
+            if (mj > 0 && mj < 3) {
+                break;
+            }
+        }
+        switch (mj) {
+            case 1:
+                this.recover();
+                break;
+            case 2:
+                this.fire();
+                break;
+        }
     }
 
     public String getName() {
