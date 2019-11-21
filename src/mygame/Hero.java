@@ -25,7 +25,7 @@ public class Hero extends Job {
 
     public void attack(Monster ms) {
         int acount;
-        int damage = this.getAttack() - ms.getDefence() ;
+        int damage = (int) ((this.getAttack() - ms.getDefence()) * ThreadLocalRandom.current().nextDouble(0.8, 1.2));
         if (damage <= 0) {
             damage = 1;
         }
@@ -43,7 +43,7 @@ public class Hero extends Job {
                     if (ms.getHp() < 0) {
                         ms.setHp(0);
                     }
-                    addAtack(ms,damage);
+                    addAtack(ms, damage);
                     System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
                     break;
                 case 5:
@@ -55,8 +55,8 @@ public class Hero extends Job {
                     if (ms.getHp() < 0) {
                         ms.setHp(0);
                     }
-                    addAtack(ms,damage);
-                    addAtack(ms,damage);
+                    addAtack(ms, damage);
+                    addAtack(ms, damage);
                     System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
                     break;
                 case 8:
@@ -67,9 +67,9 @@ public class Hero extends Job {
                     if (ms.getHp() < 0) {
                         ms.setHp(0);
                     }
-                    addAtack(ms,damage);
-                    addAtack(ms,damage);
-                    addAtack(ms,damage);
+                    addAtack(ms, damage);
+                    addAtack(ms, damage);
+                    addAtack(ms, damage);
                     System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
                     break;
                 case 10:
@@ -79,23 +79,24 @@ public class Hero extends Job {
                     if (ms.getHp() < 0) {
                         ms.setHp(0);
                     }
-                    addAtack(ms,damage);
-                    addAtack(ms,damage);
-                    addAtack(ms,damage);
-                    addAtack(ms,damage);
+                    addAtack(ms, damage);
+                    addAtack(ms, damage);
+                    addAtack(ms, damage);
+                    addAtack(ms, damage);
                     System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
                     break;
             }
         }
     }
-    
-    public void addAtack(Monster ms,int damage){
+
+    public void addAtack(Monster ms, int damage) {
         System.out.println(this.getName() + " の追加攻撃");
-                    System.out.println(ms.getName() + "に" + damage + "ダメージ");//
-                    ms.setHp(ms.getHp() - damage);
-                    if (ms.getHp() < 0) {
-                        ms.setHp(0);
-                    }
+        damage = (int) ((this.getAttack() - ms.getDefence()) * ThreadLocalRandom.current().nextDouble(0.8, 1.2));
+        System.out.println(ms.getName() + "に" + damage + "ダメージ");//
+        ms.setHp(ms.getHp() - damage);
+        if (ms.getHp() < 0) {
+            ms.setHp(0);
+        }
     }
 
     public String getName() {
