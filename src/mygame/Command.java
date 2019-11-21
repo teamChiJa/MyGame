@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 import static mygame.Combat.*;
 import static mygame.Insert.*;
+import static mygame.MemberManager.*;
 
 public class Command {
 
@@ -114,5 +115,37 @@ public class Command {
             live = true;
         }
         return death;//一人でも死んでたらtrue
+    }
+    public static void full(){ //全回復 HP & MP
+        for(Job j:combatParty){
+            j.setHp(j.getMAX_HP());
+            j.setMp(j.getMAX_MP());
+        }
+    }
+    public static void monsterHpToString() { //モンスターリストとHPを表示
+        String msg = "【敵】\r\n";
+        for (Monster m : monsterParty) {
+            if (m.getHp() != 0) {
+                msg += m.getName();
+                msg += " HP:";
+                msg += m.getHp() + "/" + m.getMAX_HP();
+                msg += "  ";
+            }
+        }
+        pl(msg);
+    }
+
+    public static void playerHpToString() { //グループのメンバーリストとHPを表示
+        String msg = "";
+        msg += select_gName + "\r\n";
+        for (Job j : combatParty) {
+            if (j.getHp() != 0) {
+                msg += j.getName();
+                msg += " HP:";
+                msg += j.getHp() + "/" + j.getMAX_HP();
+                msg += "  ";
+            }
+        }
+        pl(msg);
     }
 }
