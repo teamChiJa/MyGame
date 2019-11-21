@@ -136,6 +136,7 @@ public class Combat {
         if (round % 10 == 0) {
             Kajita kajita = new Kajita();
             enemy.add(kajita);
+            kajita.setEnemyNo(kajita.getEnemyNo() + enemy.size());
         }
         int rdRs = ThreadLocalRandom.current().nextInt(1, 4);
         for (int i = 0; i < rdRs; i++) {
