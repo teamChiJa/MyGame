@@ -57,7 +57,7 @@ public class Combat {
                                     reader.readLine();
                                 }
                                 break QUIT;
-                            }
+                            } 
                             break;
                         case 2:
                             int rdena = ThreadLocalRandom.current().nextInt(1, 5);
