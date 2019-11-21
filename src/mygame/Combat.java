@@ -46,17 +46,14 @@ public class Combat {
                 enemyToString();
                 QUIT:
                 while (true) {
+                    monsterHpToString();
+                    playerHpToString();
                     int ena = insertNumber("1.通常攻撃 2.逃げる >");
                     switch (ena) {
                         case 1:
                             jobAttack();
                             monstersAttack();
-                            for (Job j : combatParty) {
-                                if (j.getHp() == 0) {
-                                    live = false;
-                                }
-                            }
-                            if (live == false) {
+                            if (jobLive() == false) {
                                 if (combatParty.size() == 1) {
                                     p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
                                     reader.readLine();
@@ -64,9 +61,9 @@ public class Combat {
                                     p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
                                     reader.readLine();
                                 }
+                                full();
                                 p("GAME OVER [ENTER]>");
                                 reader.readLine();
-                                combatParty.clear();
                                 break EXIT;
                             }
                             if (monsterLive() == false) {
@@ -92,12 +89,7 @@ public class Combat {
                                     reader.readLine();
                                 }
                                 monstersAttack();
-                                for (Job j : combatParty) {
-                                    if (j.getHp() == 0) {
-                                        live = false;
-                                    }
-                                }
-                                if (live == false) {
+                                if (jobLive() == false) {
                                     if (combatParty.size() == 1) {
                                         p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
                                         reader.readLine();
@@ -105,9 +97,9 @@ public class Combat {
                                         p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
                                         reader.readLine();
                                     }
+                                    full();
                                     p("GAME OVER [ENTER]>");
                                     reader.readLine();
-                                    combatParty.clear();
                                     break EXIT;
                                 }
                                 break;
@@ -137,37 +129,67 @@ public class Combat {
             Kajita kajita = new Kajita();
             enemy.add(kajita);
             kajita.setEnemyNo(kajita.getEnemyNo() + enemy.size());
-        }
-        int rdRs = ThreadLocalRandom.current().nextInt(1, 4);
-        for (int i = 0; i < rdRs; i++) {
-            int rd = ThreadLocalRandom.current().nextInt(1, 11);
-            switch (rd) {
-                case 1:
-                case 4:
-                case 8:
-                case 9:
-                    Slime slime = new Slime("スライム" + s);
-                    enemy.add(slime);
-                    s++;
-                    slime.setEnemyNo(slime.getEnemyNo() + enemy.size());
-                    break;
-                case 2:
-                case 5:
-                case 7:
-                case 10:
-                    Chimera chimera = new Chimera("キメラ" + c);
-                    enemy.add(chimera);
-                    c++;
-                    chimera.setEnemyNo(chimera.getEnemyNo() + enemy.size());
-                    break;
-                case 3:
-                    Morimoto morimoto = new Morimoto("森本" + m);
-                    enemy.add(morimoto);
-                    m++;
-                    morimoto.setEnemyNo(morimoto.getEnemyNo() + enemy.size());
-                    break;
+            int rdRs = ThreadLocalRandom.current().nextInt(1, 3);
+            for (int i = 0; i < rdRs; i++) {
+                int rd = ThreadLocalRandom.current().nextInt(1, 11);
+                switch (rd) {
+                    case 1:
+                    case 4:
+                    case 8:
+                    case 9:
+                        Slime slime = new Slime("スライム" + s);
+                        enemy.add(slime);
+                        s++;
+                        slime.setEnemyNo(slime.getEnemyNo() + enemy.size());
+                        break;
+                    case 2:
+                    case 5:
+                    case 7:
+                    case 10:
+                        Chimera chimera = new Chimera("キメラ" + c);
+                        enemy.add(chimera);
+                        c++;
+                        chimera.setEnemyNo(chimera.getEnemyNo() + enemy.size());
+                        break;
+                    case 3:
+                        Morimoto morimoto = new Morimoto("森本" + m);
+                        enemy.add(morimoto);
+                        m++;
+                        morimoto.setEnemyNo(morimoto.getEnemyNo() + enemy.size());
+                        break;
+                }
             }
-
+        } else {
+            int rdRs = ThreadLocalRandom.current().nextInt(1, 4);
+            for (int i = 0; i < rdRs; i++) {
+                int rd = ThreadLocalRandom.current().nextInt(1, 11);
+                switch (rd) {
+                    case 1:
+                    case 4:
+                    case 8:
+                    case 9:
+                        Slime slime = new Slime("スライム" + s);
+                        enemy.add(slime);
+                        s++;
+                        slime.setEnemyNo(slime.getEnemyNo() + enemy.size());
+                        break;
+                    case 2:
+                    case 5:
+                    case 7:
+                    case 10:
+                        Chimera chimera = new Chimera("キメラ" + c);
+                        enemy.add(chimera);
+                        c++;
+                        chimera.setEnemyNo(chimera.getEnemyNo() + enemy.size());
+                        break;
+                    case 3:
+                        Morimoto morimoto = new Morimoto("森本" + m);
+                        enemy.add(morimoto);
+                        m++;
+                        morimoto.setEnemyNo(morimoto.getEnemyNo() + enemy.size());
+                        break;
+                }
+            }
         }
         return enemy;
     }
