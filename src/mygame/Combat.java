@@ -11,7 +11,7 @@ import static mygame.Command.*;
 
 public class Combat {
     
-    static ArrayList<Job> combatParty = new ArrayList<>();
+    static ArrayList<Job> combatParty ;
     static ArrayList<Monster> monsterParty = new ArrayList<>();
     static boolean live = true;
     
@@ -124,6 +124,7 @@ public class Combat {
     }
     
     public static void partySelect(ArrayList<Job> jp) {
+        combatParty = new ArrayList<>();
         combatParty = jp;
     }
     
