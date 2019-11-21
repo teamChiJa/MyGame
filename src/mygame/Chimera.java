@@ -92,13 +92,4 @@ public class Chimera extends Monster {
     public void setEnemyNo(String enemyNo) {
         this.enemyNo = enemyNo;
     }
-
-    public int getMAX_HP() {
-        return MAX_HP;
-    }
-
-    public int getMAX_MP() {
-        return MAX_MP;
-    }
-    
 }
