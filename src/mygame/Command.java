@@ -34,7 +34,8 @@ public class Command {
     }
 
     public static void jobAttack() {
-        for(Job j:combatParty){
+        for (Job j : combatParty) {
+            pl(j.getName() + "　の攻撃");
             pl("どのモンスターを攻撃しますか");
             j.attack(target());
         }
@@ -49,15 +50,30 @@ public class Command {
                 mn += monsterParty.get(i).getEnemyNo();
                 mn += ".";
                 mn += monsterParty.get(i).getName();
+                mn += "  ";
             }
         }
-        targetNo = insertNumber(mn) - 1;
+        int no;
+        for (;;) {
+            no = insertNumber(mn);
+            targetNo = no - 1;
+            if (no > 0 && no <= monsterParty.size()) {
+                if (monsterParty.get(targetNo).getHp() > 0) {
+                    break;
+                }
+                pl("▽選択したモンスターは倒れています");
+            }
+        }
+        
         ms = monsterParty.get(targetNo);
         return ms;
     }
 
     public static boolean jobLive() {
         boolean live = true;
+        
+        
+        
         int count = 0;
         for (Job j : combatParty) {
             if (j.getHp() == 0) {
