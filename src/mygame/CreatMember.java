@@ -85,7 +85,7 @@ public class CreatMember {
                     name = insert();
                     Knight k = new Knight(name);
                     party.add(k);
-                    break;
+                    break BACK;
                 default:
                     System.out.println("1~5の中の数値を入力してください");
                     break;
