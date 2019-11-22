@@ -1,6 +1,7 @@
 package mygame;
 
 import java.util.concurrent.ThreadLocalRandom;
+import static mygame.Command.pl;
 
 public class Morimoto extends Monster {
 
@@ -34,8 +35,9 @@ public class Morimoto extends Monster {
             System.out.println(this.name + "の攻撃");
             System.out.println(jb.getName() + "に" + damage + "ダメージ");
             jb.setHp(jb.getHp() - damage);
-            if (jb.getHp() < 0) {
+            if (jb.getHp() <= 0) {
                 jb.setHp(0);
+                pl(jb.getName() + "は倒れた");
             }
             System.out.println(jb.getName() + " のHP： " + jb.getHp() + "/" + jb.getMAX_HP());
         }
