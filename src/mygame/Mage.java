@@ -15,6 +15,8 @@ public class Mage extends Job {
     private int attack;
     private int defence;
     private final String jobName = "Mage";
+    private boolean magicList = true;
+    private boolean spMoveList = false;
 
     public Mage(String name) {
         this.name = name;
@@ -187,7 +189,7 @@ public class Mage extends Job {
     public void magicToString() {
         int mj;
         for (;;) {
-            mj = insertNumber("1.Recocer 2.Raise");
+            mj = insertNumber("1.ヒール\r\n2.ザオリク >");
             if (mj > 0 && mj < 3) {
                 break;
             }

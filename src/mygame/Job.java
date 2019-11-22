@@ -11,8 +11,9 @@ public abstract class Job {
     private int attack;
     private int defence;
     private String jobName;
-    
-     public Job() {
+    private boolean magicList;
+    private boolean spMoveList;
+    public Job() {
          MAX_HP=hp;
          MAX_MP=mp;
     }
@@ -82,5 +83,19 @@ public abstract class Job {
     public int getMAX_MP() {
         return MAX_MP;
     }
-    
+    public boolean isMagicList() {
+        return magicList;
+    }
+
+    public void setMagicList(boolean magicList) {
+        this.magicList = magicList;
+    }
+
+    public boolean isSpMoveList() {
+        return spMoveList;
+    }
+
+    public void setSpMoveList(boolean spMoveList) {
+        this.spMoveList = spMoveList;
+    }
 }

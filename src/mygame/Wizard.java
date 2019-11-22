@@ -15,6 +15,8 @@ public class Wizard extends Job {
     private int attack;
     private int defence;
     private final String JobName = "Wizard";
+    private boolean magicList = true;
+    private boolean spMoveList = false;
 
     public Wizard(String name) {
         this.name = name;
@@ -159,7 +161,7 @@ public class Wizard extends Job {
     public void magicToString() {
         int mj;
         for (;;) {
-            mj = insertNumber("1.Recocer 2.Fire");
+            mj = insertNumber("1.ヒール\r\n2.メラ(強化可) >");
             if (mj > 0 && mj < 3) {
                 break;
             }
