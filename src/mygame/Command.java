@@ -34,12 +34,10 @@ public class Command {
         }
     }
 
-    public static void jobAttack() {
-        for (Job j : combatParty) {
+    public static void jobAttack(Job j) {
             pl(j.getName() + "　の攻撃");
             pl("どのモンスターを攻撃しますか");
             j.attack(target());
-        }
     }
 
     public static Monster target() {
