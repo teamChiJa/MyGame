@@ -47,8 +47,10 @@ public class Combat {
                 QUIT:
                 while (true) {
                     for (int i = 0; i < combatParty.size(); i++) {
+                        Job j = combatParty.get(i);
                         monsterHpToString();
                         playerHpToString();
+                        pl(j.getJobName() +" "+ j.getName() +" "+ j.getHp() + "/" + j.getMAX_HP() + "の攻撃");
                         int ena = insertNumber("1.こうげき 2.とくぎ 3.じゅもん 4.にげる >");
                         switch (ena) {
                             case 1:
@@ -83,6 +85,7 @@ public class Combat {
                                     pl(combatParty.get(i).getName() + "には とくぎがありません！ [ENTER]>");
                                     break;
                                 } else {
+                                    combatParty.get(i).specialToString();
                                     if (jobLive() == false) {
                                         if (combatParty.size() == 1) {
                                             p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
@@ -114,7 +117,7 @@ public class Combat {
                                     pl(combatParty.get(i).getName() + "には じゅもんはありません！ [ENTER]>");
                                     break;
                                 } else {
-
+                                    combatParty.get(i).magicToString();
                                     if (jobLive() == false) {
                                         if (combatParty.size() == 1) {
                                             p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");

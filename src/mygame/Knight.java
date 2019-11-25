@@ -15,7 +15,7 @@ public class Knight extends Job {
     private int attack;
     private int defence;
     private final String jobName = "Knight";
-    private boolean magicList = false;
+    private boolean magicList = true;
     private boolean spMoveList = false;
 
     public Knight(String name) {
