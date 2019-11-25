@@ -50,7 +50,7 @@ public class Combat {
                         Job j = combatParty.get(i);
                         monsterHpToString();
                         playerHpToString();
-                        pl(j.getJobName() +" "+ j.getName() +" "+ j.getHp() + "/" + j.getMAX_HP() + "の攻撃");
+                        pl(j.getJobName() +" "+ j.getName() + "の攻撃");
                         int ena = insertNumber("1.こうげき 2.とくぎ 3.じゅもん 4.にげる >");
                         switch (ena) {
                             case 1:

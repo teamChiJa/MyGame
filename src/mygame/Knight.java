@@ -236,5 +236,13 @@ public class Knight extends Job {
     public int getMAX_MP() {
         return MAX_MP;
     }
+    
+    public boolean isMagicList() {
+        return magicList;
+    }
+
+    public boolean isSpMoveList() {
+        return spMoveList;
+    }
 
 }

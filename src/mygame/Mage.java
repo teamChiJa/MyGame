@@ -28,6 +28,14 @@ public class Mage extends Job {
         defence = 25;
     }
 
+    public boolean isMagicList() {
+        return magicList;
+    }
+
+    public boolean isSpMoveList() {
+        return spMoveList;
+    }
+
     public void attack(Monster ms) {
         int damage = this.getAttack() - (int) (ms.getDefence() * 0.8);
         if (damage <= 0) {

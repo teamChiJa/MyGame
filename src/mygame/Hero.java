@@ -171,16 +171,8 @@ public class Hero extends Job {
         return magicList;
     }
 
-    public void setMagicList(boolean magicList) {
-        this.magicList = magicList;
-    }
-
     public boolean isSpMoveList() {
         return spMoveList;
-    }
-
-    public void setSpMoveList(boolean spMoveList) {
-        this.spMoveList = spMoveList;
     }
 
 }

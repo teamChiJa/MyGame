@@ -12,24 +12,24 @@ public class MemberManager {
     static String select_gName;
 
     public static void hmmPut(String groupName, Job job1, Job job2, Job job3) {
-        hmm.computeIfAbsent(groupName,k -> new ArrayList<>()).add(job1);
-        hmm.computeIfAbsent(groupName,k -> new ArrayList<>()).add(job2);
-        hmm.computeIfAbsent(groupName,k -> new ArrayList<>()).add(job3);
+        hmm.computeIfAbsent(groupName, k -> new ArrayList<>()).add(job1);
+        hmm.computeIfAbsent(groupName, k -> new ArrayList<>()).add(job2);
+        hmm.computeIfAbsent(groupName, k -> new ArrayList<>()).add(job3);
         hmm.put(groupName, hmm.get(groupName));
         groupNameList.add(groupName);
         System.out.println("【" + groupName + "】グループをセーブデータに保存しました");
     }
-    
+
     public static void hmmPut(String groupName, Job job1, Job job2) {
-        hmm.computeIfAbsent(groupName,k -> new ArrayList<>()).add(job1);
-        hmm.computeIfAbsent(groupName,k -> new ArrayList<>()).add(job2);
+        hmm.computeIfAbsent(groupName, k -> new ArrayList<>()).add(job1);
+        hmm.computeIfAbsent(groupName, k -> new ArrayList<>()).add(job2);
         hmm.put(groupName, hmm.get(groupName));
         groupNameList.add(groupName);
         System.out.println("【" + groupName + "】グループをセーブデータに保存しました");
     }
-    
+
     public static void hmmPut(String groupName, Job job1) {
-        hmm.computeIfAbsent(groupName,k -> new ArrayList<>()).add(job1);
+        hmm.computeIfAbsent(groupName, k -> new ArrayList<>()).add(job1);
         hmm.put(groupName, hmm.get(groupName));
         groupNameList.add(groupName);
         System.out.println("【" + groupName + "】グループをセーブデータに保存しました");
@@ -45,12 +45,13 @@ public class MemberManager {
 
         }
     }
-    
-    public static void partyToString(ArrayList<Job> alj){
-        System.out.println(select_gName);for (int i = 0; i < alj.size(); i++) {
-                System.out.println("    勇者の名前 : " + alj.get(i).getName() + " , " + "ジョブ名 : " + alj.get(i).getJobName());
-            }
-        
+
+    public static void partyToString(ArrayList<Job> alj) {
+        System.out.println(select_gName);
+        for (int i = 0; i < alj.size(); i++) {
+            System.out.println("    勇者の名前 : " + alj.get(i).getName() + " , " + "ジョブ名 : " + alj.get(i).getJobName());
+        }
+
     }
 
     public static ArrayList<Job> groupGet(int no) {
@@ -65,5 +66,12 @@ public class MemberManager {
         }
         gnm += "\r\n" + "グループを選択してください>";
         return gnm;
+    }
+
+    public static void hiromu() {
+        Fighter hiromu1 = new Fighter("hiromu1");
+        Wizard hiromu2 = new Wizard("hiromu2");
+        Knight hiromu3 = new Knight("hiromu3");
+        hmmPut("hiromu", hiromu1, hiromu2, hiromu3);
     }
 }
