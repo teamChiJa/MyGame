@@ -25,7 +25,6 @@ public class Combat {
         reader.readLine();//エンター待ち
         EXIT:
         while (true) {
-
             int rd = ThreadLocalRandom.current().nextInt(0, 3);
             if (rd != 0) {
                 monsterParty = respone();
@@ -82,6 +81,7 @@ public class Combat {
                             case 2:
                                 if (combatParty.get(i).isSpMoveList() == false) {
                                     pl(combatParty.get(i).getName() + "には とくぎがありません！ [ENTER]>");
+                                    break;
                                 } else {
                                     if (jobLive() == false) {
                                         if (combatParty.size() == 1) {
@@ -111,9 +111,10 @@ public class Combat {
                                 break;
                             case 3:
                                 if (combatParty.get(i).isMagicList() == false) {
-                                   pl(combatParty.get(i).getName() + "には じゅもんはありません！ [ENTER]>");
+                                    pl(combatParty.get(i).getName() + "には じゅもんはありません！ [ENTER]>");
+                                    break;
                                 } else {
-                                    
+
                                     if (jobLive() == false) {
                                         if (combatParty.size() == 1) {
                                             p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
@@ -171,7 +172,7 @@ public class Combat {
                                     break QUIT;
                                 }
                             default:
-                                System.out.println("1~2の中の数値を入力してください");
+                                System.out.println("1~4の中の数値を入力してください");
                                 break;
                         }
                     }
@@ -179,7 +180,15 @@ public class Combat {
                 }
             } else {
                 p("次に進む [ENTER]>");
-                reader.readLine();
+                String q = reader.readLine();
+                if (q.equals("!q")) {
+                    pl("終了します");
+                    System.exit(0);
+                } else if (q.equalsIgnoreCase("!help")|| q.equalsIgnoreCase("!h")) {
+                    pl("---help---");
+                    pl("!q - 強制終了");
+                    pl("----------");
+                }
             }
         }
     }
@@ -248,6 +257,7 @@ public class Combat {
                         chimera.setEnemyNo(chimera.getEnemyNo() + enemy.size());
                         break;
                     case 3:
+                    case 6:
                         Morimoto morimoto = new Morimoto("森本" + m);
                         enemy.add(morimoto);
                         m++;

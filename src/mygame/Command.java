@@ -1,6 +1,5 @@
 package mygame;
 
-import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 import static mygame.Combat.*;
 import static mygame.Insert.*;
@@ -35,9 +34,9 @@ public class Command {
     }
 
     public static void jobAttack(Job j) {
-            pl(j.getName() + "　の攻撃");
-            pl("どのモンスターを攻撃しますか");
-            j.attack(target());
+        pl(j.getName() + "　の攻撃");
+        pl("どのモンスターを攻撃しますか");
+        j.attack(target());
     }
 
     public static Monster target() {
@@ -114,12 +113,14 @@ public class Command {
         }
         return death;//一人でも死んでたらtrue
     }
-    public static void full(){ //全回復 HP & MP
-        for(Job j:combatParty){
+
+    public static void full() { //全回復 HP & MP
+        for (Job j : combatParty) {
             j.setHp(j.getMAX_HP());
             j.setMp(j.getMAX_MP());
         }
     }
+
     public static void monsterHpToString() { //モンスターリストとHPを表示
         String msg = "【敵】\r\n";
         for (Monster m : monsterParty) {
