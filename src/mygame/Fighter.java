@@ -1,6 +1,7 @@
 package mygame;
 
 import java.util.concurrent.ThreadLocalRandom;
+import static mygame.Command.pl;
 
 public class Fighter extends Job {
 
@@ -48,8 +49,9 @@ public class Fighter extends Job {
             System.out.println(this.getName() + " の攻撃");
             System.out.println(ms.getName() + "に" + damage + "ダメージ");//
             ms.setHp(ms.getHp() - damage);
-            if (ms.getHp() < 0) {
+            if (ms.getHp() <= 0) {
                 ms.setHp(0);
+                pl(this.name + "は、"  + ms.getName() + "を倒した");
             }
             System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
         }

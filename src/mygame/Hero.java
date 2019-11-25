@@ -1,6 +1,7 @@
 package mygame;
 
 import java.util.concurrent.ThreadLocalRandom;
+import static mygame.Command.pl;
 
 public class Hero extends Job {
 
@@ -37,8 +38,9 @@ public class Hero extends Job {
                 System.out.println(this.getName() + " の攻撃");
                 System.out.println(ms.getName() + "に" + damage + "ダメージ");
                 ms.setHp(ms.getHp() - damage);
-                if (ms.getHp() < 0) {
+                if (ms.getHp() <= 0) {
                     ms.setHp(0);
+                    pl(this.name + "は、"  + ms.getName() + "を倒した");
                 }
                 addAtack(ms, damage);
                 System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
@@ -46,8 +48,9 @@ public class Hero extends Job {
                 System.out.println(this.getName() + " の会心の一撃");
                 System.out.println(ms.getName() + "に" + damage * 3 + "ダメージ");
                 ms.setHp(ms.getHp() - damage * 3);
-                if (ms.getHp() < 0) {
+                if (ms.getHp() <= 0) {
                     ms.setHp(0);
+                    pl(this.name + "は、"  + ms.getName() + "を倒した");
                 }
                 addAtack(ms, damage);
                 System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
@@ -55,8 +58,9 @@ public class Hero extends Job {
                 System.out.println(this.getName() + " の攻撃");
                 System.out.println(ms.getName() + "に" + damage + "ダメージ");
                 ms.setHp(ms.getHp() - damage);
-                if (ms.getHp() < 0) {
+                if (ms.getHp() <= 0) {
                     ms.setHp(0);
+                    pl(this.name + "は、"  + ms.getName() + "を倒した");
                 }
                 addAtack(ms, damage);
                 addAtack(ms, damage);
@@ -65,8 +69,9 @@ public class Hero extends Job {
                 System.out.println(this.getName() + " の攻撃");
                 System.out.println(ms.getName() + "に" + damage + "ダメージ");
                 ms.setHp(ms.getHp() - damage);
-                if (ms.getHp() < 0) {
+                if (ms.getHp() <= 0) {
                     ms.setHp(0);
+                    pl(this.name + "は、"  + ms.getName() + "を倒した");
                 }
                 addAtack(ms, damage);
                 addAtack(ms, damage);
@@ -76,8 +81,9 @@ public class Hero extends Job {
             } else if (97 <= acount && 101 > acount) {
                 System.out.println(ms.getName() + "に" + damage + "ダメージ");
                 ms.setHp(ms.getHp() - damage);
-                if (ms.getHp() < 0) {
+                if (ms.getHp() <= 0) {
                     ms.setHp(0);
+                    pl(this.name + "は、"  + ms.getName() + "を倒した");
                 }
                 addAtack(ms, damage);
                 addAtack(ms, damage);
@@ -96,8 +102,9 @@ public class Hero extends Job {
             damage = (int) ((this.getAttack() - ms.getDefence()) * ThreadLocalRandom.current().nextDouble(0.8, 1.0));
             System.out.println(ms.getName() + "に" + damage + "ダメージ");//
             ms.setHp(ms.getHp() - damage);
-            if (ms.getHp() < 0) {
+            if (ms.getHp() <= 0) {
                 ms.setHp(0);
+                pl(this.name + "は、"  + ms.getName() + "を倒した");
             }
         }
     }
