@@ -19,6 +19,7 @@ public class Command {
         int jbran;
         boolean l;
         for (int i = 0; i < monsterParty.size(); i++) {
+            pl("");
             for (;;) {
                 jbran = ThreadLocalRandom.current().nextInt(0, combatParty.size());
                 if (!jobLive()) {
@@ -34,9 +35,12 @@ public class Command {
     }
 
     public static void jobAttack(Job j) {
-        pl(j.getName() + "　の攻撃");
-        pl("どのモンスターを攻撃しますか");
-        j.attack(target());
+        if (j.getHp() > 0) {
+            pl("");
+            pl(j.getName() + "　の攻撃");
+            pl("どのモンスターを攻撃しますか");
+            j.attack(target());
+        }
     }
 
     public static Monster target() {

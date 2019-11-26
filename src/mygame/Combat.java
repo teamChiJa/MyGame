@@ -42,6 +42,7 @@ public class Combat {
                         pl("モンスターの群れがあらわれた！");
                     }
                 }
+                pl("");
                 pl("ラウンド【 " + round + " 】");
                 enemyToString();
                 QUIT:
