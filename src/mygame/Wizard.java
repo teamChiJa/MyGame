@@ -141,7 +141,7 @@ public class Wizard extends Job {
                         m.setHp(0);
                     }
                 }
-                pl(this.name + "はメラミを唱えた");
+                pl(this.getName() + "はメラミを唱えた");
                 pl("敵全体に" + f + "のダメージ");
             }
 
