@@ -46,15 +46,16 @@ public class Combat {
                 enemyToString();
                 QUIT:
                 while (true) {
-                    for (int i = 0; i < combatParty.size(); i++) {
+                    for (int i = 0; i < combatParty.size();) {
                         Job j = combatParty.get(i);
                         monsterHpToString();
                         playerHpToString();
-                        pl(j.getJobName() +" "+ j.getName() + "の攻撃");
+                        pl("【" + j.getJobName() +"】 "+ j.getName() + "の攻撃");
                         int ena = insertNumber("1.こうげき 2.とくぎ 3.じゅもん 4.にげる >");
                         switch (ena) {
                             case 1:
                                 jobAttack(combatParty.get(i));
+                                i++;
                                 if (jobLive() == false) {
                                     if (combatParty.size() == 1) {
                                         p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
@@ -82,10 +83,12 @@ public class Combat {
                                 break;
                             case 2:
                                 if (combatParty.get(i).isSpMoveList() == false) {
-                                    pl(combatParty.get(i).getName() + "には とくぎがありません！ [ENTER]>");
+                                    p(combatParty.get(i).getName() + "には とくぎがありません！ [ENTER]>");
+                                    reader.readLine();
                                     break;
                                 } else {
                                     combatParty.get(i).specialToString();
+                                    i++;
                                     if (jobLive() == false) {
                                         if (combatParty.size() == 1) {
                                             p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
@@ -111,13 +114,14 @@ public class Combat {
                                         break QUIT;
                                     }
                                 }
-                                break;
                             case 3:
                                 if (combatParty.get(i).isMagicList() == false) {
-                                    pl(combatParty.get(i).getName() + "には じゅもんはありません！ [ENTER]>");
+                                    p(combatParty.get(i).getName() + "には じゅもんはありません！ [ENTER]>");
+                                    reader.readLine();
                                     break;
                                 } else {
                                     combatParty.get(i).magicToString();
+                                    i++;
                                     if (jobLive() == false) {
                                         if (combatParty.size() == 1) {
                                             p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
@@ -142,8 +146,6 @@ public class Combat {
                                         round++;
                                         break QUIT;
                                     }
-                                    break;
-
                                 }
                             case 4:
                                 int rdena = ThreadLocalRandom.current().nextInt(1, 5);
