@@ -17,6 +17,8 @@ public class Mage extends Job {
     private final String jobName = "Mage";
     private boolean magicList = true;
     private boolean spMoveList = false;
+    private final int D_ATTACK;
+    private final int D_DEFENCE;
 
     public Mage(String name) {
         this.name = name;
@@ -26,6 +28,16 @@ public class Mage extends Job {
         MAX_MP = mp;
         attack = 5;
         defence = 25;
+        D_ATTACK = attack;
+        D_DEFENCE = defence;
+    }
+
+    public int getD_ATTACK() {
+        return D_ATTACK;
+    }
+
+    public int getD_DEFENCE() {
+        return D_DEFENCE;
     }
 
     public boolean isMagicList() {

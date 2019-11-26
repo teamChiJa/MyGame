@@ -13,14 +13,26 @@ public abstract class Job {
     private String jobName;
     private boolean magicList;
     private boolean spMoveList;
+    private final int D_ATTACK;
+    private final int D_DEFENCE;
 
     public Job() {
         MAX_HP = hp;
         MAX_MP = mp;
+        D_ATTACK = attack;
+        D_DEFENCE = defence;
     }
 
     public void attack(Monster ms) {
 
+    }
+
+    public int getD_ATTACK() {
+        return D_ATTACK;
+    }
+
+    public int getD_DEFENCE() {
+        return D_DEFENCE;
     }
 
     public String getName() {

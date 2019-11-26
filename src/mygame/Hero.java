@@ -15,6 +15,8 @@ public class Hero extends Job {
     private final String jobName = "Hero";
     private boolean magicList = false;
     private boolean spMoveList = false;
+    private final int D_ATTACK;
+    private final int D_DEFENCE;
 
     public Hero(String name) {
         this.name = name;
@@ -24,6 +26,16 @@ public class Hero extends Job {
         MAX_MP = mp;
         attack = 20;
         defence = 20;
+        D_ATTACK = attack;
+        D_DEFENCE = defence;
+    }
+
+    public int getD_ATTACK() {
+        return D_ATTACK;
+    }
+
+    public int getD_DEFENCE() {
+        return D_DEFENCE;
     }
 
     public void attack(Monster ms) {

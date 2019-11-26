@@ -10,12 +10,12 @@ import static mygame.MemberManager.*;
 import static mygame.Command.*;
 
 public class Combat {
-
+    
     static ArrayList<Job> combatParty = new ArrayList<>();
     static ArrayList<Monster> monsterParty = new ArrayList<>();
     static boolean live = true;
     static int round = 1;
-
+    
     public static void combat() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(
                 System.in));
@@ -50,7 +50,7 @@ public class Combat {
                         Job j = combatParty.get(i);
                         monsterHpToString();
                         playerHpToString();
-                        pl("【" + j.getJobName() +"】 "+ j.getName() + "の攻撃");
+                        pl("【" + j.getJobName() + "】 " + j.getName() + "の攻撃");
                         int ena = insertNumber("1.こうげき 2.とくぎ 3.じゅもん 4.にげる >");
                         switch (ena) {
                             case 1:
@@ -143,6 +143,7 @@ public class Combat {
                                             p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！[ENTER]>");
                                             reader.readLine();
                                         }
+                                        combatFinish();
                                         round++;
                                         break QUIT;
                                     }
@@ -189,7 +190,7 @@ public class Combat {
                 if (q.equals("!q")) {
                     pl("終了します");
                     System.exit(0);
-                } else if (q.equalsIgnoreCase("!help")|| q.equalsIgnoreCase("!h")) {
+                } else if (q.equalsIgnoreCase("!help") || q.equalsIgnoreCase("!h")) {
                     pl("---help---");
                     pl("!q - 強制終了");
                     pl("----------");
@@ -197,7 +198,7 @@ public class Combat {
             }
         }
     }
-
+    
     public static ArrayList<Monster> respone() {
         int s = 1;
         int c = 1;
@@ -273,14 +274,30 @@ public class Combat {
         }
         return enemy;
     }
-
+    
     public static void partySelect(ArrayList<Job> jp) {
         combatParty = jp;
     }
-
+    
     public static void enemyToString() {
         for (int i = 0; i < monsterParty.size(); i++) {
             System.out.println(monsterParty.get(i).getEnemyNo() + " : " + monsterParty.get(i).getName() + "  HP : " + monsterParty.get(i).getHp());
+        }
+    }
+    
+    public static void combatFinish() {
+        for (int i = 0; i < combatParty.size(); i++) {
+            Job j = combatParty.get(i);
+            j.setHp(j.getHp() + 10);
+            if (j.getHp() > j.getMAX_HP()) {
+                j.setHp(j.getMAX_HP());
+            }
+            j.setMp(j.getMp() + 10);
+            if (j.getMp() > j.getMAX_MP()) {
+                j.setMp(j.getMAX_MP());
+            }
+            j.setAttack(j.getD_DEFENCE());
+            j.setDefence(j.getD_DEFENCE());
         }
     }
 }

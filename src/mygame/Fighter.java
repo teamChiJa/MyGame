@@ -15,6 +15,8 @@ public class Fighter extends Job {
     private final String jobName = "Fighter";
     private boolean magicList = false;
     private boolean spMoveList = false;
+    private final int D_ATTACK;
+    private final int D_DEFENCE;
     
     public Fighter(String name) {
         this.name = name;
@@ -23,7 +25,17 @@ public class Fighter extends Job {
         mp = 0;
         MAX_MP = mp;
         attack = ThreadLocalRandom.current().nextInt(41, 51);
-        defence = 10;;
+        defence = 10;
+        D_ATTACK = attack;
+        D_DEFENCE = defence;
+    }
+
+    public int getD_ATTACK() {
+        return D_ATTACK;
+    }
+
+    public int getD_DEFENCE() {
+        return D_DEFENCE;
     }
 
     public void attack(Monster ms) {

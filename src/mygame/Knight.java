@@ -17,6 +17,8 @@ public class Knight extends Job {
     private final String jobName = "Knight";
     private boolean magicList = true;
     private boolean spMoveList = false;
+    private final int D_ATTACK;
+    private final int D_DEFENCE;
 
     public Knight(String name) {
         this.name = name;
@@ -26,6 +28,16 @@ public class Knight extends Job {
         MAX_MP = mp;
         attack = 15;
         defence = 30;
+        D_ATTACK = attack;
+        D_DEFENCE = defence;
+    }
+
+    public int getD_ATTACK() {
+        return D_ATTACK;
+    }
+
+    public int getD_DEFENCE() {
+        return D_DEFENCE;
     }
 
     public void attack(Monster ms) {
