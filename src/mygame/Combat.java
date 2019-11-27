@@ -10,12 +10,12 @@ import static mygame.MemberManager.*;
 import static mygame.Command.*;
 
 public class Combat {
-    
+
     static ArrayList<Job> combatParty = new ArrayList<>();
     static ArrayList<Monster> monsterParty = new ArrayList<>();
     static boolean live = true;
     static int round = 1;
-    
+
     public static void combat() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(
                 System.in));
@@ -121,6 +121,10 @@ public class Combat {
                                     p(combatParty.get(i).getName() + "には じゅもんはありません！ [ENTER]>");
                                     reader.readLine();
                                     break;
+                                } else if (combatParty.get(i).getMp() >= 5) {
+                                    p("mpが足りません");
+                                    reader.readLine();
+                                    break;
                                 } else {
                                     combatParty.get(i).magicToString();
                                     i++;
@@ -201,7 +205,7 @@ public class Combat {
             }
         }
     }
-    
+
     public static ArrayList<Monster> respone() {
         int s = 1;
         int c = 1;
@@ -277,16 +281,17 @@ public class Combat {
         }
         return enemy;
     }
-    
+
     public static void partySelect(ArrayList<Job> jp) {
         combatParty = jp;
     }
-    
+
     public static void enemyToString() {
         for (int i = 0; i < monsterParty.size(); i++) {
             System.out.println(monsterParty.get(i).getEnemyNo() + " : " + monsterParty.get(i).getName() + "  HP : " + monsterParty.get(i).getHp());
         }
     }
+
     public static void combatFinish() {
         for (int i = 0; i < combatParty.size(); i++) {
             Job j = combatParty.get(i);
@@ -294,7 +299,7 @@ public class Combat {
             if (j.getHp() > j.getMAX_HP()) {
                 j.setHp(j.getMAX_HP());
             }
-            j.setMp(j.getMp() + 10);
+            j.setMp(j.getMp() + 5);
             if (j.getMp() > j.getMAX_MP()) {
                 j.setMp(j.getMAX_MP());
             }

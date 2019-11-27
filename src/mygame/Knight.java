@@ -52,7 +52,7 @@ public class Knight extends Job {
             ms.setHp(ms.getHp() - damage);
             if (ms.getHp() <= 0) {
                 ms.setHp(0);
-                pl(this.name + "は、"  + ms.getName() + "を倒した");
+                pl(this.name + "は、" + ms.getName() + "を倒した");
             }
             System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
         }
@@ -131,18 +131,9 @@ public class Knight extends Job {
                 pl("死んでいる仲間は選択できません");
             }
         }
-        int smp;
-        for (;;) {
-            smp = insertNumber("消費するMPを入力してください（消費MP　1ポイント毎に、Attack 2ポイント上昇）>");
-            if ((this.mp - smp) >= 0) {
-                break;
-            }
-            pl("使えるMPを超えています");
-        }
+        int smp = 5;
         j = combatParty.get(sjob);
-        int bat = smp * 2;
-        combatParty.get(sjob).setAttack(combatParty.get(sjob).getAttack() + bat);
-        pl(combatParty.get(sjob).getName() + "のAttackは" + bat + "ポイント上昇しました");
+        combatParty.get(sjob).setAttack((int) (combatParty.get(sjob).getAttack() * 1.5));
         pl(j.getName() + "のAttack：" + j.getAttack());
     }
 
@@ -160,17 +151,10 @@ public class Knight extends Job {
             }
         }
         int smp;
-        for (;;) {
-            smp = insertNumber("消費するMPを入力してください（消費MP　1ポイント毎に、Defence 2ポイント上昇）>");
-            if ((this.mp - smp) >= 0) {
-                break;
-            }
-            pl("使えるMPを超えています");
-        }
-        j = combatParty.get(sjob);
-        int bat = smp * 2;
-        combatParty.get(sjob).setDefence(combatParty.get(sjob).getDefence() + bat);
-        pl(combatParty.get(sjob).getName() + "のDefenceは" + bat + "ポイント上昇しました");
+            smp = 5;
+        
+        j = combatParty.get(sjob); 
+        combatParty.get(sjob).setDefence((int)(combatParty.get(sjob).getDefence() * 1.5));        
         pl(j.getName() + "のAttack：" + j.getDefence());
     }
 
@@ -252,7 +236,7 @@ public class Knight extends Job {
     public int getMAX_MP() {
         return MAX_MP;
     }
-    
+
     public boolean isMagicList() {
         return magicList;
     }

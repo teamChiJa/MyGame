@@ -56,7 +56,7 @@ public class Wizard extends Job {
             ms.setHp(ms.getHp() - damage);
             if (ms.getHp() <= 0) {
                 ms.setHp(0);
-                pl(this.name + "は、"  + ms.getName() + "を倒した");
+                pl(this.name + "は、" + ms.getName() + "を倒した");
             }
             System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
         }
@@ -126,15 +126,33 @@ public class Wizard extends Job {
         int smp;
         int f;
         int mhp;
+        int sel_mp;
         if (this.mp > 0 && this.hp > 0) {
             for (;;) {
-                smp = insertNumber("消費するMPを入力してください >");
-                if ((this.mp - smp) >= 0) {
-                    break;
+
+                sel_mp = insertNumber("1.メラ　2.メラミ　3.メラゾーマ");
+                if (sel_mp == 1) {
+                    smp = 5;
+                    if ((this.mp - smp) >= 0) {
+                        break;
+                    }
                 }
+                if (sel_mp == 2) {
+                    smp = 10;
+                    if ((this.mp - smp) >= 0) {
+                        break;
+                    }
+                }
+                if (sel_mp == 3) {
+                    smp = 20;
+                    if ((this.mp - smp) >= 0) {
+                        break;
+                    }
+                }
+
                 pl("使えるMPを超えています");
             }
-            if (smp > 0 && smp < 10) {
+            if (smp == 5) {
                 f = smp * 3;
                 for (Monster m : monsterParty) {
                     m.setHp(m.getHp() - f);
@@ -146,7 +164,7 @@ public class Wizard extends Job {
                 pl("敵全体に" + f + "のダメージ");
             }
 
-            if (smp >= 10 && smp < 20) {
+            if (smp == 10) {
                 f = smp * 5;
                 for (Monster m : monsterParty) {
                     m.setHp(m.getHp() - f);
@@ -158,7 +176,7 @@ public class Wizard extends Job {
                 pl("敵全体に" + f + "のダメージ");
             }
 
-            if (smp >= 20) {
+            if (smp == 20) {
                 f = smp * 8;
                 for (Monster m : monsterParty) {
                     m.setHp(m.getHp() - f);
@@ -169,6 +187,7 @@ public class Wizard extends Job {
                 pl(this.name + "はメラゾーマを唱えた");
                 pl("敵全体に" + f + "のダメージ");
             }
+            this.setMp(this.mp - smp);
         }
     }
 
@@ -247,7 +266,7 @@ public class Wizard extends Job {
     public int getMAX_MP() {
         return MAX_MP;
     }
-    
+
     public boolean isMagicList() {
         return magicList;
     }
