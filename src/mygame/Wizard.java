@@ -67,7 +67,8 @@ public class Wizard extends Job {
             int sjob;
             Job j;
             for (;;) {
-                sjob = insertNumber("回復する仲間を選んでください");
+                playerHpToString();
+                sjob = insertNumber("回復する仲間を選んでください >");
                 if (sjob > 0 && sjob <= combatParty.size()) {
                     if (combatParty.get(sjob).getHp() > 0) {
                         break;
@@ -127,7 +128,7 @@ public class Wizard extends Job {
         int mhp;
         if (this.mp > 0 && this.hp > 0) {
             for (;;) {
-                smp = insertNumber("消費するMPを入力してください");
+                smp = insertNumber("消費するMPを入力してください >");
                 if ((this.mp - smp) >= 0) {
                     break;
                 }

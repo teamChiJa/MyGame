@@ -287,7 +287,6 @@ public class Combat {
             System.out.println(monsterParty.get(i).getEnemyNo() + " : " + monsterParty.get(i).getName() + "  HP : " + monsterParty.get(i).getHp());
         }
     }
-    
     public static void combatFinish() {
         for (int i = 0; i < combatParty.size(); i++) {
             Job j = combatParty.get(i);

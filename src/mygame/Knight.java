@@ -3,6 +3,7 @@ package mygame;
 import java.util.concurrent.ThreadLocalRandom;
 import static mygame.Combat.combatParty;
 import static mygame.Command.pl;
+import static mygame.Command.*;
 import static mygame.Insert.insertNumber;
 
 public class Knight extends Job {
@@ -62,7 +63,8 @@ public class Knight extends Job {
             int sjob;
             Job j;
             for (;;) {
-                sjob = insertNumber("回復する仲間を選んでください");
+                playerHpToString();
+                sjob = insertNumber("回復する仲間を選んでください >");
                 if (sjob > 0 && sjob <= combatParty.size()) {
                     if (combatParty.get(sjob).getHp() > 0) {
                         break;
@@ -120,7 +122,8 @@ public class Knight extends Job {
         int sjob;
         Job j;
         for (;;) {
-            sjob = insertNumber("対称の仲間を選んでください");
+            playerHpToString();
+            sjob = insertNumber("対称の仲間を選んでください >");
             if (sjob > 0 && sjob <= combatParty.size()) {
                 if (combatParty.get(sjob).getHp() > 0) {
                     break;
@@ -130,7 +133,7 @@ public class Knight extends Job {
         }
         int smp;
         for (;;) {
-            smp = insertNumber("消費するMPを入力してください（消費MP　1ポイント毎に、Attack 2ポイント上昇）");
+            smp = insertNumber("消費するMPを入力してください（消費MP　1ポイント毎に、Attack 2ポイント上昇）>");
             if ((this.mp - smp) >= 0) {
                 break;
             }
@@ -147,7 +150,8 @@ public class Knight extends Job {
         int sjob;
         Job j;
         for (;;) {
-            sjob = insertNumber("対称の仲間を選んでください");
+            playerHpToString();
+            sjob = insertNumber("対称の仲間を選んでください >");
             if (sjob > 0 && sjob <= combatParty.size()) {
                 if (combatParty.get(sjob).getHp() > 0) {
                     break;
@@ -157,7 +161,7 @@ public class Knight extends Job {
         }
         int smp;
         for (;;) {
-            smp = insertNumber("消費するMPを入力してください（消費MP　1ポイント毎に、Defence 2ポイント上昇）");
+            smp = insertNumber("消費するMPを入力してください（消費MP　1ポイント毎に、Defence 2ポイント上昇）>");
             if ((this.mp - smp) >= 0) {
                 break;
             }

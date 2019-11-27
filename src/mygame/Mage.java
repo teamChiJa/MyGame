@@ -75,7 +75,8 @@ public class Mage extends Job {
             int sjob;
             Job j;
             for (;;) {
-                sjob = insertNumber("回復する仲間を選んでください");
+                playerHpTotring();
+                sjob = insertNumber("回復する仲間を選んでください >");
                 if (sjob > 0 && sjob <= combatParty.size()) {
                     if (combatParty.get(sjob).getHp() > 0) {
                         break;
@@ -223,5 +224,9 @@ public class Mage extends Job {
                 this.raise();
                 break;
         }
+    }
+
+    private void playerHpTotring() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
