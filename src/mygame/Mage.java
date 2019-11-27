@@ -211,7 +211,7 @@ public class Mage extends Job {
     public void magicToString() {
         int mj;
         for (;;) {
-            mj = insertNumber("1.ヒール\r\n2.ザオリク >");
+            mj = insertNumber("1.ホイミ\r\n2.ザオリク >");
             if (mj > 0 && mj < 3) {
                 break;
             }

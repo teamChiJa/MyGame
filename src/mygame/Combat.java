@@ -121,8 +121,8 @@ public class Combat {
                                     p(combatParty.get(i).getName() + "には じゅもんはありません！ [ENTER]>");
                                     reader.readLine();
                                     break;
-                                } else if (combatParty.get(i).getMp() >= 5) {
-                                    p("mpが足りません");
+                                } else if (combatParty.get(i).getMp() < 5) {
+                                    p("mpが足りません　[ENTER]>");
                                     reader.readLine();
                                     break;
                                 } else {

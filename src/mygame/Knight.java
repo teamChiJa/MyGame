@@ -161,7 +161,7 @@ public class Knight extends Job {
     public void magicToString() {
         int mj;
         for (;;) {
-            mj = insertNumber("1.Recocer 2.AttackBoost 3.DeffenceBoost");
+            mj = insertNumber("1.ホイミ 2.バイキルト 3.スカラ");
             if (mj > 0 && mj < 4) {
                 break;
             }

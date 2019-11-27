@@ -130,7 +130,7 @@ public class Wizard extends Job {
         if (this.mp > 0 && this.hp > 0) {
             for (;;) {
 
-                sel_mp = insertNumber("1.メラ　2.メラミ　3.メラゾーマ");
+                sel_mp = insertNumber("1.メラ　2.メラミ　3.メラゾーマ >");
                 if (sel_mp == 1) {
                     smp = 5;
                     if ((this.mp - smp) >= 0) {
@@ -194,7 +194,7 @@ public class Wizard extends Job {
     public void magicToString() {
         int mj;
         for (;;) {
-            mj = insertNumber("1.ヒール\r\n2.メラ(強化可) >");
+            mj = insertNumber("1.ホイミ\r\n2.メラ(強化可) >");
             if (mj > 0 && mj < 3) {
                 break;
             }

@@ -8,7 +8,7 @@ import static mygame.Combat.*;
 public class PlayGame {
 
     public static void game() {
-        hiromu();
+        //hiromu();
         int partyNo;
         System.out.println("パーティー作成を開始します");
         String msg = "既存のデータを使いますか？";
