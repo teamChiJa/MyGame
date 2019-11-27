@@ -87,6 +87,10 @@ public class Combat {
                                     p(combatParty.get(i).getName() + "には とくぎがありません！ [ENTER]>");
                                     reader.readLine();
                                     break;
+                                } else if (combatParty.get(i).getMp() < 10) {
+                                    p(combatParty.get(i).getName() + "の　mp　が足りません！ [ENTER]>");
+                                    reader.readLine();
+                                    break;
                                 } else {
                                     combatParty.get(i).specialToString();
                                     i++;

@@ -1,7 +1,10 @@
 package mygame;
 
 import java.util.concurrent.ThreadLocalRandom;
+import static mygame.Command.jobAttack;
 import static mygame.Command.pl;
+import static mygame.Command.target;
+import static mygame.Insert.insertNumber;
 
 public class Hero extends Job {
 
@@ -14,7 +17,7 @@ public class Hero extends Job {
     private int defence;
     private final String jobName = "Hero";
     private boolean magicList = false;
-    private boolean spMoveList = false;
+    private boolean spMoveList = true;
     private final int D_ATTACK;
     private final int D_DEFENCE;
 
@@ -52,7 +55,7 @@ public class Hero extends Job {
                 ms.setHp(ms.getHp() - damage);
                 if (ms.getHp() <= 0) {
                     ms.setHp(0);
-                    pl(this.name + "は、"  + ms.getName() + "を倒した");
+                    pl(this.name + "は、" + ms.getName() + "を倒した");
                 }
                 addAtack(ms, damage);
                 System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
@@ -62,7 +65,7 @@ public class Hero extends Job {
                 ms.setHp(ms.getHp() - damage * 3);
                 if (ms.getHp() <= 0) {
                     ms.setHp(0);
-                    pl(this.name + "は、"  + ms.getName() + "を倒した");
+                    pl(this.name + "は、" + ms.getName() + "を倒した");
                 }
                 addAtack(ms, damage);
                 System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
@@ -72,7 +75,7 @@ public class Hero extends Job {
                 ms.setHp(ms.getHp() - damage);
                 if (ms.getHp() <= 0) {
                     ms.setHp(0);
-                    pl(this.name + "は、"  + ms.getName() + "を倒した");
+                    pl(this.name + "は、" + ms.getName() + "を倒した");
                 }
                 addAtack(ms, damage);
                 addAtack(ms, damage);
@@ -83,7 +86,7 @@ public class Hero extends Job {
                 ms.setHp(ms.getHp() - damage);
                 if (ms.getHp() <= 0) {
                     ms.setHp(0);
-                    pl(this.name + "は、"  + ms.getName() + "を倒した");
+                    pl(this.name + "は、" + ms.getName() + "を倒した");
                 }
                 addAtack(ms, damage);
                 addAtack(ms, damage);
@@ -95,7 +98,7 @@ public class Hero extends Job {
                 ms.setHp(ms.getHp() - damage);
                 if (ms.getHp() <= 0) {
                     ms.setHp(0);
-                    pl(this.name + "は、"  + ms.getName() + "を倒した");
+                    pl(this.name + "は、" + ms.getName() + "を倒した");
                 }
                 addAtack(ms, damage);
                 addAtack(ms, damage);
@@ -116,8 +119,38 @@ public class Hero extends Job {
             ms.setHp(ms.getHp() - damage);
             if (ms.getHp() <= 0) {
                 ms.setHp(0);
-                pl(this.name + "は、"  + ms.getName() + "を倒した");
+                pl(this.name + "は、" + ms.getName() + "を倒した");
             }
+
+        }
+    }
+
+    public void gAttack() {
+        int smp = 10;
+        Monster ms = target();
+        int damage = (int) (((this.getAttack() * 2.5) - ms.getDefence()) * ThreadLocalRandom.current().nextDouble(0.8, 1.2));
+        this.mp -= 10;
+        ms.setMp(ms.getHp() - damage);
+        System.out.println(ms.getName() + "に" + damage + "ダメージ");
+        if (ms.getHp() <= 0) {
+            ms.setHp(0);
+            pl(this.getName() + "は" + ms.getName() + "を倒した");
+        }
+        System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
+    }
+    public void spMoveList(){
+        int mj;
+        for (;;) {
+            mj = insertNumber("1.ギガスラッシュ >");
+            if (mj > 0 && mj < 2) {
+                break;
+            }
+        }
+        switch (mj) {
+            case 1:
+                this.gAttack();
+                break;
+            
         }
     }
 
