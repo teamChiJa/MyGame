@@ -114,6 +114,7 @@ public class Combat {
                                         round++;
                                         break QUIT;
                                     }
+                                    break;
                                 }
                             case 3:
                                 if (combatParty.get(i).isMagicList() == false) {
@@ -148,6 +149,7 @@ public class Combat {
                                         round++;
                                         break QUIT;
                                     }
+                                    break;
                                 }
                             case 4:
                                 int rdena = ThreadLocalRandom.current().nextInt(1, 5);
