@@ -52,6 +52,7 @@ public class Combat {
                         monsterHpToString();
                         playerHpToString();
                         pl("【" + j.getJobName() + "】 " + j.getName() + "の攻撃");
+                        pl("MP : " + j.getMp() + "/" + j.getMAX_MP());
                         int ena = insertNumber("1.こうげき 2.とくぎ 3.じゅもん 4.にげる >");
                         switch (ena) {
                             case 1:
