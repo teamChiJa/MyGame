@@ -5,6 +5,8 @@ import static mygame.Command.jobAttack;
 import static mygame.Command.pl;
 import static mygame.Command.target;
 import static mygame.Insert.insertNumber;
+import static mygame.Combat.*;
+import static mygame.Insert.foolProof;
 
 public class Hero extends Job {
 
@@ -129,8 +131,8 @@ public class Hero extends Job {
         int smp = 10;
         Monster ms = target();
         int damage = (int) (((this.getAttack() * 2.5) - ms.getDefence()) * ThreadLocalRandom.current().nextDouble(0.8, 1.2));
-        this.mp -= 10;
-        ms.setMp(ms.getHp() - damage);
+        this.mp -= smp;
+        ms.setHp(ms.getHp() - damage);
         System.out.println(ms.getName() + "に" + damage + "ダメージ");
         if (ms.getHp() <= 0) {
             ms.setHp(0);
@@ -141,13 +143,21 @@ public class Hero extends Job {
     public void spMoveList(){
         int mj;
         for (;;) {
-            mj = insertNumber("1.ギガスラッシュ >");
+            mj = insertNumber("1.ギガスラッシュ<10MP>\r\n0.キャンセル >");
             if (mj > 0 && mj < 2) {
                 break;
             }
         }
         switch (mj) {
+            case 0:
+                next = false;
+                    break;
             case 1:
+                if(this.mp < 5){
+                    pl("MPが足りません");
+                    next = false;
+                    break;
+                }
                 this.gAttack();
                 break;
             

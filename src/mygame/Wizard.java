@@ -4,6 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import static mygame.Combat.*;
 import static mygame.Command.*;
 import static mygame.Insert.*;
+import static mygame.Combat.*;
 
 public class Wizard extends Job {
 
@@ -153,57 +154,98 @@ public class Wizard extends Job {
                 pl("使えるMPを超えています");
             }
             if (smp == 5) {
-                f = smp * 3;
-                for (Monster m : monsterParty) {
-                    m.setHp(m.getHp() - f);
-                    if (m.getHp() < 0) {
-                        m.setHp(0);
+                for (;;) {
+                    if (this.mp < smp) {
+                        pl("MPが足りません");
+                        next = false;
+                        break;
                     }
+                    f = smp * 3;
+                    for (Monster m : monsterParty) {
+                        m.setHp(m.getHp() - f);
+                        if (m.getHp() < 0) {
+                            m.setHp(0);
+                        }
+                    }
+                    pl(this.name + "はメラを唱えた");
+                    this.mp -= smp;
+                    pl("敵全体に" + f + "のダメージ");
+                    break;
                 }
-                pl(this.name + "はメラを唱えた");
-                pl("敵全体に" + f + "のダメージ");
             }
 
             if (smp == 10) {
-                f = smp * 5;
-                for (Monster m : monsterParty) {
-                    m.setHp(m.getHp() - f);
-                    if (m.getHp() < 0) {
-                        m.setHp(0);
+                for (;;) {
+                    if (this.mp < smp) {
+                        pl("MPが足りません");
+                        next = false;
+                        break;
                     }
+                    f = smp * 5;
+                    for (Monster m : monsterParty) {
+                        m.setHp(m.getHp() - f);
+                        if (m.getHp() < 0) {
+                            m.setHp(0);
+                        }
+                    }
+                    pl(this.getName() + "はメラミを唱えた");
+                    this.mp -= smp;
+                    pl("敵全体に" + f + "のダメージ");
+                    break;
                 }
-                pl(this.getName() + "はメラミを唱えた");
-                pl("敵全体に" + f + "のダメージ");
             }
 
             if (smp == 20) {
-                f = smp * 8;
-                for (Monster m : monsterParty) {
-                    m.setHp(m.getHp() - f);
-                    if (m.getHp() < 0) {
-                        m.setHp(0);
+                for (;;) {
+                    if (this.mp < smp) {
+                        pl("MPが足りません");
+                        next = false;
+                        break;
                     }
+                    f = smp * 8;
+                    for (Monster m : monsterParty) {
+                        m.setHp(m.getHp() - f);
+                        if (m.getHp() < 0) {
+                            m.setHp(0);
+                        }
+                    }
+                    pl(this.name + "はメラゾーマを唱えた");
+                 
+                    pl("敵全体に" + f + "のダメージ");
+
+                    this.setMp(this.mp - smp);
+                    break;
                 }
-                pl(this.name + "はメラゾーマを唱えた");
-                pl("敵全体に" + f + "のダメージ");
             }
-            this.setMp(this.mp - smp);
         }
     }
 
     public void magicToString() {
         int mj;
         for (;;) {
-            mj = insertNumber("1.ホイミ\r\n2.メラ(強化可) >");
+            mj = insertNumber("1.ホイミ<5MP 10MP 15MP>\r\n2.メラ<5MP 10MP 20MP> \r\n0.キャンセル>");
             if (mj > 0 && mj < 3) {
                 break;
             }
         }
         switch (mj) {
+            case 0:
+                next = false;
+                break;
             case 1:
+                if (this.mp < 5) {
+                    pl("MPが足りません");
+                    next = false;
+                    break;
+                }
                 this.recover();
                 break;
             case 2:
+                if (this.mp < 5) {
+                    pl("MPが足りません");
+                    next = false;
+                    break;
+                }
                 this.fire();
                 break;
         }

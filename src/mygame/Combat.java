@@ -11,6 +11,7 @@ import static mygame.Command.*;
 
 public class Combat {
 
+    static boolean next = true;
     static ArrayList<Job> combatParty = new ArrayList<>();
     static ArrayList<Monster> monsterParty = new ArrayList<>();
     static boolean live = true;
@@ -52,6 +53,7 @@ public class Combat {
                         monsterHpToString();
                         playerHpToString();
                         pl("【" + j.getJobName() + "】 " + j.getName() + "の攻撃");
+                        pl("HP : " + j.getHp() + "/" + j.getMAX_HP() + " MP : " + j.getMp() + "/" + j.getMAX_MP());
                         int ena = insertNumber("1.こうげき 2.とくぎ 3.じゅもん 4.にげる >");
                         switch (ena) {
                             case 1:
@@ -87,12 +89,11 @@ public class Combat {
                                     p(combatParty.get(i).getName() + "には とくぎがありません！ [ENTER]>");
                                     reader.readLine();
                                     break;
-                                } else if (combatParty.get(i).getMp() < 10) {
-                                    p(combatParty.get(i).getName() + "の　mp　が足りません！ [ENTER]>");
-                                    reader.readLine();
-                                    break;
                                 } else {
                                     combatParty.get(i).specialToString();
+                                    if (!next) {
+                                        continue;
+                                    }
                                     i++;
                                     if (jobLive() == false) {
                                         if (combatParty.size() == 1) {
@@ -125,12 +126,11 @@ public class Combat {
                                     p(combatParty.get(i).getName() + "には じゅもんはありません！ [ENTER]>");
                                     reader.readLine();
                                     break;
-                                } else if (combatParty.get(i).getMp() < 5) {
-                                    p("mpが足りません　[ENTER]>");
-                                    reader.readLine();
-                                    break;
                                 } else {
                                     combatParty.get(i).magicToString();
+                                    if (!next) {
+                                        continue;
+                                    }
                                     i++;
                                     if (jobLive() == false) {
                                         if (combatParty.size() == 1) {

@@ -4,6 +4,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import static mygame.Combat.*;
 import static mygame.Command.*;
 import static mygame.Insert.*;
+import static mygame.Combat.*;
 
 public class Mage extends Job {
 
@@ -211,16 +212,29 @@ public class Mage extends Job {
     public void magicToString() {
         int mj;
         for (;;) {
-            mj = insertNumber("1.ホイミ\r\n2.ザオリク >");
+            mj = insertNumber("1.ホイミ<5MP 10MP 15MP>\r\n2.ザオリク<10MP>\r\n0.キャンセル >");
             if (mj > 0 && mj < 3) {
                 break;
             }
         }
         switch (mj) {
+             case 0:
+                next = false;
+                    break;
             case 1:
+                if(this.mp < 5){
+                    pl("MPが足りません");
+                    next = false;
+                    break;
+                }
                 this.recover();
                 break;
             case 2:
+                 if(this.mp < 10){
+                    pl("MPが足りません");
+                     next = false;
+                    break;
+                }
                 this.raise();
                 break;
         }

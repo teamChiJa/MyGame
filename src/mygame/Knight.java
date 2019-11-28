@@ -2,6 +2,7 @@ package mygame;
 
 import java.util.concurrent.ThreadLocalRandom;
 import static mygame.Combat.combatParty;
+import static mygame.Combat.next;
 import static mygame.Command.pl;
 import static mygame.Command.*;
 import static mygame.Insert.insertNumber;
@@ -77,7 +78,7 @@ public class Knight extends Job {
             int srp;
             j = combatParty.get(sjob);
             for (;;) {
-                srp = insertNumber("1. 2. 3.");
+                srp = insertNumber("1. 2. ");
                 if (srp == 1 && this.mp >= 5) {
                     pl("");
                     this.mp -= 5;
@@ -102,17 +103,7 @@ public class Knight extends Job {
                     }
                     break;
                 }
-                if (srp == 3 && this.mp >= 15) {
-                    this.mp -= 15;
-                    j.setHp(j.getHp() + 30);
-                    if (j.getMAX_HP() < j.getHp()) {
-                        j.setHp(j.getMAX_HP());
-                        pl(j.getName() + "のHPは満タンになった");
-                    } else {
-                        pl(j.getName() + "のHPは30ポイント回復した");
-                    }
-                    break;
-                }
+
                 pl("使えるMPを超えています");
             }
         }
@@ -134,7 +125,8 @@ public class Knight extends Job {
         int smp = 5;
         j = combatParty.get(sjob);
         combatParty.get(sjob).setAttack((int) (combatParty.get(sjob).getAttack() * 1.5));
-        pl(j.getName() + "のAttack：" + j.getAttack());
+        this.mp -= smp;
+        pl(j.getName() + "のAttackが上昇した");
     }
 
     public void defenceBoost() {
@@ -151,29 +143,48 @@ public class Knight extends Job {
             }
         }
         int smp;
-            smp = 5;
-        
-        j = combatParty.get(sjob); 
-        combatParty.get(sjob).setDefence((int)(combatParty.get(sjob).getDefence() * 1.5));        
-        pl(j.getName() + "のAttack：" + j.getDefence());
+        smp = 5;
+
+        j = combatParty.get(sjob);
+        combatParty.get(sjob).setDefence((int) (combatParty.get(sjob).getDefence() * 1.5));
+        this.mp -= smp;
+        pl(j.getName() + "のDefenceは上昇した");
     }
 
     public void magicToString() {
         int mj;
         for (;;) {
-            mj = insertNumber("1.ホイミ 2.バイキルト 3.スカラ");
-            if (mj > 0 && mj < 4) {
+            mj = insertNumber("1.ホイミ<5MP 10MP> 2.バイキルト<5MP> 3.スカラ<5MP>\r\n0.キャンセル >");
+            if (mj >= 0 && mj < 4) {
                 break;
             }
         }
         switch (mj) {
+            case 0:
+                next = false;
+                break;
             case 1:
+                if (this.mp < 5) {
+                    pl("MPが足りません");
+                    next = false;
+                    break;
+                }
                 this.recover();
                 break;
             case 2:
+                if (this.mp < 5) {
+                    pl("MPが足りません");
+                    next = false;
+                    break;
+                }
                 this.attackBoost();
                 break;
             case 3:
+                if (this.mp < 5) {
+                    pl("MPが足りません");
+                    next = false;
+                    break;
+                }
                 this.defenceBoost();
                 break;
         }
