@@ -149,7 +149,7 @@ public class Mage extends Job {
             j = combatParty.get(sjob - 1);
             this.mp -= 10;
             j.setHp((int) (j.getMAX_HP() * 0.5));//キャストでしょうよ！
-            pl(j.getName() + "は、復活した\r\nHP: " + j.getHp() + "/" + j.getMAX_HP());
+            pl(j.getName() + "は、復活した\r\nHP : " + j.getHp() + "/" + j.getMAX_HP());
 
         }
     }

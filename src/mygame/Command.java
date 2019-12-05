@@ -151,6 +151,7 @@ public class Command {
     }
 
     public static void playerHpToString() { //グループのメンバーリストとHPを表示
+        pl("");
         String msg = "";
         msg += select_gName + "\r\n";
         for (Job j : combatParty) {
