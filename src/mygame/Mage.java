@@ -65,7 +65,7 @@ public class Mage extends Job {
             ms.setHp(ms.getHp() - damage);
             if (ms.getHp() <= 0) {
                 ms.setHp(0);
-                pl(this.name + "は、"  + ms.getName() + "を倒した");
+                pl(this.name + "は、" + ms.getName() + "を倒した");
             }
             System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
         }
@@ -136,18 +136,21 @@ public class Mage extends Job {
             int sjob;
             Job j;
             for (;;) {
-                sjob = insertNumber("蘇生する仲間を選んでください(10MP消費)");
+                playerDeathToString();
+                sjob = insertNumber("蘇生する仲間を選んでください(10MP消費) >");
+                playerDeathToString();
                 if (sjob > 0 && sjob <= combatParty.size()) {
-                    if (combatParty.get(sjob).getHp() == 0) {
+                    if (combatParty.get(sjob - 1).getHp() == 0) {
                         break;
                     }
                     pl("生きている仲間は蘇生できません");
                 }
             }
-            j = combatParty.get(sjob);
+            j = combatParty.get(sjob - 1);
             this.mp -= 10;
-            j.setHp((int) (j.getHp() * 2));//キャストでしょうよ！
-            pl(j.getName() + "は、復活した");
+            j.setHp((int) (j.getMAX_HP() * 0.5));//キャストでしょうよ！
+            pl(j.getName() + "は、復活した\r\nHP: " + j.getHp() + "/" + j.getMAX_HP());
+
         }
     }
 
@@ -218,11 +221,11 @@ public class Mage extends Job {
             }
         }
         switch (mj) {
-             case 0:
+            case 0:
                 next = false;
-                    break;
+                break;
             case 1:
-                if(this.mp < 5){
+                if (this.mp < 5) {
                     pl("MPが足りません");
                     next = false;
                     break;
@@ -230,9 +233,9 @@ public class Mage extends Job {
                 this.recover();
                 break;
             case 2:
-                 if(this.mp < 10){
+                if (this.mp < 10) {
                     pl("MPが足りません");
-                     next = false;
+                    next = false;
                     break;
                 }
                 this.raise();

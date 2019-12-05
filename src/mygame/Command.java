@@ -138,6 +138,18 @@ public class Command {
         pl(msg);
     }
 
+    public static void playerDeathToString() {
+        String msg;
+        for (Job j : combatParty) {
+            if (j.getHp() == 0) {
+               pl("");
+                p(combatParty.indexOf(j) + 1 + ":");
+                p("【" + j.getJobName() + "】");
+                pl(j.getName());
+            }
+        }
+    }
+
     public static void playerHpToString() { //グループのメンバーリストとHPを表示
         String msg = "";
         msg += select_gName + "\r\n";
@@ -151,6 +163,5 @@ public class Command {
         }
         pl(msg);
     }
-    
-    
+
 }
