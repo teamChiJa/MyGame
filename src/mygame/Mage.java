@@ -76,7 +76,7 @@ public class Mage extends Job {
             int sjob;
             Job j;
             for (;;) {
-                playerHpTotring();
+                playerHpToString();
                 sjob = insertNumber("回復する仲間を選んでください >");
                 if (sjob > 0 && sjob <= combatParty.size()) {
                     if (combatParty.get(sjob).getHp() > 0) {
@@ -212,7 +212,7 @@ public class Mage extends Job {
     public void magicToString() {
         int mj;
         for (;;) {
-            mj = insertNumber("1.ホイミ<5MP 10MP 15MP>\r\n2.ザオリク<10MP>\r\n0.キャンセル >");
+            mj = insertNumber("1.ホイミ[5MP or 10MP or 15MP]\r\n2.ザオリク[10MP]\r\n0.キャンセル >");
             if (mj >= 0 && mj < 3) {
                 break;
             }
@@ -238,9 +238,5 @@ public class Mage extends Job {
                 this.raise();
                 break;
         }
-    }
-
-    private void playerHpTotring() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

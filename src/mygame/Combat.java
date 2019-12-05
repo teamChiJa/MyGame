@@ -49,75 +49,40 @@ public class Combat {
                 QUIT:
                 while (true) {
                     if (jobLive() == false) {
-                                        if (combatParty.size() == 1) {
-                                            p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
-                                            reader.readLine();
-                                        } else {
-                                            p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
-                                            reader.readLine();
-                                        }
-                                        full();
-                                        p("GAME OVER [ENTER]>");
-                                        reader.readLine();
-                                        break EXIT;
-                                    }
+                        if (combatParty.size() == 1) {
+                            p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
+                            reader.readLine();
+                        } else {
+                            p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
+                            reader.readLine();
+                        }
+                        full();
+                        p("GAME OVER [ENTER]>");
+                        reader.readLine();
+                        break EXIT;
+                    }
                     if (monsterLive() == false) {
-                                    if (combatParty.size() == 1) {
-                                        p(combatParty.get(0).getName() + "は　戦闘に勝利した！[ENTER]>");
-                                        reader.readLine();
-                                    } else {
-                                        p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！[ENTER]>");
-                                        reader.readLine();
-                                    }
-                                    round++;
-                                    break QUIT;
-                                }
+                        if (combatParty.size() == 1) {
+                            p(combatParty.get(0).getName() + "は　戦闘に勝利した！[ENTER]>");
+                            reader.readLine();
+                        } else {
+                            p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！[ENTER]>");
+                            reader.readLine();
+                        }
+                        round++;
+                        break QUIT;
+                    }
                     for (int i = 0; i < combatParty.size();) {
                         Job j = combatParty.get(i);
-                        monsterHpToString();
-                        playerHpToString();
-                        pl("【" + j.getJobName() + "】 " + j.getName() + "の攻撃");
-                        pl("HP : " + j.getHp() + "/" + j.getMAX_HP() + " MP : " + j.getMp() + "/" + j.getMAX_MP());
-                        int ena = insertNumber("1.こうげき 2.とくぎ 3.じゅもん 4.にげる >");
-                        switch (ena) {
-                            case 1:
-                                jobAttack(combatParty.get(i));
-                                i++;
-                                if (jobLive() == false) {
-                                    if (combatParty.size() == 1) {
-                                        p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
-                                        reader.readLine();
-                                    } else {
-                                        p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
-                                        reader.readLine();
-                                    }
-                                    full();
-                                    p("GAME OVER [ENTER]>");
-                                    reader.readLine();
-                                    break EXIT;
-                                }
-                                if (monsterLive() == false) {
-                                    if (combatParty.size() == 1) {
-                                        p(combatParty.get(0).getName() + "は　戦闘に勝利した！[ENTER]>");
-                                        reader.readLine();
-                                    } else {
-                                        p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！[ENTER]>");
-                                        reader.readLine();
-                                    }
-                                    round++;
-                                    break QUIT;
-                                }
-                                break;
-                            case 2:
-                                if (combatParty.get(i).isSpMoveList() == false) {
-                                    p(combatParty.get(i).getName() + "には とくぎがありません！ [ENTER]>");
-                                    reader.readLine();
-                                    break;
-                                } else {
-                                    combatParty.get(i).specialToString();
-                                    if (!next) {
-                                        continue;
-                                    }
+                        if (j.getHp() != 0) {
+                            monsterHpToString();
+                            playerHpToString();
+                            pl("【" + j.getJobName() + "】 " + j.getName() + "の攻撃");
+                            pl("HP : " + j.getHp() + "/" + j.getMAX_HP() + " MP : " + j.getMp() + "/" + j.getMAX_MP());
+                            int ena = insertNumber("1.こうげき 2.とくぎ 3.じゅもん 4.にげる >");
+                            switch (ena) {
+                                case 1:
+                                    jobAttack(combatParty.get(i));
                                     i++;
                                     if (jobLive() == false) {
                                         if (combatParty.size() == 1) {
@@ -144,81 +109,119 @@ public class Combat {
                                         break QUIT;
                                     }
                                     break;
-                                }
-                            case 3:
-                                if (combatParty.get(i).isMagicList() == false) {
-                                    p(combatParty.get(i).getName() + "には じゅもんはありません！ [ENTER]>");
-                                    reader.readLine();
-                                    break;
-                                } else {
-                                    combatParty.get(i).magicToString();
-                                    if (!next) {
-                                        continue;
-                                    }
-                                    i++;
-                                    if (jobLive() == false) {
-                                        if (combatParty.size() == 1) {
-                                            p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
-                                            reader.readLine();
-                                        } else {
-                                            p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
-                                            reader.readLine();
-                                        }
-                                        full();
-                                        p("GAME OVER [ENTER]>");
+                                case 2:
+                                    if (combatParty.get(i).isSpMoveList() == false) {
+                                        p(combatParty.get(i).getName() + "には とくぎがありません！ [ENTER]>");
                                         reader.readLine();
-                                        break EXIT;
+                                        break;
+                                    } else {
+                                        combatParty.get(i).specialToString();
+                                        if (!next) {
+                                            continue;
+                                        }
+                                        i++;
+                                        if (jobLive() == false) {
+                                            if (combatParty.size() == 1) {
+                                                p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
+                                                reader.readLine();
+                                            } else {
+                                                p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
+                                                reader.readLine();
+                                            }
+                                            full();
+                                            p("GAME OVER [ENTER]>");
+                                            reader.readLine();
+                                            break EXIT;
+                                        }
+                                        if (monsterLive() == false) {
+                                            if (combatParty.size() == 1) {
+                                                p(combatParty.get(0).getName() + "は　戦闘に勝利した！[ENTER]>");
+                                                reader.readLine();
+                                            } else {
+                                                p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！[ENTER]>");
+                                                reader.readLine();
+                                            }
+                                            round++;
+                                            break QUIT;
+                                        }
+                                        break;
                                     }
-                                    if (monsterLive() == false) {
+                                case 3:
+                                    if (combatParty.get(i).isMagicList() == false) {
+                                        p(combatParty.get(i).getName() + "には じゅもんはありません！ [ENTER]>");
+                                        reader.readLine();
+                                        break;
+                                    } else {
+                                        combatParty.get(i).magicToString();
+                                        if (!next) {
+                                            continue;
+                                        }
+                                        i++;
+                                        if (jobLive() == false) {
+                                            if (combatParty.size() == 1) {
+                                                p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
+                                                reader.readLine();
+                                            } else {
+                                                p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
+                                                reader.readLine();
+                                            }
+                                            full();
+                                            p("GAME OVER [ENTER]>");
+                                            reader.readLine();
+                                            break EXIT;
+                                        }
+                                        if (monsterLive() == false) {
+                                            if (combatParty.size() == 1) {
+                                                p(combatParty.get(0).getName() + "は　戦闘に勝利した！[ENTER]>");
+                                                reader.readLine();
+                                            } else {
+                                                p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！[ENTER]>");
+                                                reader.readLine();
+                                            }
+                                            combatFinish();
+                                            round++;
+                                            break QUIT;
+                                        }
+                                        break;
+                                    }
+                                case 4:
+                                    int rdena = ThreadLocalRandom.current().nextInt(1, 5);
+                                    if (rdena == 3) {
                                         if (combatParty.size() == 1) {
-                                            p(combatParty.get(0).getName() + "は　戦闘に勝利した！[ENTER]>");
+                                            p(combatParty.get(0).getName() + "はにげだした。しかし、まわりこまれてしまった。[ENTER]>");
                                             reader.readLine();
                                         } else {
-                                            p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！[ENTER]>");
+                                            p(combatParty.get(0).getName() + "たちはにげだした。しかし、まわりこまれてしまった。[ENTER]>");
                                             reader.readLine();
                                         }
-                                        combatFinish();
-                                        round++;
+                                        if (jobLive() == false) {
+                                            if (combatParty.size() == 1) {
+                                                p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
+                                                reader.readLine();
+                                            } else {
+                                                p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
+                                                reader.readLine();
+                                            }
+                                            full();
+                                            p("GAME OVER [ENTER]>");
+                                            reader.readLine();
+                                            break EXIT;
+                                        }
+                                        break;
+                                    } else {
+                                        p("うまく逃げ切れた！");
+                                        reader.readLine();
                                         break QUIT;
                                     }
+                                default:
+                                    System.out.println("1~4の中の数値を入力してください");
                                     break;
-                                }
-                            case 4:
-                                int rdena = ThreadLocalRandom.current().nextInt(1, 5);
-                                if (rdena == 3) {
-                                    if (combatParty.size() == 1) {
-                                        p(combatParty.get(0).getName() + "はにげだした。しかし、まわりこまれてしまった。[ENTER]>");
-                                        reader.readLine();
-                                    } else {
-                                        p(combatParty.get(0).getName() + "たちはにげだした。しかし、まわりこまれてしまった。[ENTER]>");
-                                        reader.readLine();
-                                    }
-                                    if (jobLive() == false) {
-                                        if (combatParty.size() == 1) {
-                                            p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
-                                            reader.readLine();
-                                        } else {
-                                            p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
-                                            reader.readLine();
-                                        }
-                                        full();
-                                        p("GAME OVER [ENTER]>");
-                                        reader.readLine();
-                                        break EXIT;
-                                    }
-                                    break;
-                                } else {
-                                    p("うまく逃げ切れた！");
-                                    reader.readLine();
-                                    break QUIT;
-                                }
-                            default:
-                                System.out.println("1~4の中の数値を入力してください");
-                                break;
+                            }
+                            monstersAttack();
+                        } else {
+                            i++;
                         }
                     }
-                    monstersAttack();
-
                 }
                 while (true) {
                     p("次に進む [ENTER or !h(help)]>");

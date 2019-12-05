@@ -130,21 +130,23 @@ public class Hero extends Job {
     public void gAttack() {
         pl(this.name + "の、ギガスラッシュ！");
         int smp = 10;
-        Monster ms = target();
-        int damage = (int) (((this.getAttack() * 2.5) - ms.getDefence()) * ThreadLocalRandom.current().nextDouble(0.8, 1.2));
         this.mp -= smp;
-        ms.setHp(ms.getHp() - damage);
-        System.out.println(ms.getName() + "に" + damage + "ダメージ");
-        if (ms.getHp() <= 0) {
-            ms.setHp(0);
-            pl(this.getName() + "は" + ms.getName() + "を倒した");
+        for (Monster ms : monsterParty) {
+            int damage = (int) (((this.getAttack() * 2.5) - ms.getDefence()) * ThreadLocalRandom.current().nextDouble(0.8, 1.2));
+            ms.setHp(ms.getHp() - damage);
+            System.out.println(ms.getName() + "に" + damage + "ダメージ");
+            if (ms.getHp() <= 0) {
+                ms.setHp(0);
+                pl(this.getName() + "は" + ms.getName() + "を倒した");
+            }
+            System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
         }
-        System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
     }
-    public void spMoveList(){
+
+    public void specialToString() {
         int mj;
         for (;;) {
-            mj = insertNumber("1.ギガスラッシュ<10MP>\r\n0.キャンセル >");
+            mj = insertNumber("1.ギガスラッシュ[10MP]\r\n0.キャンセル >");
             if (mj >= 0 && mj < 2) {
                 break;
             }
@@ -152,16 +154,16 @@ public class Hero extends Job {
         switch (mj) {
             case 0:
                 next = false;
-                    break;
+                break;
             case 1:
-                if(this.mp < 5){
+                if (this.mp < 10) {
                     pl("MPが足りません");
                     next = false;
                     break;
                 }
                 this.gAttack();
                 break;
-            
+
         }
     }
 

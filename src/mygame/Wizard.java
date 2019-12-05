@@ -223,7 +223,7 @@ public class Wizard extends Job {
     public void magicToString() {
         int mj;
         for (;;) {
-            mj = insertNumber("1.ホイミ<5MP 10MP 15MP>\r\n2.メラ<5MP 10MP 20MP> \r\n0.キャンセル>");
+            mj = insertNumber("1.ホイミ[5MP 10MP 15MP]\r\n2.メラ[5MP 10MP 20MP]\r\n0.キャンセル>");
             if (mj >= 0 && mj < 3) {
                 break;
             }

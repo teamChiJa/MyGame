@@ -7,11 +7,11 @@ import static mygame.MemberManager.*;
 
 public class Command {
 
-    public static void p(String msg) {
+    public static void p(Object msg) {
         System.out.print(msg);
     }
 
-    public static void pl(String msg) {
+    public static void pl(Object msg) {
         System.out.println(msg);
     }
 
