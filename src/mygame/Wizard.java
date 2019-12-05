@@ -87,7 +87,7 @@ public class Wizard extends Job {
                     pl("");
                     this.mp -= 5;
                     j.setHp(j.getHp() + 10);
-                    if (j.getMAX_HP() < j.getHp()) {
+                    if (j.getMAX_HP() <= j.getHp()) {
                         j.setHp(j.getMAX_HP());
                         pl(j.getName() + "のHPは満タンになった");
                     } else {
@@ -99,7 +99,7 @@ public class Wizard extends Job {
                 if (srp == 2 && this.mp >= 10) {
                     this.mp -= 10;
                     j.setHp(j.getHp() + 20);
-                    if (j.getMAX_HP() < j.getHp()) {
+                    if (j.getMAX_HP() <= j.getHp()) {
                         j.setHp(j.getMAX_HP());
                         pl(j.getName() + "のHPは満タンになった");
                     } else {
@@ -110,7 +110,7 @@ public class Wizard extends Job {
                 if (srp == 3 && this.mp >= 15) {
                     this.mp -= 15;
                     j.setHp(j.getHp() + 30);
-                    if (j.getMAX_HP() < j.getHp()) {
+                    if (j.getMAX_HP() <= j.getHp()) {
                         j.setHp(j.getMAX_HP());
                         pl(j.getName() + "のHPは満タンになった");
                     } else {
@@ -224,7 +224,7 @@ public class Wizard extends Job {
         int mj;
         for (;;) {
             mj = insertNumber("1.ホイミ<5MP 10MP 15MP>\r\n2.メラ<5MP 10MP 20MP> \r\n0.キャンセル>");
-            if (mj > 0 && mj < 3) {
+            if (mj >= 0 && mj < 3) {
                 break;
             }
         }

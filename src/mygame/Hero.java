@@ -128,6 +128,7 @@ public class Hero extends Job {
     }
 
     public void gAttack() {
+        pl(this.name + "の、ギガスラッシュ！");
         int smp = 10;
         Monster ms = target();
         int damage = (int) (((this.getAttack() * 2.5) - ms.getDefence()) * ThreadLocalRandom.current().nextDouble(0.8, 1.2));
@@ -144,7 +145,7 @@ public class Hero extends Job {
         int mj;
         for (;;) {
             mj = insertNumber("1.ギガスラッシュ<10MP>\r\n0.キャンセル >");
-            if (mj > 0 && mj < 2) {
+            if (mj >= 0 && mj < 2) {
                 break;
             }
         }

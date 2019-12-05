@@ -213,7 +213,7 @@ public class Mage extends Job {
         int mj;
         for (;;) {
             mj = insertNumber("1.ホイミ<5MP 10MP 15MP>\r\n2.ザオリク<10MP>\r\n0.キャンセル >");
-            if (mj > 0 && mj < 3) {
+            if (mj >= 0 && mj < 3) {
                 break;
             }
         }

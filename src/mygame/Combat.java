@@ -48,6 +48,30 @@ public class Combat {
                 enemyToString();
                 QUIT:
                 while (true) {
+                    if (jobLive() == false) {
+                                        if (combatParty.size() == 1) {
+                                            p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
+                                            reader.readLine();
+                                        } else {
+                                            p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
+                                            reader.readLine();
+                                        }
+                                        full();
+                                        p("GAME OVER [ENTER]>");
+                                        reader.readLine();
+                                        break EXIT;
+                                    }
+                    if (monsterLive() == false) {
+                                    if (combatParty.size() == 1) {
+                                        p(combatParty.get(0).getName() + "は　戦闘に勝利した！[ENTER]>");
+                                        reader.readLine();
+                                    } else {
+                                        p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！[ENTER]>");
+                                        reader.readLine();
+                                    }
+                                    round++;
+                                    break QUIT;
+                                }
                     for (int i = 0; i < combatParty.size();) {
                         Job j = combatParty.get(i);
                         monsterHpToString();
