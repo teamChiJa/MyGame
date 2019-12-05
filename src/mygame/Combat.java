@@ -194,17 +194,36 @@ public class Combat {
                         }
                     }
                     monstersAttack();
+
+                }
+                while (true) {
+                    p("次に進む [ENTER or !h(help)]>");
+                    String q = reader.readLine();
+                    if (q.equals("!q")) {
+                        pl("終了します");
+                        System.exit(0);
+                    } else if (q.equalsIgnoreCase("!help") || q.equalsIgnoreCase("!h")) {
+                        pl("---help---");
+                        pl("!q - 強制終了");
+                        pl("----------");
+                    } else {
+                        break;
+                    }
                 }
             } else {
-                p("次に進む [ENTER]>");
-                String q = reader.readLine();
-                if (q.equals("!q")) {
-                    pl("終了します");
-                    System.exit(0);
-                } else if (q.equalsIgnoreCase("!help") || q.equalsIgnoreCase("!h")) {
-                    pl("---help---");
-                    pl("!q - 強制終了");
-                    pl("----------");
+                while (true) {
+                    p("次に進む [ENTER or !h(help)]>");
+                    String q = reader.readLine();
+                    if (q.equals("!q")) {
+                        pl("終了します");
+                        System.exit(0);
+                    } else if (q.equalsIgnoreCase("!help") || q.equalsIgnoreCase("!h")) {
+                        pl("---help---");
+                        pl("!q - 強制終了");
+                        pl("----------");
+                    } else {
+                        break;
+                    }
                 }
             }
         }
