@@ -10,16 +10,19 @@ public class Wizard extends Job {
 
     private String name;
     private int hp;
-    private final int MAX_HP;
+    private int MAX_HP;
     private int mp;
-    private final int MAX_MP;
+    private int MAX_MP;
     private int attack;
     private int defence;
     private final String JobName = "Wizard";
     private boolean magicList = true;
     private boolean spMoveList = false;
-    private final int D_ATTACK;
-    private final int D_DEFENCE;
+    private int D_ATTACK;
+    private int D_DEFENCE;
+    private int level;
+    private int exp;
+    private int maxexp;
 
     public Wizard(String name) {
         this.name = name;
@@ -31,8 +34,27 @@ public class Wizard extends Job {
         defence = 5;
         D_ATTACK = attack;
         D_DEFENCE = defence;
+        level = 1;
+        exp = 0;
+        maxexp = 128;
     }
 
+    public void setMAX_HP(int MAX_HP) {
+        this.MAX_HP = MAX_HP;
+    }
+
+    public void setMAX_MP(int MAX_MP) {
+        this.MAX_MP = MAX_MP;
+    }
+
+    public void setD_ATTACK(int D_ATTACK) {
+        this.D_ATTACK = D_ATTACK;
+    }
+
+    public void setD_DEFENCE(int D_DEFENCE) {
+        this.D_DEFENCE = D_DEFENCE;
+    }
+    
     public int getD_ATTACK() {
         return D_ATTACK;
     }
@@ -210,7 +232,7 @@ public class Wizard extends Job {
                         }
                     }
                     pl(this.name + "はメラゾーマを唱えた");
-                 
+
                     pl("敵全体に" + f + "のダメージ");
 
                     this.setMp(this.mp - smp);
@@ -315,6 +337,30 @@ public class Wizard extends Job {
 
     public boolean isSpMoveList() {
         return spMoveList;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
+
+    public int getMaxexp() {
+        return maxexp;
+    }
+
+    public void setMaxexp(int maxexp) {
+        this.maxexp = maxexp;
     }
 
 }

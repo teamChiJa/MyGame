@@ -105,7 +105,9 @@ public class Combat {
                                             p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！[ENTER]>");
                                             reader.readLine();
                                         }
+                                        combatFinish();
                                         round++;
+                                        expset();
                                         break QUIT;
                                     }
                                     break;
@@ -141,7 +143,9 @@ public class Combat {
                                                 p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！[ENTER]>");
                                                 reader.readLine();
                                             }
+                                            combatFinish();
                                             round++;
+                                            expset();
                                             break QUIT;
                                         }
                                         break;
@@ -179,6 +183,7 @@ public class Combat {
                                                 reader.readLine();
                                             }
                                             combatFinish();
+                                            expset();
                                             round++;
                                             break QUIT;
                                         }

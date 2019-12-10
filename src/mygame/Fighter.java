@@ -7,17 +7,20 @@ public class Fighter extends Job {
 
     private String name;
     private int hp;
-    private final int MAX_HP;
+    private int MAX_HP;
     private int mp;
-    private final int MAX_MP;
+    private int MAX_MP;
     private int attack;
     private int defence;
     private final String jobName = "Fighter";
     private boolean magicList = false;
     private boolean spMoveList = false;
-    private final int D_ATTACK;
-    private final int D_DEFENCE;
-    
+    private int D_ATTACK;
+    private int D_DEFENCE;
+    private int level;
+    private int exp;
+    private int maxexp;
+
     public Fighter(String name) {
         this.name = name;
         hp = ThreadLocalRandom.current().nextInt(31, 41);
@@ -28,8 +31,19 @@ public class Fighter extends Job {
         defence = 10;
         D_ATTACK = attack;
         D_DEFENCE = defence;
+        level = 1;
+        exp = 0;
+        maxexp = 128;
     }
 
+    public void setD_ATTACK(int D_ATTACK) {
+        this.D_ATTACK = D_ATTACK;
+    }
+
+    public void setD_DEFENCE(int D_DEFENCE) {
+        this.D_DEFENCE = D_DEFENCE;
+    }
+    
     public int getD_ATTACK() {
         return D_ATTACK;
     }
@@ -38,6 +52,14 @@ public class Fighter extends Job {
         return D_DEFENCE;
     }
 
+    public void setMAX_HP(int MAX_HP) {
+        this.MAX_HP = MAX_HP;
+    }
+
+    public void setMAX_MP(int MAX_MP) {
+        this.MAX_MP = MAX_MP;
+    }
+    
     public void attack(Monster ms) {
         int w = this.getAttack();
         if (hp > 20 && hp <= 30) {
@@ -53,7 +75,7 @@ public class Fighter extends Job {
             w *= 5;
         }
 
-        int damage = w - ms.getDefence() ;
+        int damage = w - ms.getDefence();
         if (damage <= 0) {
             damage = 1;
         }
@@ -63,7 +85,7 @@ public class Fighter extends Job {
             ms.setHp(ms.getHp() - damage);
             if (ms.getHp() <= 0) {
                 ms.setHp(0);
-                pl(this.name + "は、"  + ms.getName() + "を倒した");
+                pl(this.name + "は、" + ms.getName() + "を倒した");
             }
             System.out.println(ms.getName() + "のHP： " + ms.getHp() + "/" + ms.getMAX_HP());
         }
@@ -126,13 +148,37 @@ public class Fighter extends Job {
     public int getMAX_MP() {
         return MAX_MP;
     }
-    
+
     public boolean isMagicList() {
         return magicList;
     }
 
     public boolean isSpMoveList() {
         return spMoveList;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public int getExp() {
+        return exp;
+    }
+
+    public void setExp(int exp) {
+        this.exp = exp;
+    }
+
+    public int getMaxexp() {
+        return maxexp;
+    }
+
+    public void setMaxexp(int maxexp) {
+        this.maxexp = maxexp;
     }
 
 }
