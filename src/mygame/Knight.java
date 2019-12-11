@@ -40,6 +40,21 @@ public class Knight extends Job {
         maxexp = 128;
     }
 
+    public Knight(String name, int hp, int MAX_HP, int mp, int MAX_MP, int attack, int defence, int D_ATTACK, int D_DEFENCE, int level, int exp, int maxexp) {
+        this.name = name;
+        this.hp = hp;
+        this.MAX_HP = MAX_HP;
+        this.mp = mp;
+        this.MAX_MP = MAX_MP;
+        this.attack = attack;
+        this.defence = defence;
+        this.D_ATTACK = D_ATTACK;
+        this.D_DEFENCE = D_DEFENCE;
+        this.level = level;
+        this.exp = exp;
+        this.maxexp = maxexp;
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
     public void setMAX_HP(int MAX_HP) {
         this.MAX_HP = MAX_HP;
     }

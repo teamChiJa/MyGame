@@ -232,12 +232,16 @@ public class Combat {
                     p("次に進む [ENTER or !h(help)]>");
                     String q = reader.readLine();
                     if (q.equals("!q")) {
+                        save();
                         pl("終了します");
                         System.exit(0);
                     } else if (q.equalsIgnoreCase("!help") || q.equalsIgnoreCase("!h")) {
                         pl("---help---");
+                        pl("!p - 保存");
                         pl("!q - 強制終了");
                         pl("----------");
+                    } else if (q.equalsIgnoreCase("!p")) {
+                        save();
                     } else {
                         break;
                     }
@@ -247,12 +251,16 @@ public class Combat {
                     p("次に進む [ENTER or !h(help)]>");
                     String q = reader.readLine();
                     if (q.equals("!q")) {
+                        save();
                         pl("終了します");
                         System.exit(0);
                     } else if (q.equalsIgnoreCase("!help") || q.equalsIgnoreCase("!h")) {
                         pl("---help---");
+                        pl("!p - 保存");
                         pl("!q - 強制終了");
                         pl("----------");
+                    } else if (q.equalsIgnoreCase("!p")) {
+                        save();
                     } else {
                         break;
                     }
