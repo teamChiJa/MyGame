@@ -17,6 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import static mygame.Combat.*;
 import static mygame.Insert.*;
 import static mygame.MemberManager.*;
+import java.sql.*;
 
 public class Command {
 
@@ -35,6 +36,9 @@ public class Command {
     static int LEVEL = 0;
     static int EXP = 0;
     static int MAXEXP = 0;
+    static int id = 0;
+    static int cnt;
+    static int tmp_cnt;
 
     public static void p(Object msg) {
         System.out.print(msg);
@@ -45,202 +49,236 @@ public class Command {
     }
 
     public static void read() {
+        final String DB_URL = "jdbc:postgresql://localhost:5432/mydb";
+        final String DB_USER = "postgres";
+        final String PASSWORD = "password";
+        final String JDBC_DRIVER = "org.postgresql.Driver";
         try {
-            // ファイルのパスを指定してオブジェクトを生成。
-            File file = new File("c:\\work\\SAVEDATA.csv");
-            if (checkBeforeReadfile(file)) {
-                // 入力ストリームを生成。（ FileNotFoundException が発生 ）
-                FileInputStream input = new FileInputStream(file);
-                /* 入力ストリームの読み込み。 （ UnsupportedEncodingException が発生 ）
-             * ここでCSVファイルの文字コードを設定しないと文字化けします。 */
-                // 読み込むファイルの文字コード(SJIS)
-                InputStreamReader stream = new InputStreamReader(input, "SJIS");
-                // バッファに取り込み。
-                BufferedReader buffer = new BufferedReader(stream);
-
-                String line;
-                line = buffer.readLine();
-                /* readLine()でバッファの１行を取り出す作業を、読み込める行が無くなるまでwhile文で実行。
-                * line = buffer.readline() でBufferedReaderが保持する一行を取出しているので、ループする毎に書き変わります。 */
-                boolean flag = false;
-                while ((line = buffer.readLine()) != null) {
-                    // 取出した１行の文字セットを変換して新たに文字列を生成。
-                    byte[] b = line.getBytes();
-                    // String で UnsupportedEncodingException が発生 (変換したい文字コード:UTF-8)
-                    line = new String(b, "UTF-8");
-                    // 文字列をカンマ区切りで配列に分けて要素ごとに出力。
-                    // 16行目、line.splitの第２引数に"-１"を指定しないと、" 3,test, " の行の配列は " 3,test " の２つになってしまい他の行と要素数が
-                    // 違うため、出力結果の様にはなりません。
-                    String[] columns = line.split(",", -1);
-                    for (int j = 0; j < columns.length; j++) {
-                        if (flag == false) {
-
-                            GName_tmp = columns[0];
-                            GName_tmp = GName_tmp.replaceAll("\"", "");
-                            flag = true;
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException e) {
+            System.err.println("JDBC ドライバのロードに失敗しました。");
+            e.printStackTrace();
+            return;
+        }
+        Connection con = null;
+        try {
+            con = DriverManager.getConnection(DB_URL, DB_USER, PASSWORD);
+            con.setAutoCommit(false);
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("select COUNT(*) cnt FROM mygame");
+            rs.next();
+            cnt = rs.getInt("cnt");
+            tmp_cnt = cnt;
+            if (cnt != 0) {
+                rs = stmt.executeQuery("SELECT * FROM mygame ORDER BY id");
+                boolean ena = false;
+                String tmp_group = "";
+                int p_cnt = 0;
+                while (rs.next()) {
+                    name = rs.getString("NAME");
+                    HP = rs.getInt("HP");
+                    MAXHP = rs.getInt("MAX_HP");
+                    MAXMP = rs.getInt("MAX_MP");
+                    ATK = rs.getInt("ATTACK");
+                    DEF = rs.getInt("DEFENCE");
+                    MAXATK = rs.getInt("MAX_ATTACK");
+                    MAXDEF = rs.getInt("MAX_DEFENCE");
+                    LEVEL = rs.getInt("LEVEL");
+                    EXP = rs.getInt("EXP");
+                    MAXEXP = rs.getInt("MAX_EXP");
+                    id = rs.getInt("id");
+                    if (ena == false) {
+                        if (rs.getString("JOB").equals("Hero")) {
+                            Hero h = new Hero(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP, id);
+                            tmp_party.add(h);
+                        } else if (rs.getString("JOB").equals("Wizard")) {
+                            Wizard w = new Wizard(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP, id);
+                            tmp_party.add(w);
+                        } else if (rs.getString("JOB").equals("Mage")) {
+                            Mage m = new Mage(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP, id);
+                            tmp_party.add(m);
+                        } else if (rs.getString("JOB").equals("Fighter")) {
+                            Fighter f = new Fighter(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP, id);
+                            tmp_party.add(f);
+                        } else if (rs.getString("JOB").equals("Knight")) {
+                            Knight k = new Knight(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP, id);
+                            tmp_party.add(k);
                         }
-                        switch (j) {
-                            case 0:
-                                if (GName_tmp.equals(columns[j].replaceAll("\"", ""))) {
-                                } else {
-                                    hmmPut(GName_tmp, tmp_party.get(0), tmp_party.get(1), tmp_party.get(2));
-                                    GName_tmp = columns[j];
-                                    GName_tmp = GName_tmp.replaceAll("\"", "");
-                                }
-                                break;
-                            case 1:
-                                Job_tmp = columns[j];
-                                Job_tmp = Job_tmp.replaceAll("\"", "");
-                                break;
-                            case 2:
-                                name = columns[j];
-                                name = name.replaceAll("\"", "");
-                                break;
-                            case 3:
-                                HP = Integer.parseInt(columns[j]);
-                                break;
-                            case 4:
-                                MP = Integer.parseInt(columns[j]);
-                                break;
-                            case 5:
-                                MAXHP = Integer.parseInt(columns[j]);
-                                break;
-                            case 6:
-                                MAXMP = Integer.parseInt(columns[j]);
-                                break;
-                            case 7:
-                                ATK = Integer.parseInt(columns[j]);
-                                break;
-                            case 8:
-                                DEF = Integer.parseInt(columns[j]);
-                                break;
-                            case 9:
-                                MAXATK = Integer.parseInt(columns[j]);
-                                break;
-                            case 10:
-                                MAXDEF = Integer.parseInt(columns[j]);
-                            case 11:
-                                LEVEL = Integer.parseInt(columns[j]);
-                            case 12:
-                                EXP = Integer.parseInt(columns[j]);
-                            case 13:
-                                MAXEXP = Integer.parseInt(columns[j]);
-                                if (Job_tmp.equals("Hero")) {
-                                    Hero h = new Hero(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP);
+                        tmp_group = rs.getString("GROUP_NAME");
+                        p_cnt = 1;
+                        ena = true;
+                    } else {
+                        if (tmp_group.equals(rs.getString("GROUP_NAME"))) {
+                            if (rs.getString("JOB").equals("Hero")) {
+                                Hero h = new Hero(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP, id);
+                                tmp_party.add(h);
+                            } else if (rs.getString("JOB").equals("Wizard")) {
+                                Wizard w = new Wizard(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP, id);
+                                tmp_party.add(w);
+                            } else if (rs.getString("JOB").equals("Mage")) {
+                                Mage m = new Mage(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP, id);
+                                tmp_party.add(m);
+                            } else if (rs.getString("JOB").equals("Fighter")) {
+                                Fighter f = new Fighter(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP, id);
+                                tmp_party.add(f);
+                            } else if (rs.getString("JOB").equals("Knight")) {
+                                Knight k = new Knight(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP, id);
+                                tmp_party.add(k);
+                            }
+                            p_cnt++;
+                        } else {
+                            switch (p_cnt) {
+                                case 1:
+                                    hmmPut(tmp_group, tmp_party.get(0));
+                                    tmp_party.clear();
+                                    break;
+                                case 2:
+                                    hmmPut(tmp_group, tmp_party.get(0), tmp_party.get(1));
+                                    tmp_party.clear();
+                                    break;
+                                case 3:
+                                    hmmPut(tmp_group, tmp_party.get(0), tmp_party.get(1), tmp_party.get(2));
+                                    tmp_party.clear();
+                                    break;
+                            }
+                            tmp_group = rs.getString("GROUP_NAME");
+                            if (tmp_group.equals(rs.getString("GROUP_NAME"))) {
+                                if (rs.getString("JOB").equals("Hero")) {
+                                    Hero h = new Hero(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP, id);
                                     tmp_party.add(h);
-                                } else if (Job_tmp.equals("Wizard")) {
-                                    Wizard w = new Wizard(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP);
+                                } else if (rs.getString("JOB").equals("Wizard")) {
+                                    Wizard w = new Wizard(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP, id);
                                     tmp_party.add(w);
-                                } else if (Job_tmp.equals("Mage")) {
-                                    Mage m = new Mage(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP);
+                                } else if (rs.getString("JOB").equals("Mage")) {
+                                    Mage m = new Mage(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP, id);
                                     tmp_party.add(m);
-                                } else if (Job_tmp.equals("Fighter")) {
-                                    Fighter f = new Fighter(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP);
+                                } else if (rs.getString("JOB").equals("Fighter")) {
+                                    Fighter f = new Fighter(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP, id);
                                     tmp_party.add(f);
-                                } else if (Job_tmp.equals("Knight")) {
-                                    Knight k = new Knight(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP);
+                                } else if (rs.getString("JOB").equals("Knight")) {
+                                    Knight k = new Knight(name, HP, MAXHP, MP, MAXMP, ATK, DEF, MAXATK, MAXDEF, LEVEL, EXP, MAXEXP, id);
                                     tmp_party.add(k);
                                 }
-                                break;
+                            }
                         }
                     }
+
                 }
-                pl("セーブデータファイルの読み込みが完了しました。");
-                hmmPut(GName_tmp, tmp_party.get(0), tmp_party.get(1), tmp_party.get(2));
-                // 開いたストリームとバッファを閉じて関連するシステム・リソースを解放します。 （ IOException が発生 ）
-                input.close();
-                stream.close();
-                buffer.close();
-            } else {
-                pl("※ファイルが存在しないか、ファイルが開けません");
-                pl("データファイルを新規作成します");
+                switch (p_cnt) {
+                    case 1:
+                        hmmPut(tmp_group, tmp_party.get(0));
+                        break;
+                    case 2:
+                        hmmPut(tmp_group, tmp_party.get(0), tmp_party.get(1));
+                        break;
+                    case 3:
+                        hmmPut(tmp_group, tmp_party.get(0), tmp_party.get(1), tmp_party.get(2));
+                        break;
+                }
+                pl("セーブデータの読み込みが完了しました。");
+                // ResultSet を解放
+                rs.close();
+                // Statement を解放
+                stmt.close();
+                // Connection を解放
+                con.close();
             }
-        } catch (UnsupportedEncodingException | FileNotFoundException e) {
+        } catch (SQLException e) {
+            //System.err.println("SQL:" + SQL);
             e.printStackTrace();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-
+        } finally {
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
-
     }
 
     public static void save() {
+        final String DB_URL = "jdbc:postgresql://localhost:5432/mydb";
+        final String DB_USER = "postgres";
+        final String PASSWORD = "password";
+        final String JDBC_DRIVER = "org.postgresql.Driver";
         try {
-            // 出力ファイルの作成
-            File f = new File("c:\\work\\SAVEDATA.csv");
-            PrintWriter p = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream(f), "Shift_JIS")));
-            // ヘッダーを指定する
-            p.print("GROUP");
-            p.print(",");
-            p.print("JOB");
-            p.print(",");
-            p.print("NAME");
-            p.print(",");
-            p.print("HP");
-            p.print(",");
-            p.print("MP");
-            p.print(",");
-            p.print("ATTACK");
-            p.print(",");
-            p.print("DEFENCE");
-            p.print(",");
-            p.print("MAX_HP");
-            p.print(",");
-            p.print("MAX_MP");
-            p.print(",");
-            p.print("MAX_ATTACK");
-            p.print(",");
-            p.print("MAX_DEFENCE");
-            p.print(",");
-            p.print("LEVEL");
-            p.print(",");
-            p.print("EXP");
-            p.print(",");
-            p.print("MAXEXP");
-            p.println();
-            // 内容をセットする
-            for (String group : hmm.keySet()) {
-                for (int i = 0; i < hmm.get(group).size(); i++) {
-                    p.print("\"" + group + "\"");
-                    p.print(",");
-                    p.print("\"" + hmm.get(group).get(i).getJobName() + "\"");
-                    p.print(",");
-                    p.print("\"" + hmm.get(group).get(i).getName() + "\"");
-                    p.print(",");
-                    p.print(hmm.get(group).get(i).getHp());
-                    p.print(",");
-                    p.print(hmm.get(group).get(i).getMp());
-                    p.print(",");
-                    p.print(hmm.get(group).get(i).getAttack());
-                    p.print(",");
-                    p.print(hmm.get(group).get(i).getDefence());
-                    p.print(",");
-                    p.print(hmm.get(group).get(i).getMAX_HP());
-                    p.print(",");
-                    p.print(hmm.get(group).get(i).getMAX_MP());
-                    p.print(",");
-                    p.print(hmm.get(group).get(i).getD_ATTACK());
-                    p.print(",");
-                    p.print(hmm.get(group).get(i).getD_DEFENCE());
-                    p.print(",");
-                    p.print(hmm.get(group).get(i).getLevel());
-                    p.print(",");
-                    p.print(hmm.get(group).get(i).getExp());
-                    p.print(",");
-                    p.print(hmm.get(group).get(i).getmaxexp());
-                    p.println();// 改行
-                }
-            }
-            // ファイルに書き出し閉じる
-            p.close();
-
-            System.out.println("セーブデータを保存しました。");
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
+            Class.forName(JDBC_DRIVER);
+        } catch (ClassNotFoundException e) {
+            System.err.println("JDBC ドライバのロードに失敗しました。");
+            e.printStackTrace();
+            return;
         }
 
+        Connection con = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            con = DriverManager.getConnection(DB_URL, DB_USER, PASSWORD);
+            con.setAutoCommit(false);
+            for (String group : hmm.keySet()) {
+                for (int i = 0; i < hmm.get(group).size(); i++) {
+                    if (hmm.get(group).get(i).getId() <= cnt) {
+                        pstmt = con.prepareStatement("update mygame set group_name=?,job=?,name=?,hp=?,mp=?,attack=?,defence=?,max_hp=?,max_mp=?,max_attack=?,max_defence=?,level=?,exp=?,max_exp=?,id=? WHERE id=?");
+                        pstmt.setString(1, group);
+                        pstmt.setString(2, hmm.get(group).get(i).getJobName());
+                        pstmt.setString(3, hmm.get(group).get(i).getName());
+                        pstmt.setInt(4, hmm.get(group).get(i).getHp());
+                        pstmt.setInt(5, hmm.get(group).get(i).getMp());
+                        pstmt.setInt(6, hmm.get(group).get(i).getAttack());
+                        pstmt.setInt(7, hmm.get(group).get(i).getDefence());
+                        pstmt.setInt(8, hmm.get(group).get(i).getMAX_HP());
+                        pstmt.setInt(9, hmm.get(group).get(i).getMAX_MP());
+                        pstmt.setInt(10, hmm.get(group).get(i).getD_ATTACK());
+                        pstmt.setInt(11, hmm.get(group).get(i).getD_DEFENCE());
+                        pstmt.setInt(12, hmm.get(group).get(i).getLevel());
+                        pstmt.setInt(13, hmm.get(group).get(i).getExp());
+                        pstmt.setInt(14, hmm.get(group).get(i).getmaxexp());
+                        pstmt.setInt(15, hmm.get(group).get(i).getId());
+                        pstmt.setInt(16, hmm.get(group).get(i).getId());
+                        pstmt.executeUpdate();
+                    } else {
+                        pstmt = con.prepareStatement("INSERT INTO mygame (group_name,job,name,hp,mp,attack,defence,max_hp,max_mp,max_attack,max_defence,level,exp,max_exp,id) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                        pstmt.setString(1, group);
+                        pstmt.setString(2, hmm.get(group).get(i).getJobName());
+                        pstmt.setString(3, hmm.get(group).get(i).getName());
+                        pstmt.setInt(4, hmm.get(group).get(i).getHp());
+                        pstmt.setInt(5, hmm.get(group).get(i).getMp());
+                        pstmt.setInt(6, hmm.get(group).get(i).getAttack());
+                        pstmt.setInt(7, hmm.get(group).get(i).getDefence());
+                        pstmt.setInt(8, hmm.get(group).get(i).getMAX_HP());
+                        pstmt.setInt(9, hmm.get(group).get(i).getMAX_MP());
+                        pstmt.setInt(10, hmm.get(group).get(i).getD_ATTACK());
+                        pstmt.setInt(11, hmm.get(group).get(i).getD_DEFENCE());
+                        pstmt.setInt(12, hmm.get(group).get(i).getLevel());
+                        pstmt.setInt(13, hmm.get(group).get(i).getExp());
+                        pstmt.setInt(14, hmm.get(group).get(i).getmaxexp());
+                        pstmt.setInt(15, hmm.get(group).get(i).getId());
+                        pstmt.executeUpdate();
+                    }
+                }
+            }
+            con.commit();
+            cnt = tmp_cnt;
+        } catch (SQLException e) {
+            //System.err.println("SQL:" + SQL);
+            e.printStackTrace();
+        } finally {
+            if (pstmt != null) {
+                try {
+                    pstmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (con != null) {
+                try {
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     public static void monstersAttack() {
