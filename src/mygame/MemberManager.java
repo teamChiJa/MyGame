@@ -17,7 +17,7 @@ public class MemberManager {
         hmm.computeIfAbsent(groupName, k -> new ArrayList<>()).add(job3);
         hmm.put(groupName, hmm.get(groupName));
         groupNameList.add(groupName);
-        System.out.println("【" + groupName + "】グループをセーブデータに保存しました");
+        System.out.println("【" + groupName + "】グループをセーブデータに追加しました");
     }
 
     public static void hmmPut(String groupName, Job job1, Job job2) {
@@ -25,14 +25,14 @@ public class MemberManager {
         hmm.computeIfAbsent(groupName, k -> new ArrayList<>()).add(job2);
         hmm.put(groupName, hmm.get(groupName));
         groupNameList.add(groupName);
-        System.out.println("【" + groupName + "】グループをセーブデータに保存しました");
+        System.out.println("【" + groupName + "】グループをセーブデータに追加しました");
     }
 
     public static void hmmPut(String groupName, Job job1) {
         hmm.computeIfAbsent(groupName, k -> new ArrayList<>()).add(job1);
         hmm.put(groupName, hmm.get(groupName));
         groupNameList.add(groupName);
-        System.out.println("【" + groupName + "】グループをセーブデータに保存しました");
+        System.out.println("【" + groupName + "】グループをセーブデータに追加しました");
     }
 
     public static void hmmToString() {
@@ -66,12 +66,5 @@ public class MemberManager {
         }
         gnm += "\r\n" + "グループを選択してください>";
         return gnm;
-    }
-
-    public static void hiromu() {
-        Fighter hiromu1 = new Fighter("hiromu1");
-        Wizard hiromu2 = new Wizard("hiromu2");
-        Knight hiromu3 = new Knight("hiromu3");
-        hmmPut("hiromu", hiromu1, hiromu2, hiromu3);
     }
 }

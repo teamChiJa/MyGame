@@ -1,12 +1,9 @@
 package mygame;
 
 import java.util.concurrent.ThreadLocalRandom;
-import static mygame.Command.jobAttack;
 import static mygame.Command.pl;
-import static mygame.Command.target;
 import static mygame.Insert.insertNumber;
 import static mygame.Combat.*;
-import static mygame.Insert.foolProof;
 
 public class Hero extends Job {
 
@@ -25,8 +22,8 @@ public class Hero extends Job {
     private int level;
     private int exp;
     private int maxexp;
-
-    public Hero(String name) {
+    private int id;
+    public Hero(String name,int ID) {
         this.name = name;
         hp = ThreadLocalRandom.current().nextInt(31, 41);
         MAX_HP = hp;
@@ -39,9 +36,10 @@ public class Hero extends Job {
         level = 1;
         exp = 0;
         maxexp = 128;
+        id = ID;
     }
 
-    public Hero(String name, int hp, int MAX_HP, int mp, int MAX_MP, int attack, int defence, int D_ATTACK, int D_DEFENCE, int level, int exp, int maxexp) {
+    public Hero(String name, int hp, int MAX_HP, int mp, int MAX_MP, int attack, int defence, int D_ATTACK, int D_DEFENCE, int level, int exp, int maxexp,int id) {
         this.name = name;
         this.hp = hp;
         this.MAX_HP = MAX_HP;
@@ -54,7 +52,7 @@ public class Hero extends Job {
         this.level = level;
         this.exp = exp;
         this.maxexp = maxexp;
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.id = id;
     }
     
     public int getD_ATTACK() {
@@ -293,6 +291,14 @@ public class Hero extends Job {
 
     public boolean isSpMoveList() {
         return spMoveList;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 }

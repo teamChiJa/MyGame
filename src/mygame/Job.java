@@ -18,7 +18,7 @@ public abstract class Job {
     private int level;
     private int exp;
     private int maxexp;
-    
+    private int id;
     public Job() {
         MAX_HP = hp;
         MAX_MP = mp;
@@ -164,6 +164,14 @@ public abstract class Job {
 
     public void setmaxexp(int maxexp) {
         this.maxexp = maxexp;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 }

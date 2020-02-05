@@ -4,7 +4,6 @@ import java.util.concurrent.ThreadLocalRandom;
 import static mygame.Combat.*;
 import static mygame.Command.*;
 import static mygame.Insert.*;
-import static mygame.Combat.*;
 
 public class Wizard extends Job {
 
@@ -23,8 +22,8 @@ public class Wizard extends Job {
     private int level;
     private int exp;
     private int maxexp;
-
-    public Wizard(String name) {
+private int id;
+    public Wizard(String name,int ID) {
         this.name = name;
         hp = ThreadLocalRandom.current().nextInt(21, 31);
         MAX_HP = hp;
@@ -37,9 +36,10 @@ public class Wizard extends Job {
         level = 1;
         exp = 0;
         maxexp = 128;
+        id = ID;
     }
 
-    public Wizard(String name, int hp, int MAX_HP, int mp, int MAX_MP, int attack, int defence, int D_ATTACK, int D_DEFENCE, int level, int exp, int maxexp) {
+    public Wizard(String name, int hp, int MAX_HP, int mp, int MAX_MP, int attack, int defence, int D_ATTACK, int D_DEFENCE, int level, int exp, int maxexp,int id) {
         this.name = name;
         this.hp = hp;
         this.MAX_HP = MAX_HP;
@@ -52,7 +52,7 @@ public class Wizard extends Job {
         this.level = level;
         this.exp = exp;
         this.maxexp = maxexp;
-        throw new UnsupportedOperationException("Not supported yet.");
+        this.id = id;
     }
 
     public void setMAX_HP(int MAX_HP) {
@@ -377,6 +377,14 @@ public class Wizard extends Job {
 
     public void setMaxexp(int maxexp) {
         this.maxexp = maxexp;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
 }

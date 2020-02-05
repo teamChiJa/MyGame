@@ -1,8 +1,6 @@
 package mygame;
 
 import java.io.IOException;
-import static mygame.CreatMember.*;
-import static mygame.MemberManager.*;
 import static mygame.Insert.*;
 import static mygame.PlayGame.*;
 import static mygame.Combat.*;

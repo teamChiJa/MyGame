@@ -3,9 +3,8 @@ package mygame;
 import java.util.ArrayList;
 import static mygame.Insert.*;
 import static mygame.MemberManager.*;
-import java.util.concurrent.ThreadLocalRandom;
 import static mygame.Combat.*;
-
+import static mygame.Command.tmp_cnt;
 public class CreatMember {
 
     static ArrayList<Job> party = new ArrayList();
@@ -59,31 +58,37 @@ public class CreatMember {
                 case 1:
                     System.out.print("名前を入力してください >");
                     name = insert();
-                    Hero h = new Hero(name);
+                    tmp_cnt = tmp_cnt + 1;
+                    Hero h = new Hero(name, tmp_cnt);
+                    System.out.println(h.getId());
                     party.add(h);
                     break BACK;
                 case 2:
                     System.out.print("名前を入力してください >");
                     name = insert();
-                    Fighter f = new Fighter(name);
+                    tmp_cnt = tmp_cnt + 1;
+                    Fighter f = new Fighter(name, tmp_cnt);
                     party.add(f);
                     break BACK;
                 case 3:
                     System.out.print("名前を入力してください >");
                     name = insert();
-                    Wizard w = new Wizard(name);
+                    tmp_cnt = tmp_cnt + 1;
+                    Wizard w = new Wizard(name,tmp_cnt);
                     party.add(w);
                     break BACK;
                 case 4:
                     System.out.print("名前を入力してください >");
-                    name = insert();                 
-                    Mage m = new Mage(name);
+                    name = insert();
+                    tmp_cnt = tmp_cnt + 1;
+                    Mage m = new Mage(name,tmp_cnt);
                     party.add(m);
                     break BACK;
                 case 5:
                     System.out.print("名前を入力してください >");
                     name = insert();
-                    Knight k = new Knight(name);
+                    tmp_cnt = tmp_cnt + 1;
+                    Knight k = new Knight(name,tmp_cnt);
                     party.add(k);
                     break BACK;
                 default:
