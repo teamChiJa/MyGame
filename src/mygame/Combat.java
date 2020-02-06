@@ -22,7 +22,7 @@ public class Combat {
                 System.in));
         System.out.println("このパーティーでゲームを開始します");
         partyToString(combatParty);
-        System.out.print("ゲームを開始します [ENTER]>");
+        System.out.print("ゲームを開始します \u001b[35m[ENTER]\u001b[37m>");
         reader.readLine();//エンター待ち
         EXIT:
         while (true) {
@@ -50,10 +50,10 @@ public class Combat {
                 while (true) {
                     if (jobLive() == false) {
                         if (combatParty.size() == 1) {
-                            p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
+                            p(combatParty.get(0).getName() + "は しんでしまった！ \u001b[35m[ENTER]\u001b[37m>");
                             reader.readLine();
                         } else {
-                            p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
+                            p(combatParty.get(0).getName() + "たちは 全滅してしまった... \u001b[35m[ENTER]\u001b[37m>");
                             reader.readLine();
                         }
                         full();
@@ -63,10 +63,10 @@ public class Combat {
                     }
                     if (monsterLive() == false) {
                         if (combatParty.size() == 1) {
-                            p(combatParty.get(0).getName() + "は　戦闘に勝利した！[ENTER]>");
+                            p(combatParty.get(0).getName() + "は　戦闘に勝利した！\u001b[35m[ENTER]\u001b[37m>");
                             reader.readLine();
                         } else {
-                            p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！[ENTER]>");
+                            p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！\u001b[35m[ENTER]\u001b[37m>");
                             reader.readLine();
                         }
                         round++;
@@ -86,10 +86,10 @@ public class Combat {
                                     i++;
                                     if (jobLive() == false) {
                                         if (combatParty.size() == 1) {
-                                            p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
+                                            p(combatParty.get(0).getName() + "は しんでしまった！ \u001b[35m[ENTER]\u001b[37m>");
                                             reader.readLine();
                                         } else {
-                                            p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
+                                            p(combatParty.get(0).getName() + "たちは 全滅してしまった... \u001b[35m[ENTER]\u001b[37m>");
                                             reader.readLine();
                                         }
                                         full();
@@ -99,10 +99,10 @@ public class Combat {
                                     }
                                     if (monsterLive() == false) {
                                         if (combatParty.size() == 1) {
-                                            p(combatParty.get(0).getName() + "は　戦闘に勝利した！[ENTER]>");
+                                            p(combatParty.get(0).getName() + "は　戦闘に勝利した！\u001b[35m[ENTER]\u001b[37m>");
                                             reader.readLine();
                                         } else {
-                                            p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！[ENTER]>");
+                                            p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！\u001b[35m[ENTER]\u001b[37m>");
                                             reader.readLine();
                                         }
                                         combatFinish();
@@ -113,7 +113,7 @@ public class Combat {
                                     break;
                                 case 2:
                                     if (combatParty.get(i).isSpMoveList() == false) {
-                                        p(combatParty.get(i).getName() + "には とくぎがありません！ [ENTER]>");
+                                        p(combatParty.get(i).getName() + "には とくぎがありません！ \u001b[35m[ENTER]\u001b[37m>");
                                         reader.readLine();
                                         break;
                                     } else {
@@ -124,10 +124,10 @@ public class Combat {
                                         i++;
                                         if (jobLive() == false) {
                                             if (combatParty.size() == 1) {
-                                                p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
+                                                p("\u001b[31m" +combatParty.get(0).getName() + "は しんでしまった！ \u001b[35m[ENTER]\u001b[37m>");
                                                 reader.readLine();
                                             } else {
-                                                p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
+                                                p("\u001b[31m" +combatParty.get(0).getName() + "たちは 全滅してしまった... \u001b[35m[ENTER]\u001b[37m>");
                                                 reader.readLine();
                                             }
                                             full();
@@ -137,10 +137,10 @@ public class Combat {
                                         }
                                         if (monsterLive() == false) {
                                             if (combatParty.size() == 1) {
-                                                p(combatParty.get(0).getName() + "は　戦闘に勝利した！[ENTER]>");
+                                                p(combatParty.get(0).getName() + "は　戦闘に勝利した！\u001b[35m[ENTER]\u001b[37m>");
                                                 reader.readLine();
                                             } else {
-                                                p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！[ENTER]>");
+                                                p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！\u001b[35m[ENTER]\u001b[37m>");
                                                 reader.readLine();
                                             }
                                             combatFinish();
@@ -152,7 +152,7 @@ public class Combat {
                                     }
                                 case 3:
                                     if (combatParty.get(i).isMagicList() == false) {
-                                        p(combatParty.get(i).getName() + "には じゅもんはありません！ [ENTER]>");
+                                        p(combatParty.get(i).getName() + "には じゅもんはありません！ \u001b[35m[ENTER]\u001b[37m>");
                                         reader.readLine();
                                         break;
                                     } else {
@@ -163,10 +163,10 @@ public class Combat {
                                         i++;
                                         if (jobLive() == false) {
                                             if (combatParty.size() == 1) {
-                                                p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
+                                                p("\u001b[31m" +combatParty.get(0).getName() + "は しんでしまった！ \u001b[35m[ENTER]\u001b[37m>");
                                                 reader.readLine();
                                             } else {
-                                                p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
+                                                p("\u001b[31m" +combatParty.get(0).getName() + "たちは 全滅してしまった... \u001b[35m[ENTER]\u001b[37m>");
                                                 reader.readLine();
                                             }
                                             full();
@@ -176,10 +176,10 @@ public class Combat {
                                         }
                                         if (monsterLive() == false) {
                                             if (combatParty.size() == 1) {
-                                                p(combatParty.get(0).getName() + "は　戦闘に勝利した！[ENTER]>");
+                                                p(combatParty.get(0).getName() + "は　戦闘に勝利した！\u001b[35m[ENTER]\u001b[37m>");
                                                 reader.readLine();
                                             } else {
-                                                p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！[ENTER]>");
+                                                p(combatParty.get(0).getName() + "たちは　戦闘に勝利した！\u001b[35m[ENTER]\u001b[37m>");
                                                 reader.readLine();
                                             }
                                             combatFinish();
@@ -193,18 +193,18 @@ public class Combat {
                                     int rdena = ThreadLocalRandom.current().nextInt(1, 5);
                                     if (rdena == 3) {
                                         if (combatParty.size() == 1) {
-                                            p(combatParty.get(0).getName() + "はにげだした。しかし、まわりこまれてしまった。[ENTER]>");
+                                            p("\u001b[31m" + combatParty.get(0).getName() + "はにげだした。しかし、まわりこまれてしまった。\u001b[35m[ENTER]\u001b[37m>");
                                             reader.readLine();
                                         } else {
-                                            p(combatParty.get(0).getName() + "たちはにげだした。しかし、まわりこまれてしまった。[ENTER]>");
+                                            p("\u001b[31m" + combatParty.get(0).getName() + "たちはにげだした。しかし、まわりこまれてしまった。\u001b[35m[ENTER]\u001b[37m>");
                                             reader.readLine();
                                         }
                                         if (jobLive() == false) {
                                             if (combatParty.size() == 1) {
-                                                p(combatParty.get(0).getName() + "は しんでしまった！ [ENTER]>");
+                                                p("\u001b[31m" +combatParty.get(0).getName() + "は しんでしまった！ \u001b[35m[ENTER]\u001b[37m>");
                                                 reader.readLine();
                                             } else {
-                                                p(combatParty.get(0).getName() + "たちは 全滅してしまった... [ENTER]>");
+                                                p("\u001b[31m" +combatParty.get(0).getName() + "たちは 全滅してしまった... \u001b[35m[ENTER]\u001b[37m>");
                                                 reader.readLine();
                                             }
                                             full();
@@ -219,27 +219,29 @@ public class Combat {
                                         break QUIT;
                                     }
                                 default:
-                                    System.out.println("1~4の中の数値を入力してください");
+                                    pl("");
+                                    System.out.println("\u001b[31m※1~4の中の数値を入力してください\u001b[31m※");
+                                    pl("");
                                     break;
                             }
-                            monstersAttack();
                         } else {
                             i++;
                         }
                     }
+                    monstersAttack();
                 }
                 while (true) {
-                    p("次に進む [ENTER or !h(help)]>");
+                    p("次に進む [\u001b[35mENTER \u001b[37mor \u001b[36m!h(help)\u001b[37m]>");
                     String q = reader.readLine();
                     if (q.equals("!q")) {
                         save();
                         pl("終了します");
                         System.exit(0);
                     } else if (q.equalsIgnoreCase("!help") || q.equalsIgnoreCase("!h")) {
-                        pl("---help---");
-                        pl("!p - 保存");
-                        pl("!q - 強制終了");
-                        pl("----------");
+                        pl("\u001b[32m---help---");
+                        pl("\u001b[36m!p - 保存");
+                        pl("\u001b[36m!q - 強制終了");
+                        pl("\u001b[32m----------\u001b[37m]");
                     } else if (q.equalsIgnoreCase("!p")) {
                         save();
                     } else {
@@ -248,17 +250,17 @@ public class Combat {
                 }
             } else {
                 while (true) {
-                    p("次に進む [ENTER or !h(help)]>");
+                    p("次に進む [\u001b[35mENTER \u001b[37mor \u001b[36m!h(help)\u001b[37m]>");
                     String q = reader.readLine();
                     if (q.equals("!q")) {
                         save();
                         pl("終了します");
                         System.exit(0);
                     } else if (q.equalsIgnoreCase("!help") || q.equalsIgnoreCase("!h")) {
-                        pl("---help---");
-                        pl("!p - 保存");
-                        pl("!q - 強制終了");
-                        pl("----------");
+                        pl("\u001b[32m---help---");
+                        pl("\u001b[36m!p - 保存");
+                        pl("\u001b[36m!q - 強制終了");
+                        pl("\u001b[32m----------\u001b[37m]");
                     } else if (q.equalsIgnoreCase("!p")) {
                         save();
                     } else {
